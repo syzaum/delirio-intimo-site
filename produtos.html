@@ -57,12 +57,16 @@ function ativo(produto){
   const texto = String(valor).trim().toUpperCase();
   return valor === true || valor === 1 || texto === "TRUE" || texto === "1" || texto === "SIM";
 }
+function produtoVisivel(produto){
+  const categoria = String(produto.categoria || "").trim().toLowerCase();
+  return ativo(produto) && Number(produto.estoque || 0) > 0 && categoria !== "importado";
+}
 function mensagemWhatsApp(produto){
   return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";
 }
 function renderProdutos(produtos,categoriaSelecionada){
   const lista = document.getElementById("listaProdutos");
-  const ativos = produtos.filter(ativo);
+  const ativos = produtos.filter(produtoVisivel);
   const filtrados = categoriaSelecionada
     ? ativos.filter(function(p){ return String(p.categoria || "").trim() === categoriaSelecionada; })
     : ativos;
@@ -91,9 +95,9 @@ function renderProdutos(produtos,categoriaSelecionada){
 function montarFiltros(produtos){
   const filtros = document.getElementById("filtros");
   const categorias = [];
-  produtos.filter(ativo).forEach(function(p){
+  produtos.filter(produtoVisivel).forEach(function(p){
     const cat = String(p.categoria || "").trim();
-    if(cat && !categorias.includes(cat)) categorias.push(cat);
+    if(cat && cat.toLowerCase() !== "importado" && !categorias.includes(cat)) categorias.push(cat);
   });
 
   filtros.innerHTML =

@@ -20,12 +20,15 @@ nav{display:flex;gap:25px;font-size:14px;color:#ddd}
 
 .hero{padding:26px 0 44px}
 .heroBanner{position:relative;width:100%;aspect-ratio:1672/941;border-radius:30px;overflow:hidden;border:1px solid #30232b;background:#090909}
-.heroBanner img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
-.heroShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,5,.10) 0%,rgba(5,5,5,.03) 38%,rgba(5,5,5,.02) 72%,rgba(5,5,5,.10) 100%);pointer-events:none}
-.heroCopy{position:absolute;z-index:2;left:5.5%;top:50%;transform:translateY(-50%);width:min(430px,38%);display:flex;flex-direction:column;align-items:flex-start}
-.heroLogo{width:145px;height:145px;object-fit:contain;margin-bottom:12px;filter:drop-shadow(0 8px 24px rgba(255,63,152,.13))}
+.heroBanner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.heroShade{position:absolute;inset:0;background:
+linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.34) 19%,rgba(0,0,0,.04) 42%,rgba(0,0,0,.08) 100%),
+linear-gradient(90deg,rgba(0,0,0,.96) 0%,rgba(0,0,0,.88) 25%,rgba(0,0,0,.48) 43%,rgba(0,0,0,.08) 68%,rgba(0,0,0,.10) 100%);
+pointer-events:none}
+.heroCopy{position:absolute;z-index:2;left:5%;top:50%;transform:translateY(-50%);width:min(455px,42%);display:flex;flex-direction:column;align-items:center;text-align:center}
+.heroLogo{width:205px;height:205px;object-fit:contain;margin-bottom:14px;filter:drop-shadow(0 8px 24px rgba(255,63,152,.18))}
 .eyebrow{text-transform:uppercase;letter-spacing:2.5px;font-size:11px;font-weight:800;color:var(--pink);margin-bottom:13px}
-h1{font-size:clamp(45px,5.5vw,72px);line-height:.94;letter-spacing:-3.5px}
+h1{font-size:clamp(45px,5.2vw,66px);line-height:.94;letter-spacing:-3.2px}
 p{color:var(--muted);line-height:1.55}
 .heroCopy p{font-size:16px;max-width:390px;margin-top:18px}
 .buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
@@ -114,8 +117,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
       <div class="heroShade"></div>
 
       <div class="heroCopy">
-        <img class="heroLogo" src="logo.png" alt="Delírio Íntimo">
-        <div class="eyebrow">Delírio Íntimo</div>
+        <img class="heroLogo" src="logo-transparente.png" alt="Delírio Íntimo">
         <h1>Sua intimidade.<br><em>Do seu jeito.</em></h1>
         <p>Descubra peças e produtos para deixar seus momentos ainda mais especiais.</p>
         <div class="buttons">

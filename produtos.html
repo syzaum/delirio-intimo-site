@@ -58,8 +58,9 @@ function ativo(produto){
   return valor === true || valor === 1 || texto === "TRUE" || texto === "1" || texto === "SIM";
 }
 function produtoVisivel(produto){
-  const categoria = String(produto.categoria || "").trim().toLowerCase();
-  return categoria !== "importado";
+  // A coluna "Categoria" da aba Produtos é uma classificação de cadastro/origem.
+  // "Importado" não significa que o produto deva ser ocultado da vitrine.
+  return true;
 }
 function mensagemWhatsApp(produto){
   return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";
@@ -89,32 +90,13 @@ function renderProdutos(produtos,categoriaSelecionada){
     const href = disponivel ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(p)) : '#';
     const label = disponivel ? 'CONSULTAR NO WHATSAPP' : 'ESGOTADO';
 
-    return '<article class="product"><div class="photo">'+foto+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">'+escapar(p.categoria || "Produtos íntimos")+'</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<a class="details" href="'+href+'" '+(disponivel?'target="_blank" rel="noopener"':'aria-disabled="true"')+'>'+label+'</a></div></article>';
+    return '<article class="product"><div class="photo">'+foto+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">Produtos íntimos</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<a class="details" href="'+href+'" '+(disponivel?'target="_blank" rel="noopener"':'aria-disabled="true"')+'>'+label+'</a></div></article>';
   }).join("");
 }
 function montarFiltros(produtos){
   const filtros = document.getElementById("filtros");
-  const categorias = [];
-  produtos.filter(produtoVisivel).forEach(function(p){
-    const cat = String(p.categoria || "").trim();
-    if(cat && cat.toLowerCase() !== "importado" && !categorias.includes(cat)) categorias.push(cat);
-  });
-
-  filtros.innerHTML =
-    '<button class="filter active" data-categoria="">Todos</button>' +
-    categorias.map(function(cat){
-      return '<button class="filter" data-categoria="'+escapar(cat)+'">'+escapar(cat)+'</button>';
-    }).join("");
-
-  filtros.addEventListener("click",function(event){
-    const botao = event.target.closest(".filter");
-    if(!botao) return;
-    const categoria = botao.getAttribute("data-categoria") || "";
-    filtros.querySelectorAll(".filter").forEach(function(item){ item.classList.remove("active"); });
-    botao.classList.add("active");
-    renderProdutos(window.produtosVitrine || [],categoria);
-    history.replaceState(null,"",categoria ? "produtos.html?categoria="+encodeURIComponent(categoria) : "produtos.html");
-  });
+  // "Categoria" na aba Produtos é classificação de cadastro/origem, não categoria comercial.
+  filtros.innerHTML = '<button class="filter active" data-categoria="">Todos</button>';
 }
 async function carregarCatalogo(){
   const lista = document.getElementById("listaProdutos");

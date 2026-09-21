@@ -169,7 +169,7 @@ function mensagemWhatsApp(produto){
 }
 function produtoVisivel(produto){
   const categoria = String(produto.categoria || "").trim().toLowerCase();
-  return Number(produto.estoque || 0) > 0 && categoria !== "importado";
+  return categoria !== "importado";
 }
 function renderProdutos(produtos){
   const lista = document.getElementById("listaDestaques");

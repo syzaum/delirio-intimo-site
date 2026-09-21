@@ -59,7 +59,7 @@ function ativo(produto){
 }
 function produtoVisivel(produto){
   const categoria = String(produto.categoria || "").trim().toLowerCase();
-  return Number(produto.estoque || 0) > 0 && categoria !== "importado";
+  return categoria !== "importado";
 }
 function mensagemWhatsApp(produto){
   return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";

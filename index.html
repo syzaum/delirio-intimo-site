@@ -9,10 +9,10 @@
 @media(max-width:480px){.wrap{width:calc(100% - 22px)}h1{font-size:49px}.heroImg{min-height:380px;border-radius:22px}.mark{font-size:90px}.products,.categories{gap:9px}.product{border-radius:15px}.info{padding:12px}.category{min-height:135px;padding:16px;border-radius:17px}.category strong{font-size:17px}.box,.contact{padding:25px}.contact h2{font-size:30px}}
 .stock{font-size:11px;margin-top:7px;color:#777}.stock.ok{color:#ff75b7}.stock.out{color:#777}.photo img{width:100%;height:100%;object-fit:cover;display:block}.loading,.empty{grid-column:1/-1;text-align:center;padding:35px 15px;color:#777;border:1px dashed #333;border-radius:18px}.error-box{grid-column:1/-1;text-align:center;padding:25px;color:#aaa;border:1px solid #3a1e2d;border-radius:18px;background:#150d12}.category{cursor:pointer}.category:hover{border-color:#ff3f98}.details{cursor:pointer;background:transparent;color:#fff}.details:hover{border-color:#ff3f98;color:#ff3f98}</style></head>
 <body>
-<header><div class="wrap nav"><a class="logo" href="#"><img src="logo.png" alt="Delírio Íntimo"></a><nav><a href="#inicio">Início</a><a href="#produtos">Produtos</a><a href="#categorias">Categorias</a><a href="#sobre">Sobre</a></nav><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header>
+<header><div class="wrap nav"><a class="logo" href="#"><img src="logo.png" alt="Delírio Íntimo"></a><nav><a href="#inicio">Início</a><a href="produtos.html">Produtos</a><a href="#categorias">Categorias</a><a href="#sobre">Sobre</a></nav><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header>
 <main id="inicio">
 <section class="hero"><div class="wrap heroGrid"><div class="copy"><div class="eyebrow">Delírio Íntimo</div><h1>Sua intimidade.<br><em>Do seu jeito.</em></h1><p>Descubra peças e produtos para deixar seus momentos ainda mais especiais.</p><div class="buttons"><a class="btn primary" href="#produtos">VER PRODUTOS</a><a class="btn secondary" href="#categorias">EXPLORAR CATEGORIAS</a></div></div><div class="heroImg"><div class="heroOverlay"></div><div class="label">Delírio Íntimo</div></div></div></section>
-<section id="produtos"><div class="wrap"><div class="head"><div><h2>Destaques</h2><p>Alguns dos queridinhos da Delírio Íntimo.</p></div><a class="pink" href="#produtos" style="font-size:12px;font-weight:800">VER TODOS →</a></div><div class="products" id="listaDestaques">
+<section id="produtos"><div class="wrap"><div class="head"><div><h2>Destaques</h2><p>Alguns dos queridinhos da Delírio Íntimo.</p></div><a class="pink" href="produtos.html" style="font-size:12px;font-weight:800">VER TODOS →</a></div><div class="products" id="listaDestaques">
 <div class="product"><div class="photo">Carregando produtos...</div><div class="info"><div class="name">Carregando...</div><div class="cat">Aguarde</div></div></div>
 </div></div></section>
 <section id="categorias"><div class="wrap"><div class="head"><div><h2>Encontre o seu</h2><p>Explore a loja do seu jeito.</p></div></div><div class="categories" id="listaCategorias"><div class="category"><div><span>01</span><strong>Carregando...</strong></div></div></div></div></section>
@@ -60,7 +60,7 @@ function renderProdutos(produtos){
   }
   lista.innerHTML = destaques.map(function(p){
     const estoque = Number(p.estoque || 0);
-    const foto = p.fotoUrl ? '<img src="'+escapar(p.fotoUrl)+'" alt="'+escapar(p.produto)+'" loading="lazy">' : 'Foto do produto';
+    const foto = p.fotoUrl ? '<img src="'+escapar(p.fotoUrl)+'" alt="'+escapar(p.produto)+'" loading="lazy" onerror="this.style.display=\'none\';this.parentNode.textContent=\'Foto do produto\';">' : 'Foto do produto';
     const status = estoque > 0 ? '<div class="stock ok">Disponível</div>' : '<div class="stock out">Esgotado</div>';
     const href = estoque > 0 ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(p)) : '#';
     const label = estoque > 0 ? 'CONSULTAR NO WHATSAPP' : 'ESGOTADO';

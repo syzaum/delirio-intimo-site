@@ -33,7 +33,19 @@ function escapar(texto){
   });
 }
 function ativo(produto){
-  return produto.ativo === true || String(produto.ativo).toUpperCase() === "TRUE";
+  const valor = produto ? produto.ativo : undefined;
+
+  // A API da vitrine já deve enviar apenas produtos públicos.
+  // Se o campo "ativo" não vier na resposta, não escondemos o produto.
+  if(valor === undefined || valor === null || valor === "") return true;
+
+  const texto = String(valor).trim().toUpperCase();
+
+  return valor === true ||
+         valor === 1 ||
+         texto === "TRUE" ||
+         texto === "1" ||
+         texto === "SIM";
 }
 function mensagemWhatsApp(produto){
   return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";
@@ -43,7 +55,7 @@ function renderProdutos(produtos){
   const disponiveis = produtos.filter(ativo);
   const destaques = disponiveis.slice(0,4);
   if(!destaques.length){
-    lista.innerHTML = '<div class="empty">Nenhum produto disponível no momento.</div>';
+    lista.innerHTML = '<div class="empty">Nenhum produto cadastrado no momento.</div>';
     return;
   }
   lista.innerHTML = destaques.map(function(p){

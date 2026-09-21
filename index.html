@@ -18,8 +18,8 @@ header{position:sticky;top:0;z-index:20;background:#090909e8;border-bottom:1px s
 nav{display:flex;gap:25px;font-size:14px;color:#ddd}
 .wa{border:1px solid var(--pink);color:var(--pink);padding:9px 15px;border-radius:30px;font-weight:700;font-size:13px}
 
-.hero{padding:26px 0 4px}
-.heroBanner{position:relative;width:100%;aspect-ratio: 3.2 / 1;;border-radius:0;overflow:hidden;border-top:1px solid #30232b;border-bottom:1px solid #30232b;background:#090909}
+.hero{padding:26px 0 2px}
+.heroBanner{position:relative;width:100%;aspect-ratio:3.2/1;border-radius:0;overflow:hidden;border-top:1px solid #30232b;border-bottom:1px solid #30232b;background:#090909}
 .heroBanner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .heroShade{position:absolute;inset:0;background:
 linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.34) 19%,rgba(0,0,0,.04) 42%,rgba(0,0,0,.08) 100%),
@@ -167,9 +167,13 @@ function ativo(produto){
 function mensagemWhatsApp(produto){
   return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";
 }
+function produtoVisivel(produto){
+  const categoria = String(produto.categoria || "").trim().toLowerCase();
+  return ativo(produto) && Number(produto.estoque || 0) > 0 && categoria !== "importado";
+}
 function renderProdutos(produtos){
   const lista = document.getElementById("listaDestaques");
-  const disponiveis = produtos.filter(ativo);
+  const disponiveis = produtos.filter(produtoVisivel);
   const destaques = disponiveis.slice(0,4);
   if(!destaques.length){
     lista.innerHTML = '<div class="empty">Nenhum produto cadastrado no momento.</div>';
@@ -187,9 +191,9 @@ function renderProdutos(produtos){
 function renderCategorias(produtos){
   const container = document.getElementById("listaCategorias");
   const categorias = [];
-  produtos.filter(ativo).forEach(function(p){
+  produtos.filter(produtoVisivel).forEach(function(p){
     const cat = String(p.categoria || "Produtos íntimos").trim();
-    if(cat && !categorias.includes(cat)) categorias.push(cat);
+    if(cat && cat.toLowerCase() !== "importado" && !categorias.includes(cat)) categorias.push(cat);
   });
   const exibidas = categorias.slice(0,4);
   if(!exibidas.length){

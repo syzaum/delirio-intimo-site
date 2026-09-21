@@ -19,13 +19,13 @@ nav{display:flex;gap:25px;font-size:14px;color:#ddd}
 .wa{border:1px solid var(--pink);color:var(--pink);padding:9px 15px;border-radius:30px;font-weight:700;font-size:13px}
 
 .hero{padding:26px 0 44px}
-.heroBanner{position:relative;width:100%;aspect-ratio:1672/941;border-radius:30px;overflow:hidden;border:1px solid #30232b;background:#090909}
+.heroBanner{position:relative;width:100%;aspect-ratio:1672/941;border-radius:0;overflow:hidden;border-top:1px solid #30232b;border-bottom:1px solid #30232b;background:#090909}
 .heroBanner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .heroShade{position:absolute;inset:0;background:
 linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.34) 19%,rgba(0,0,0,.04) 42%,rgba(0,0,0,.08) 100%),
 linear-gradient(90deg,rgba(0,0,0,.96) 0%,rgba(0,0,0,.88) 25%,rgba(0,0,0,.48) 43%,rgba(0,0,0,.08) 68%,rgba(0,0,0,.10) 100%);
 pointer-events:none}
-.heroCopy{position:absolute;z-index:2;left:5%;top:50%;transform:translateY(-50%);width:min(455px,42%);display:flex;flex-direction:column;align-items:center;text-align:center}
+.heroCopy{position:absolute;z-index:2;left:6.5%;top:50%;transform:translateY(-50%);width:min(470px,38vw);display:flex;flex-direction:column;align-items:center;text-align:center}
 .heroLogo{width:205px;height:205px;object-fit:contain;margin-bottom:14px;filter:drop-shadow(0 8px 24px rgba(255,63,152,.18))}
 .eyebrow{text-transform:uppercase;letter-spacing:2.5px;font-size:11px;font-weight:800;color:var(--pink);margin-bottom:13px}
 h1{font-size:clamp(45px,5.2vw,66px);line-height:.94;letter-spacing:-3.2px}
@@ -77,6 +77,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
   nav{display:none}
   .hero{padding:18px 0 32px}
   .heroBanner{aspect-ratio:auto;border-radius:24px;overflow:visible;border:0;background:transparent}
+  .hero > .wrap{width:calc(100% - 28px);margin:auto}
   .heroBanner img{position:relative;inset:auto;width:100%;height:auto;object-fit:contain;border-radius:24px;display:block;border:1px solid #30232b}
   .heroShade,.label{display:none}
   .heroCopy{position:relative;left:auto;top:auto;transform:none;width:100%;padding:25px 5px 0;align-items:center;text-align:center}
@@ -111,8 +112,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
 <header><div class="wrap nav"><a class="logo" href="#"><img src="logo.png" alt="Delírio Íntimo"></a><nav><a href="#inicio">Início</a><a href="produtos.html">Produtos</a><a href="#categorias">Categorias</a><a href="#sobre">Sobre</a></nav><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header>
 <main id="inicio">
 <section class="hero">
-  <div class="wrap">
-    <div class="heroBanner">
+  <div class="heroBanner">
       <img src="hero.png" alt="Delírio Íntimo — lingerie e produtos íntimos">
       <div class="heroShade"></div>
 
@@ -128,7 +128,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
 
       <div class="label">Delírio Íntimo</div>
     </div>
-  </div>
 </section>
 <section id="produtos"><div class="wrap"><div class="head"><div><h2>Destaques</h2><p>Alguns dos queridinhos da Delírio Íntimo.</p></div><a class="pink" href="produtos.html" style="font-size:12px;font-weight:800">VER TODOS →</a></div><div class="products" id="listaDestaques">
 <div class="product"><div class="photo">Carregando produtos...</div><div class="info"><div class="name">Carregando...</div><div class="cat">Aguarde</div></div></div>

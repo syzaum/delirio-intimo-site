@@ -168,8 +168,9 @@ function mensagemWhatsApp(produto){
   return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";
 }
 function produtoVisivel(produto){
-  const categoria = String(produto.categoria || "").trim().toLowerCase();
-  return categoria !== "importado";
+  // A coluna "Categoria" da aba Produtos é uma classificação de cadastro/origem.
+  // "Importado" não significa que o produto deva ser ocultado da vitrine.
+  return true;
 }
 function renderProdutos(produtos){
   const lista = document.getElementById("listaDestaques");
@@ -185,24 +186,15 @@ function renderProdutos(produtos){
     const status = estoque > 0 ? '<div class="stock ok">Disponível</div>' : '<div class="stock out">Esgotado</div>';
     const href = estoque > 0 ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(p)) : '#';
     const label = estoque > 0 ? 'CONSULTAR NO WHATSAPP' : 'ESGOTADO';
-    return '<article class="product"><div class="photo">'+foto+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">'+escapar(p.categoria || 'Produtos íntimos')+'</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<a class="details" href="'+href+'" '+(estoque>0?'target="_blank" rel="noopener"':'aria-disabled="true"')+'>'+label+'</a></div></article>';
+    return '<article class="product"><div class="photo">'+foto+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">Produtos íntimos</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<a class="details" href="'+href+'" '+(estoque>0?'target="_blank" rel="noopener"':'aria-disabled="true"')+'>'+label+'</a></div></article>';
   }).join("");
 }
 function renderCategorias(produtos){
   const container = document.getElementById("listaCategorias");
-  const categorias = [];
-  produtos.filter(produtoVisivel).forEach(function(p){
-    const cat = String(p.categoria || "Produtos íntimos").trim();
-    if(cat && cat.toLowerCase() !== "importado" && !categorias.includes(cat)) categorias.push(cat);
-  });
-  const exibidas = categorias.slice(0,4);
-  if(!exibidas.length){
-    container.innerHTML = '<div class="empty">Nenhuma categoria disponível.</div>';
-    return;
-  }
-  container.innerHTML = exibidas.map(function(cat,i){
-    return '<a class="category" href="#produtos"><div><span>'+String(i+1).padStart(2,"0")+'</span><strong>'+escapar(cat)+'</strong></div></a>';
-  }).join("");
+  // A coluna "Categoria" atual é de cadastro/origem (ex.: Importado),
+  // então não usamos esses valores como categorias comerciais da vitrine.
+  container.innerHTML =
+    '<a class="category" href="produtos.html"><div><span>01</span><strong>Ver todos os produtos</strong></div></a>';
 }
 async function carregarVitrine(){
   const lista = document.getElementById("listaDestaques");

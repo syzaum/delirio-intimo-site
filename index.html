@@ -1,43 +1,141 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090909">
-<title>Produtos — Delírio Íntimo</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090909">
+<title>Delírio Íntimo</title>
 <style>
-:root{--bg:#090909;--card:#151515;--pink:#ff3f98;--white:#fff;--muted:#aaa;--line:#292929}*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif}a{text-decoration:none;color:inherit}.wrap{width:min(1120px,calc(100% - 28px));margin:auto}header{position:sticky;top:0;z-index:10;background:#090909e8;border-bottom:1px solid #222;backdrop-filter:blur(12px)}.nav{height:68px;display:flex;align-items:center;justify-content:space-between}.logo{display:flex;align-items:center;height:48px}.logo img{height:44px;width:auto;display:block;object-fit:contain}.logo span,h1 em,.pink{color:var(--pink)}nav{display:flex;gap:25px;font-size:14px;color:#ddd}.wa{border:1px solid var(--pink);color:var(--pink);padding:9px 15px;border-radius:30px;font-weight:700;font-size:13px}.hero{padding:34px 0}.heroGrid{display:grid;grid-template-columns:1fr 1.05fr;gap:18px;min-height:610px}.copy{display:flex;justify-content:center;flex-direction:column;padding:25px 5px}.eyebrow{text-transform:uppercase;letter-spacing:2.5px;font-size:11px;font-weight:800;color:var(--pink);margin-bottom:17px}h1{font-size:clamp(48px,7vw,82px);line-height:.93;letter-spacing:-4px}p{color:var(--muted);line-height:1.55}.copy p{font-size:17px;max-width:440px;margin-top:22px}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:27px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 21px;border-radius:30px;font-weight:800;font-size:13px}.primary{background:var(--pink);color:#090909}.secondary{border:1px solid var(--line)}.heroImg{border:1px solid #30232b;border-radius:28px;min-height:610px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background-image:linear-gradient(90deg,rgba(9,9,9,.08),rgba(9,9,9,.02)),url('hero.png');background-size:cover;background-position:center;}.mark{font-size:120px;font-weight:900;letter-spacing:-10px}.heroOverlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,9,9,.15),rgba(9,9,9,.02) 55%,rgba(9,9,9,.12))}.label{position:absolute;bottom:22px;left:24px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#bbb}section{padding:65px 0}.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}.head h2{font-size:32px;letter-spacing:-1.5px}.head p{font-size:13px;margin-top:5px}.products{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.product{background:var(--card);border:1px solid var(--line);border-radius:19px;overflow:hidden}.photo{aspect-ratio:1;background:radial-gradient(circle at 50% 35%,#ff3f9840,transparent 40%),linear-gradient(145deg,#21151c,#111);display:grid;place-items:center;color:#777;font-size:11px;text-transform:uppercase;letter-spacing:1px}.info{padding:15px}.name{font-weight:800;font-size:15px}.cat{font-size:12px;color:#777;margin-top:4px}.price{font-size:17px;font-weight:900;margin-top:12px}.details{display:block;text-align:center;border:1px solid #3a3a3a;border-radius:10px;padding:10px;margin-top:11px;font-size:12px;font-weight:800}.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.category{min-height:170px;border:1px solid var(--line);border-radius:21px;padding:20px;display:flex;align-items:end;background:linear-gradient(145deg,#1b1b1b,#101010)}.category span{display:block;color:var(--pink);font-size:12px;font-weight:800;margin-bottom:5px}.category strong{font-size:20px}.about{display:grid;grid-template-columns:1fr 1fr;gap:15px}.box{background:var(--card);border:1px solid var(--line);border-radius:23px;padding:32px}.box h2{font-size:33px;line-height:1.05;margin-bottom:15px}.quote{background:linear-gradient(145deg,#26111e,#101010);display:flex;flex-direction:column;justify-content:center}.quote strong{font-size:25px;line-height:1.15}.quote small{color:var(--pink);margin-top:17px}.contact{background:linear-gradient(145deg,#24101c,#101010);border:1px solid #3a1e2d;border-radius:27px;padding:40px;text-align:center}.contact h2{font-size:37px}.contact p{max-width:500px;margin:9px auto 22px}footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size:12px}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.foot b{color:#fff}.foot b span{color:var(--pink)}
-@media(max-width:800px){nav{display:none}.heroGrid{grid-template-columns:1fr;min-height:0}.copy{padding:35px 4px 10px}.heroImg{min-height:430px}.products{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}section{padding:48px 0}}
-@media(max-width:480px){.wrap{width:calc(100% - 22px)}h1{font-size:49px}.heroImg{min-height:380px;border-radius:22px}.mark{font-size:90px}.products,.categories{gap:9px}.product{border-radius:15px}.info{padding:12px}.category{min-height:135px;padding:16px;border-radius:17px}.category strong{font-size:17px}.box,.contact{padding:25px}.contact h2{font-size:30px}}
-.stock{font-size:11px;margin-top:7px;color:#777}.stock.ok{color:#ff75b7}.stock.out{color:#777}.photo img{width:100%;height:100%;object-fit:cover;display:block}.loading,.empty{grid-column:1/-1;text-align:center;padding:35px 15px;color:#777;border:1px dashed #333;border-radius:18px}.error-box{grid-column:1/-1;text-align:center;padding:25px;color:#aaa;border:1px solid #3a1e2d;border-radius:18px;background:#150d12}.category{cursor:pointer}.category:hover{border-color:#ff3f98}.details{cursor:pointer;background:transparent;color:#fff}.details:hover{border-color:#ff3f98;color:#ff3f98}
-.catalog-head{padding:52px 0 24px}.catalog-head h1{font-size:clamp(42px,6vw,64px);letter-spacing:-3px}.catalog-head p{max-width:620px;margin-top:12px}.filters{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0 28px}.filter{border:1px solid #333;background:#111;color:#ddd;border-radius:30px;padding:9px 14px;font-size:12px;font-weight:800;cursor:pointer}.filter.active,.filter:hover{border-color:var(--pink);color:var(--pink)}.catalog-count{color:#777;font-size:12px;margin-bottom:15px}@media(max-width:800px){.catalog-head{padding-top:38px}.catalog-head h1{font-size:44px}}
-</style>
-</head>
+:root{--bg:#090909;--card:#151515;--pink:#ff3f98;--white:#fff;--muted:#aaa;--line:#292929}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+.wrap{width:min(1120px,calc(100% - 28px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:#090909e8;border-bottom:1px solid #222;backdrop-filter:blur(12px)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;height:48px}
+.logo img{height:44px;width:auto;display:block;object-fit:contain}
+.logo span,h1 em,.pink{color:var(--pink)}
+nav{display:flex;gap:25px;font-size:14px;color:#ddd}
+.wa{border:1px solid var(--pink);color:var(--pink);padding:9px 15px;border-radius:30px;font-weight:700;font-size:13px}
+
+.hero{padding:0 0 3px}
+.heroBanner{position:relative;width:100%;aspect-ratio:3.2/1;border-radius:0;overflow:hidden;border-top:1px solid #30232b;border-bottom:1px solid #30232b;background:#090909}
+.heroBanner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.heroShade{position:absolute;inset:0;background:
+linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.34) 19%,rgba(0,0,0,.04) 42%,rgba(0,0,0,.08) 100%),
+linear-gradient(90deg,rgba(0,0,0,.96) 0%,rgba(0,0,0,.88) 25%,rgba(0,0,0,.48) 43%,rgba(0,0,0,.08) 68%,rgba(0,0,0,.10) 100%);
+pointer-events:none}
+.heroCopy{position:absolute;z-index:2;left:6.5%;top:50%;transform:translateY(-50%);width:min(470px,38vw);display:flex;flex-direction:column;align-items:center;text-align:center}
+.heroLogo{width:205px;height:205px;object-fit:contain;margin-bottom:14px;filter:drop-shadow(0 8px 24px rgba(255,63,152,.18))}
+.eyebrow{text-transform:uppercase;letter-spacing:2.5px;font-size:11px;font-weight:800;color:var(--pink);margin-bottom:13px}
+h1{font-size:clamp(45px,5.2vw,66px);line-height:.94;letter-spacing:-3.2px}
+p{color:var(--muted);line-height:1.55}
+.heroCopy p{font-size:16px;max-width:390px;margin-top:18px}
+.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:30px;font-weight:800;font-size:12px}
+.primary{background:var(--pink);color:#090909}
+.secondary{border:1px solid #3a3a3a;background:#090909aa}
+.label{position:absolute;bottom:19px;right:22px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#aaa;z-index:2}
+
+section{padding:65px 0}
+.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}
+.head h2{font-size:32px;letter-spacing:-1.5px}
+.head p{font-size:13px;margin-top:5px}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.product{background:var(--card);border:1px solid var(--line);border-radius:19px;overflow:hidden}
+.photo{aspect-ratio:1;background:radial-gradient(circle at 50% 35%,#ff3f9840,transparent 40%),linear-gradient(145deg,#21151c,#111);display:grid;place-items:center;color:#777;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.info{padding:15px}
+.name{font-weight:800;font-size:15px}
+.cat{font-size:12px;color:#777;margin-top:4px}
+.price{font-size:17px;font-weight:900;margin-top:12px}
+.details{display:block;text-align:center;border:1px solid #3a3a3a;border-radius:10px;padding:10px;margin-top:11px;font-size:12px;font-weight:800;cursor:pointer;background:transparent;color:#fff}
+.details:hover{border-color:#ff3f98;color:#ff3f98}
+.stock{font-size:11px;margin-top:7px;color:#777}
+.stock.ok{color:#ff75b7}.stock.out{color:#777}
+.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.category{min-height:170px;border:1px solid var(--line);border-radius:21px;padding:20px;display:flex;align-items:end;background:linear-gradient(145deg,#1b1b1b,#101010);cursor:pointer}
+.category:hover{border-color:#ff3f98}
+.category span{display:block;color:var(--pink);font-size:12px;font-weight:800;margin-bottom:5px}
+.category strong{font-size:20px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:23px;padding:32px}
+.box h2{font-size:33px;line-height:1.05;margin-bottom:15px}
+.quote{background:linear-gradient(145deg,#26111e,#101010);display:flex;flex-direction:column;justify-content:center}
+.quote strong{font-size:25px;line-height:1.15}
+.quote small{color:var(--pink);margin-top:17px}
+.contact{background:linear-gradient(145deg,#24101c,#101010);border:1px solid #3a1e2d;border-radius:27px;padding:40px;text-align:center}
+.contact h2{font-size:37px}
+.contact p{max-width:500px;margin:9px auto 22px}
+footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size:12px}
+.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.foot b{color:#fff}.foot b span{color:var(--pink)}
+.loading,.empty{grid-column:1/-1;text-align:center;padding:35px 15px;color:#777;border:1px dashed #333;border-radius:18px}
+.error-box{grid-column:1/-1;text-align:center;padding:25px;color:#aaa;border:1px solid #3a1e2d;border-radius:18px;background:#150d12}
+
+@media(max-width:800px){
+  nav{display:none}
+  .hero{padding:18px 0 32px}
+  .heroBanner{aspect-ratio:auto;border-radius:24px;overflow:visible;border:0;background:transparent}
+  .hero > .wrap{width:calc(100% - 28px);margin:auto}
+  .heroBanner img{position:relative;inset:auto;width:100%;height:auto;object-fit:contain;border-radius:24px;display:block;border:1px solid #30232b}
+  .heroShade,.label{display:none}
+  .heroCopy{position:relative;left:auto;top:auto;transform:none;width:100%;padding:25px 5px 0;align-items:center;text-align:center}
+  .heroLogo{width:112px;height:112px;margin-bottom:8px}
+  h1{font-size:clamp(43px,11vw,58px);letter-spacing:-3px}
+  .heroCopy p{font-size:15px;max-width:390px}
+  .buttons{justify-content:center}
+  .products{grid-template-columns:repeat(2,1fr)}
+  .categories{grid-template-columns:repeat(2,1fr)}
+  .about{grid-template-columns:1fr}
+  section{padding:48px 0}
+}
+@media(max-width:480px){
+  .wrap{width:calc(100% - 22px)}
+  .hero{padding-top:12px}
+  .heroBanner img{border-radius:20px}
+  .heroCopy{padding-top:22px}
+  .heroLogo{width:92px;height:92px}
+  h1{font-size:45px}
+  .heroCopy p{font-size:14px}
+  .btn{padding:12px 16px;font-size:11px}
+  .products,.categories{gap:9px}
+  .product{border-radius:15px}
+  .info{padding:12px}
+  .category{min-height:135px;padding:16px;border-radius:17px}
+  .category strong{font-size:17px}
+  .box,.contact{padding:25px}
+  .contact h2{font-size:30px}
+}
+</style></head>
 <body>
-<header><div class="wrap nav">
-<a class="logo" href="index.html"><img src="logo.png" alt="Delírio Íntimo"></a>
-<nav><a href="index.html">Início</a><a href="produtos.html">Produtos</a><a href="index.html#categorias">Categorias</a><a href="index.html#sobre">Sobre</a></nav>
-<a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a>
-</div></header>
+<header><div class="wrap nav"><a class="logo" href="#"><img src="logo.png" alt="Delírio Íntimo"></a><nav><a href="#inicio">Início</a><a href="produtos.html">Produtos</a><a href="#categorias">Categorias</a><a href="#sobre">Sobre</a></nav><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header>
+<main id="inicio">
+<section class="hero">
+  <div class="heroBanner">
+      <img src="hero.png" alt="Delírio Íntimo — lingerie e produtos íntimos">
+      <div class="heroShade"></div>
 
-<main>
-<section class="catalog-head"><div class="wrap">
-<div class="eyebrow">Delírio Íntimo</div>
-<h1>Todos os <em>produtos.</em></h1>
-<p>Explore nosso catálogo, escolha por categoria e consulte disponibilidade diretamente pelo WhatsApp.</p>
-<div class="filters" id="filtros"><button class="filter active" data-categoria="">Todos</button></div>
-<div class="catalog-count" id="contador">Carregando produtos...</div>
-<div class="products" id="listaProdutos"><div class="loading">Carregando produtos...</div></div>
-</div></section>
+      <div class="heroCopy">
+        <img class="heroLogo" src="logo-transparente.png" alt="Delírio Íntimo">
+        <h1>Sua intimidade.<br><em>Do seu jeito.</em></h1>
+        <p>Descubra peças e produtos para deixar seus momentos ainda mais especiais.</p>
+        <div class="buttons">
+          <a class="btn primary" href="#produtos">VER PRODUTOS</a>
+          <a class="btn secondary" href="#categorias">EXPLORAR CATEGORIAS</a>
+        </div>
+      </div>
 
-<section><div class="wrap"><div class="contact">
-<div class="eyebrow">Precisa de ajuda?</div><h2>Fale com a gente.</h2>
-<p>Consulte tamanhos, cores, disponibilidade e formas de entrega.</p>
-<a class="btn primary" href="https://wa.me/5513991808683" target="_blank" rel="noopener">FALAR NO WHATSAPP</a>
+      <div class="label">Delírio Íntimo</div>
+    </div>
+</section>
+<section id="produtos"><div class="wrap"><div class="head"><div><h2>Destaques</h2><p>Alguns dos queridinhos da Delírio Íntimo.</p></div><a class="pink" href="produtos.html" style="font-size:12px;font-weight:800">VER TODOS →</a></div><div class="products" id="listaDestaques">
+<div class="product"><div class="photo">Carregando produtos...</div><div class="info"><div class="name">Carregando...</div><div class="cat">Aguarde</div></div></div>
 </div></div></section>
-</main>
-
-<footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div>Instagram · WhatsApp</div><div>© 2026 Delírio Íntimo</div></div></footer>
+<section id="categorias"><div class="wrap"><div class="head"><div><h2>Encontre o seu</h2><p>Explore a loja do seu jeito.</p></div></div><div class="categories" id="listaCategorias"><div class="category"><div><span>01</span><strong>Carregando...</strong></div></div></div></div></section>
+<section id="sobre"><div class="wrap about"><div class="box"><div class="eyebrow">Sobre nós</div><h2>Mais liberdade para escolher o que combina com você.</h2><p>A Delírio Íntimo nasceu para tornar a busca por lingerie e produtos íntimos mais leve, prática e especial.</p></div><div class="box quote"><strong>“Seu desejo, suas escolhas, seu momento.”</strong><small>DELÍRIO ÍNTIMO</small></div></div></section>
+<section id="contato"><div class="wrap"><div class="contact"><div class="eyebrow">Gostou de alguma coisa?</div><h2>Fale com a gente.</h2><p>Consulte disponibilidade, tamanhos, cores e formas de entrega diretamente pelo WhatsApp.</p><a class="btn primary" href="https://wa.me/5513991808683" target="_blank" rel="noopener">FALAR NO WHATSAPP</a></div></div></section>
+</main><footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div>Instagram · WhatsApp</div><div>© 2026 Delírio Íntimo</div></div></footer>
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbxMqXwGjTAFWJ5HDCvmC8gbuYM89oIrY1q7UxhicsPAOPnIB5BKxJo0ROGZiwvFQY8ZRw/exec";
@@ -47,105 +145,81 @@ function moeda(valor){
   return Number(valor || 0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 }
 function escapar(texto){
-  return String(texto ?? "").replace(/[&<>'"]/g,function(c){
+  return String(texto ?? "").replace(/[&<>'"]/g, function(c){
     return ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[c];
   });
 }
 function ativo(produto){
   const valor = produto ? produto.ativo : undefined;
+
+  // A API da vitrine já deve enviar apenas produtos públicos.
+  // Se o campo "ativo" não vier na resposta, não escondemos o produto.
   if(valor === undefined || valor === null || valor === "") return true;
+
   const texto = String(valor).trim().toUpperCase();
-  return valor === true || valor === 1 || texto === "TRUE" || texto === "1" || texto === "SIM";
+
+  return valor === true ||
+         valor === 1 ||
+         texto === "TRUE" ||
+         texto === "1" ||
+         texto === "SIM";
+}
+function mensagemWhatsApp(produto){
+  return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";
 }
 function produtoVisivel(produto){
   const categoria = String(produto.categoria || "").trim().toLowerCase();
   return Number(produto.estoque || 0) > 0 && categoria !== "importado";
 }
-function mensagemWhatsApp(produto){
-  return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";
-}
-function renderProdutos(produtos,categoriaSelecionada){
-  const lista = document.getElementById("listaProdutos");
-  const ativos = produtos.filter(produtoVisivel);
-  const filtrados = categoriaSelecionada
-    ? ativos.filter(function(p){ return String(p.categoria || "").trim() === categoriaSelecionada; })
-    : ativos;
-
-  document.getElementById("contador").textContent =
-    filtrados.length + (filtrados.length === 1 ? " produto" : " produtos");
-
-  if(!filtrados.length){
-    lista.innerHTML = '<div class="empty">Nenhum produto encontrado nessa categoria.</div>';
+function renderProdutos(produtos){
+  const lista = document.getElementById("listaDestaques");
+  const disponiveis = produtos.filter(produtoVisivel);
+  const destaques = disponiveis.slice(0,4);
+  if(!destaques.length){
+    lista.innerHTML = '<div class="empty">Nenhum produto cadastrado no momento.</div>';
     return;
   }
-
-  lista.innerHTML = filtrados.map(function(p){
+  lista.innerHTML = destaques.map(function(p){
     const estoque = Number(p.estoque || 0);
-    const disponivel = estoque > 0;
-    const foto = p.fotoUrl
-      ? '<img src="'+escapar(p.fotoUrl)+'" alt="'+escapar(p.produto)+'" loading="lazy" onerror="this.style.display=\'none\';this.parentNode.textContent=\'Foto do produto\';">'
-      : 'Foto do produto';
-    const status = disponivel ? '<div class="stock ok">Disponível</div>' : '<div class="stock out">Esgotado</div>';
-    const href = disponivel ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(p)) : '#';
-    const label = disponivel ? 'CONSULTAR NO WHATSAPP' : 'ESGOTADO';
-
-    return '<article class="product"><div class="photo">'+foto+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">'+escapar(p.categoria || "Produtos íntimos")+'</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<a class="details" href="'+href+'" '+(disponivel?'target="_blank" rel="noopener"':'aria-disabled="true"')+'>'+label+'</a></div></article>';
+    const foto = p.fotoUrl ? '<img src="'+escapar(p.fotoUrl)+'" alt="'+escapar(p.produto)+'" loading="lazy" onerror="this.style.display=\'none\';this.parentNode.textContent=\'Foto do produto\';">' : 'Foto do produto';
+    const status = estoque > 0 ? '<div class="stock ok">Disponível</div>' : '<div class="stock out">Esgotado</div>';
+    const href = estoque > 0 ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(p)) : '#';
+    const label = estoque > 0 ? 'CONSULTAR NO WHATSAPP' : 'ESGOTADO';
+    return '<article class="product"><div class="photo">'+foto+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">'+escapar(p.categoria || 'Produtos íntimos')+'</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<a class="details" href="'+href+'" '+(estoque>0?'target="_blank" rel="noopener"':'aria-disabled="true"')+'>'+label+'</a></div></article>';
   }).join("");
 }
-function montarFiltros(produtos){
-  const filtros = document.getElementById("filtros");
+function renderCategorias(produtos){
+  const container = document.getElementById("listaCategorias");
   const categorias = [];
   produtos.filter(produtoVisivel).forEach(function(p){
-    const cat = String(p.categoria || "").trim();
+    const cat = String(p.categoria || "Produtos íntimos").trim();
     if(cat && cat.toLowerCase() !== "importado" && !categorias.includes(cat)) categorias.push(cat);
   });
-
-  filtros.innerHTML =
-    '<button class="filter active" data-categoria="">Todos</button>' +
-    categorias.map(function(cat){
-      return '<button class="filter" data-categoria="'+escapar(cat)+'">'+escapar(cat)+'</button>';
-    }).join("");
-
-  filtros.addEventListener("click",function(event){
-    const botao = event.target.closest(".filter");
-    if(!botao) return;
-    const categoria = botao.getAttribute("data-categoria") || "";
-    filtros.querySelectorAll(".filter").forEach(function(item){ item.classList.remove("active"); });
-    botao.classList.add("active");
-    renderProdutos(window.produtosVitrine || [],categoria);
-    history.replaceState(null,"",categoria ? "produtos.html?categoria="+encodeURIComponent(categoria) : "produtos.html");
-  });
+  const exibidas = categorias.slice(0,4);
+  if(!exibidas.length){
+    container.innerHTML = '<div class="empty">Nenhuma categoria disponível.</div>';
+    return;
+  }
+  container.innerHTML = exibidas.map(function(cat,i){
+    return '<a class="category" href="#produtos"><div><span>'+String(i+1).padStart(2,"0")+'</span><strong>'+escapar(cat)+'</strong></div></a>';
+  }).join("");
 }
-async function carregarCatalogo(){
-  const lista = document.getElementById("listaProdutos");
+async function carregarVitrine(){
+  const lista = document.getElementById("listaDestaques");
+  const categorias = document.getElementById("listaCategorias");
   try{
-    const resposta = await fetch(API_URL+"?acao=vitrine",{cache:"no-store"});
+    const resposta = await fetch(API_URL+"?acao=vitrine", {cache:"no-store"});
     const dados = await resposta.json();
     if(!dados.sucesso) throw new Error(dados.erro || "Não foi possível carregar os produtos.");
-
-    window.produtosVitrine = dados.produtos || [];
-    montarFiltros(window.produtosVitrine);
-
-    const params = new URLSearchParams(window.location.search);
-    const categoriaInicial = params.get("categoria") || "";
-    let selecionado = "";
-
-    document.querySelectorAll(".filter").forEach(function(botao){
-      if(botao.getAttribute("data-categoria") === categoriaInicial){
-        document.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active")});
-        botao.classList.add("active");
-        selecionado = categoriaInicial;
-      }
-    });
-
-    renderProdutos(window.produtosVitrine,selecionado);
+    const produtos = dados.produtos || [];
+    renderProdutos(produtos);
+    renderCategorias(produtos);
   }catch(erro){
     console.error(erro);
     lista.innerHTML = '<div class="error-box">Não foi possível carregar os produtos agora. Tente novamente em instantes.</div>';
-    document.getElementById("contador").textContent = "";
+    categorias.innerHTML = '<div class="error-box">Não foi possível carregar as categorias.</div>';
   }
 }
-carregarCatalogo();
+carregarVitrine();
 </script>
-</body>
-</html>
+</body></html>

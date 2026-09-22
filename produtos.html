@@ -29,6 +29,41 @@
 .productModalClose:hover{border-color:#ff3f98;color:#ff3f98}
 .productModalSecondary{border:1px solid #3a3a3a;background:transparent;color:#fff}
 @media(max-width:700px){.productModal{padding:10px}.productModalCard{grid-template-columns:1fr;max-height:calc(100vh - 20px);border-radius:21px}.productModalPhoto{min-height:280px;max-height:48vh}.productModalInfo{padding:25px 22px 28px}.productModalTitle{font-size:30px}.productModalPrice{font-size:24px}.productModalActions .btn{flex:1;min-width:145px}}
+
+/* CARRINHO — adicionado sem alterar a estrutura original */
+.cartFab{position:fixed;right:18px;bottom:18px;z-index:90;border:1px solid var(--pink);background:#111;color:#fff;border-radius:999px;padding:12px 16px;font-size:12px;font-weight:900;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.cartFab:hover{background:var(--pink);color:#090909}
+.cartCount{display:inline-flex;min-width:20px;height:20px;align-items:center;justify-content:center;margin-left:7px;border-radius:999px;background:var(--pink);color:#090909;font-size:11px}
+.cartOverlay{position:fixed;inset:0;z-index:110;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);display:none;justify-content:flex-end}
+.cartOverlay.open{display:flex}
+.cartPanel{width:min(470px,100%);height:100%;background:#101010;border-left:1px solid #33252d;display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(0,0,0,.5)}
+.cartHead{display:flex;align-items:center;justify-content:space-between;padding:20px;border-bottom:1px solid #292929}
+.cartHead h2{font-size:24px;letter-spacing:-1px}
+.cartClose{width:38px;height:38px;border:1px solid #444;border-radius:50%;background:#090909;color:#fff;font-size:22px;cursor:pointer}
+.cartBody{flex:1;overflow:auto;padding:16px 20px}
+.cartEmpty{text-align:center;color:#777;padding:60px 15px}
+.cartItem{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #242424}
+.cartItemPhoto{width:72px;height:72px;border-radius:12px;overflow:hidden;background:#181818;display:grid;place-items:center;color:#777;font-size:9px;text-align:center}
+.cartItemPhoto img{width:100%;height:100%;object-fit:cover;display:block}
+.cartItemName{font-size:14px;font-weight:800;line-height:1.2}
+.cartItemPrice{font-size:12px;color:#aaa;margin-top:5px}
+.qtyControl{display:inline-flex;align-items:center;border:1px solid #3a3a3a;border-radius:9px;overflow:hidden;margin-top:9px}
+.qtyControl button{width:30px;height:30px;border:0;background:#171717;color:#fff;cursor:pointer;font-size:16px}
+.qtyControl span{min-width:30px;text-align:center;font-size:12px}
+.cartItemTotal{font-size:13px;font-weight:900;white-space:nowrap}
+.cartRemove{display:block;border:0;background:none;color:#777;font-size:10px;margin-top:6px;cursor:pointer;text-align:right;width:100%}
+.cartRemove:hover{color:#ff3f98}
+.cartFoot{border-top:1px solid #292929;padding:18px 20px;background:#0c0c0c}
+.cartSummary{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:900;margin-bottom:14px}
+.cartActions{display:flex;gap:9px}.cartActions .btn{flex:1;cursor:pointer;border:0}
+.cartSecondary{border:1px solid #3a3a3a!important;background:transparent!important;color:#fff!important}
+.addCartRow{display:flex;align-items:center;gap:10px;margin-top:22px;flex-wrap:wrap}
+.quantityPicker{display:inline-flex;align-items:center;border:1px solid #3a3a3a;border-radius:10px;overflow:hidden;height:46px}
+.quantityPicker button{width:40px;height:100%;border:0;background:#171717;color:#fff;font-size:20px;cursor:pointer}
+.quantityPicker span{min-width:40px;text-align:center;font-weight:900}
+.addCartButton{flex:1;min-width:190px;height:46px;border:0;border-radius:10px;background:var(--pink);color:#090909;font-size:12px;font-weight:900;cursor:pointer}
+.addCartButton:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:480px){.cartFab{right:12px;bottom:12px}.cartPanel{width:100%}.cartItem{grid-template-columns:60px 1fr auto}.cartItemPhoto{width:60px;height:60px}.cartBody{padding:12px}.cartFoot{padding:15px 12px}}
 </style>
 </head>
 <body>
@@ -70,11 +105,167 @@
   </div>
 </div>
 
+<button class="cartFab" type="button" onclick="abrirCarrinho()" aria-label="Abrir carrinho">CARRINHO <span class="cartCount" id="cartCount">0</span></button>
+
+<div class="cartOverlay" id="cartOverlay" aria-hidden="true">
+  <div class="cartPanel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <div class="cartHead"><h2 id="cartTitle">Seu carrinho</h2><button class="cartClose" type="button" onclick="fecharCarrinho()" aria-label="Fechar carrinho">×</button></div>
+    <div class="cartBody" id="cartBody"></div>
+    <div class="cartFoot">
+      <div class="cartSummary"><span>Total</span><span id="cartTotal">R$ 0,00</span></div>
+      <div class="cartActions"><button class="btn cartSecondary" type="button" onclick="fecharCarrinho()">CONTINUAR COMPRANDO</button><button class="btn primary" type="button" onclick="finalizarCarrinhoWhatsApp()">FINALIZAR PELO WHATSAPP</button></div>
+    </div>
+  </div>
+</div>
+
 <footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div>Instagram · WhatsApp</div><div>© 2026 Delírio Íntimo</div></div></footer>
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbxMqXwGjTAFWJ5HDCvmC8gbuYM89oIrY1q7UxhicsPAOPnIB5BKxJo0ROGZiwvFQY8ZRw/exec";
 const WHATSAPP = "5513991808683";
+const CART_KEY = "delirio_intimo_carrinho";
+let quantidadeProdutoModal = 1;
+
+function lerCarrinho(){
+  try{
+    const salvo = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+    return Array.isArray(salvo) ? salvo : [];
+  }catch(e){
+    return [];
+  }
+}
+function salvarCarrinho(carrinho){
+  localStorage.setItem(CART_KEY, JSON.stringify(carrinho));
+  atualizarCarrinho();
+}
+function quantidadeNoCarrinho(){
+  return lerCarrinho().reduce(function(total,item){ return total + Number(item.quantidade || 0); },0);
+}
+function atualizarCarrinho(){
+  const count = document.getElementById("cartCount");
+  if(count) count.textContent = quantidadeNoCarrinho();
+  renderCarrinho();
+}
+function adicionarAoCarrinho(id, quantidade){
+  const produtos = window.produtosVitrine || [];
+  const produto = produtos.find(function(p){ return String(p.id) === String(id); });
+  if(!produto) return;
+  const estoque = Number(produto.estoque || 0);
+  if(estoque <= 0) return;
+
+  const qtd = Math.max(1, Number(quantidade || 1));
+  const carrinho = lerCarrinho();
+  const existente = carrinho.find(function(item){ return String(item.id) === String(produto.id); });
+  const novaQuantidade = (existente ? Number(existente.quantidade) : 0) + qtd;
+
+  if(novaQuantidade > estoque){
+    alert("A quantidade disponível para este produto é " + estoque + ".");
+    return;
+  }
+
+  const item = {
+    id: String(produto.id),
+    produto: String(produto.produto || "Produto"),
+    precoVenda: Number(produto.precoVenda || 0),
+    estoque: estoque,
+    fotoUrl: String(produto.fotoUrl || ""),
+    quantidade: novaQuantidade
+  };
+
+  if(existente){
+    Object.assign(existente,item);
+  }else{
+    carrinho.push(item);
+  }
+  salvarCarrinho(carrinho);
+  fecharProduto();
+  abrirCarrinho();
+}
+function alterarQuantidadeCarrinho(id, delta){
+  const carrinho = lerCarrinho();
+  const item = carrinho.find(function(i){ return String(i.id) === String(id); });
+  if(!item) return;
+  const nova = Number(item.quantidade || 0) + Number(delta || 0);
+  if(nova <= 0){
+    removerDoCarrinho(id);
+    return;
+  }
+  if(Number(item.estoque || 0) > 0 && nova > Number(item.estoque)){ 
+    alert("A quantidade disponível para este produto é " + item.estoque + ".");
+    return;
+  }
+  item.quantidade = nova;
+  salvarCarrinho(carrinho);
+}
+function removerDoCarrinho(id){
+  const carrinho = lerCarrinho().filter(function(item){ return String(item.id) !== String(id); });
+  salvarCarrinho(carrinho);
+}
+function limparCarrinho(){
+  salvarCarrinho([]);
+}
+function abrirCarrinho(){
+  atualizarCarrinho();
+  const overlay = document.getElementById("cartOverlay");
+  if(!overlay) return;
+  overlay.classList.add("open");
+  overlay.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+}
+function fecharCarrinho(){
+  const overlay = document.getElementById("cartOverlay");
+  if(!overlay) return;
+  overlay.classList.remove("open");
+  overlay.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
+function renderCarrinho(){
+  const body = document.getElementById("cartBody");
+  const totalEl = document.getElementById("cartTotal");
+  if(!body || !totalEl) return;
+  const carrinho = lerCarrinho();
+  if(!carrinho.length){
+    body.innerHTML = '<div class="cartEmpty">Seu carrinho está vazio.<br><span style="font-size:12px">Escolha um produto para começar.</span></div>';
+    totalEl.textContent = moeda(0);
+    return;
+  }
+  let total = 0;
+  body.innerHTML = carrinho.map(function(item){
+    const subtotal = Number(item.precoVenda || 0) * Number(item.quantidade || 0);
+    total += subtotal;
+    const foto = item.fotoUrl
+      ? '<img src="'+escapar(item.fotoUrl)+'" alt="'+escapar(item.produto)+'" onerror="this.style.display=\'none\';this.parentNode.textContent=\'Foto\';">'
+      : 'Foto';
+    return '<div class="cartItem">'
+      + '<div class="cartItemPhoto">'+foto+'</div>'
+      + '<div><div class="cartItemName">'+escapar(item.produto)+'</div>'
+      + '<div class="cartItemPrice">'+moeda(item.precoVenda)+' cada</div>'
+      + '<div class="qtyControl"><button type="button" onclick="alterarQuantidadeCarrinho(\''+escapar(item.id)+'\',-1)">−</button><span>'+Number(item.quantidade || 0)+'</span><button type="button" onclick="alterarQuantidadeCarrinho(\''+escapar(item.id)+'\',1)">+</button></div>'
+      + '<button class="cartRemove" type="button" onclick="removerDoCarrinho(\''+escapar(item.id)+'\')">REMOVER</button></div>'
+      + '<div class="cartItemTotal">'+moeda(subtotal)+'</div>'
+      + '</div>';
+  }).join("");
+  totalEl.textContent = moeda(total);
+}
+function finalizarCarrinhoWhatsApp(){
+  const carrinho = lerCarrinho();
+  if(!carrinho.length){
+    alert("Seu carrinho está vazio.");
+    return;
+  }
+  let total = 0;
+  const linhas = carrinho.map(function(item){
+    const subtotal = Number(item.precoVenda || 0) * Number(item.quantidade || 0);
+    total += subtotal;
+    return "• " + item.produto + " — " + item.quantidade + "x — " + moeda(subtotal);
+  });
+  const mensagem = "Olá! Quero fazer um pedido pelo site da Delírio Íntimo.\n\n"
+    + linhas.join("\n")
+    + "\n\n*Total: " + moeda(total) + "*"
+    + "\n\nGostaria de confirmar a disponibilidade e combinar a entrega.";
+  window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(mensagem),"_blank");
+}
+
 
 function moeda(valor){
   return Number(valor || 0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
@@ -116,14 +307,21 @@ function abrirProduto(id){
   }else{
     fotoEl.textContent = "Foto do produto";
   }
+  quantidadeProdutoModal = 1;
   const actions = document.getElementById("productModalActions");
   const href = disponivel ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(produto)) : '#';
   actions.innerHTML = disponivel
-    ? '<a class="btn primary" href="'+href+'" target="_blank" rel="noopener">FALAR NO WHATSAPP</a><button class="btn productModalSecondary" type="button" onclick="fecharProduto()">CONTINUAR VENDO</button>'
+    ? '<div class="addCartRow"><div class="quantityPicker"><button type="button" onclick="alterarQuantidadeModal(-1)">−</button><span id="modalQuantity">1</span><button type="button" onclick="alterarQuantidadeModal(1,'+estoque+')">+</button></div><button class="addCartButton" type="button" onclick="adicionarAoCarrinho(\''+escapar(produto.id)+'\',quantidadeProdutoModal)">ADICIONAR AO CARRINHO</button></div><a class="btn productModalSecondary" href="'+href+'" target="_blank" rel="noopener" style="margin-top:10px">FALAR NO WHATSAPP</a><button class="btn productModalSecondary" type="button" onclick="fecharProduto()" style="margin-top:10px">CONTINUAR VENDO</button>'
     : '<button class="btn productModalSecondary" type="button" onclick="fecharProduto()">VOLTAR AO CATÁLOGO</button>';
   modal.classList.add("open");
   modal.setAttribute("aria-hidden","false");
   document.body.style.overflow="hidden";
+}
+function alterarQuantidadeModal(delta, maximo){
+  quantidadeProdutoModal = Math.max(1, quantidadeProdutoModal + Number(delta || 0));
+  if(maximo) quantidadeProdutoModal = Math.min(quantidadeProdutoModal, Number(maximo));
+  const el = document.getElementById("modalQuantity");
+  if(el) el.textContent = quantidadeProdutoModal;
 }
 function fecharProduto(){
   const modal = document.getElementById("productModal");
@@ -200,6 +398,7 @@ async function carregarCatalogo(){
   }
 }
 carregarCatalogo();
+atualizarCarrinho();
 </script>
 </body>
 </html>

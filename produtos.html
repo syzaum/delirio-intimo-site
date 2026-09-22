@@ -29,13 +29,53 @@
 .productModalClose:hover{border-color:#ff3f98;color:#ff3f98}
 .productModalSecondary{border:1px solid #3a3a3a;background:transparent;color:#fff}
 @media(max-width:700px){.productModal{padding:10px}.productModalCard{grid-template-columns:1fr;max-height:calc(100vh - 20px);border-radius:21px}.productModalPhoto{min-height:280px;max-height:48vh}.productModalInfo{padding:25px 22px 28px}.productModalTitle{font-size:30px}.productModalPrice{font-size:24px}.productModalActions .btn{flex:1;min-width:145px}}
+
+/* Carrinho */
+.navActions{display:flex;align-items:center;gap:8px}
+.cartTop{border:1px solid #3a3a3a;background:#151515;color:#fff;padding:9px 14px;border-radius:30px;font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap}
+.cartTop:hover{border-color:var(--pink);color:var(--pink)}
+.cartCount{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;margin-left:5px;border-radius:20px;background:var(--pink);color:#090909;font-size:10px;font-weight:900}
+.cartOverlay{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.66);backdrop-filter:blur(6px);display:none}
+.cartOverlay.open{display:block}
+.cartDrawer{position:absolute;right:0;top:0;height:100%;width:min(460px,100%);background:#101010;border-left:1px solid #30232b;display:flex;flex-direction:column;box-shadow:-20px 0 70px rgba(0,0,0,.45)}
+.cartHead{display:flex;align-items:center;justify-content:space-between;padding:22px;border-bottom:1px solid #292929}
+.cartHead h2{font-size:25px;letter-spacing:-1px}
+.cartClose{width:38px;height:38px;border:1px solid #444;border-radius:50%;background:#090909;color:#fff;font-size:22px;cursor:pointer}
+.cartClose:hover{border-color:var(--pink);color:var(--pink)}
+.cartBody{flex:1;overflow:auto;padding:16px 20px}
+.cartEmpty{text-align:center;color:#777;padding:50px 15px}
+.cartItem{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid #252525}
+.cartItemPhoto{width:72px;height:72px;border-radius:12px;overflow:hidden;background:linear-gradient(145deg,#21151c,#111);display:grid;place-items:center;color:#666;font-size:9px;text-align:center}
+.cartItemPhoto img{width:100%;height:100%;object-fit:contain}
+.cartItemName{font-size:13px;font-weight:800;line-height:1.25;padding-right:6px}
+.cartItemPrice{font-size:13px;font-weight:900;margin-top:5px}
+.cartItemControls{display:flex;align-items:center;gap:8px;margin-top:10px}
+.cartQtyBtn{width:30px;height:30px;border-radius:8px;border:1px solid #3a3a3a;background:#171717;color:#fff;cursor:pointer;font-weight:900}
+.cartQtyBtn:hover{border-color:var(--pink);color:var(--pink)}
+.cartQty{min-width:22px;text-align:center;font-size:13px;font-weight:800}
+.cartRemove{margin-left:auto;border:0;background:transparent;color:#777;cursor:pointer;font-size:11px}
+.cartRemove:hover{color:#ff75b7}
+.cartFoot{border-top:1px solid #292929;padding:20px;background:#0d0d0d}
+.cartTotalRow{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.cartTotalRow span{color:#aaa;font-size:13px}
+.cartTotalRow strong{font-size:23px}
+.cartCheckout{width:100%;border:0;cursor:pointer}
+.cartCheckout:disabled{opacity:.45;cursor:not-allowed}
+.cartNote{font-size:11px;color:#666;line-height:1.4;margin-top:10px;text-align:center}
+@media(max-width:700px){
+  .navActions{gap:6px}
+  .cartTop{padding:9px 10px;font-size:11px}
+  .wa{padding:9px 10px;font-size:11px}
+  .cartDrawer{width:100%}
+}
+
 </style>
 </head>
 <body>
 <header><div class="wrap nav">
 <a class="logo" href="index.html"><img src="logo.png" alt="Delírio Íntimo"></a>
 <nav><a href="index.html">Início</a><a href="produtos.html">Produtos</a><a href="index.html#categorias">Categorias</a><a href="index.html#sobre">Sobre</a></nav>
-<a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a>
+<div class="navActions"><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a><button class="cartTop" type="button" onclick="abrirCarrinho()">Carrinho <span class="cartCount">0</span></button></div>
 </div></header>
 
 <main>
@@ -70,11 +110,175 @@
   </div>
 </div>
 
+
+<div class="cartOverlay" id="cartOverlay" aria-hidden="true">
+  <aside class="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <div class="cartHead">
+      <h2 id="cartTitle">Seu carrinho</h2>
+      <button class="cartClose" type="button" onclick="fecharCarrinho()" aria-label="Fechar">×</button>
+    </div>
+    <div class="cartBody" id="cartBody"></div>
+    <div class="cartFoot">
+      <div class="cartTotalRow"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
+      <button class="btn primary cartCheckout" id="cartCheckout" type="button" onclick="finalizarCarrinho()">FINALIZAR PELO WHATSAPP</button>
+      <div class="cartNote">O pedido será enviado pelo WhatsApp para confirmação de disponibilidade e entrega.</div>
+    </div>
+  </aside>
+</div>
+
 <footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div>Instagram · WhatsApp</div><div>© 2026 Delírio Íntimo</div></div></footer>
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbxMqXwGjTAFWJ5HDCvmC8gbuYM89oIrY1q7UxhicsPAOPnIB5BKxJo0ROGZiwvFQY8ZRw/exec";
 const WHATSAPP = "5513991808683";
+
+
+const CART_KEY = "delirioCarrinho";
+
+function lerCarrinho(){
+  try{
+    const salvo = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+    return Array.isArray(salvo) ? salvo : [];
+  }catch(e){
+    return [];
+  }
+}
+function salvarCarrinho(carrinho){
+  localStorage.setItem(CART_KEY, JSON.stringify(carrinho));
+  atualizarContadorCarrinho();
+  renderCarrinho();
+}
+function atualizarContadorCarrinho(){
+  const qtd = lerCarrinho().reduce(function(total,item){ return total + Number(item.qtd || 0); },0);
+  document.querySelectorAll(".cartCount").forEach(function(el){ el.textContent = qtd; });
+}
+function adicionarAoCarrinho(id){
+  const produto = (window.produtosVitrine || []).find(function(p){ return String(p.id) === String(id); });
+  if(!produto) return;
+  const estoque = Math.max(0, Number(produto.estoque || 0));
+  if(estoque <= 0) return;
+
+  const carrinho = lerCarrinho();
+  const existente = carrinho.find(function(item){ return String(item.id) === String(produto.id); });
+
+  if(existente){
+    existente.estoque = estoque;
+    existente.preco = Number(produto.precoVenda || 0);
+    existente.nome = produto.produto || "Produto";
+    existente.fotoUrl = produto.fotoUrl || "";
+    existente.qtd = Math.min(estoque, Number(existente.qtd || 0) + 1);
+  }else{
+    carrinho.push({
+      id:String(produto.id),
+      nome:produto.produto || "Produto",
+      preco:Number(produto.precoVenda || 0),
+      fotoUrl:produto.fotoUrl || "",
+      qtd:1,
+      estoque:estoque
+    });
+  }
+  salvarCarrinho(carrinho);
+  fecharProduto();
+  abrirCarrinho();
+}
+function alterarQtdCarrinho(id,delta){
+  const carrinho = lerCarrinho();
+  const item = carrinho.find(function(i){ return String(i.id) === String(id); });
+  if(!item) return;
+  const max = Math.max(1, Number(item.estoque || 1));
+  item.qtd = Math.max(1, Math.min(max, Number(item.qtd || 1) + Number(delta || 0)));
+  salvarCarrinho(carrinho);
+}
+function removerDoCarrinho(id){
+  const carrinho = lerCarrinho().filter(function(i){ return String(i.id) !== String(id); });
+  salvarCarrinho(carrinho);
+}
+function renderCarrinho(){
+  const body = document.getElementById("cartBody");
+  const totalEl = document.getElementById("cartTotal");
+  const checkout = document.getElementById("cartCheckout");
+  if(!body || !totalEl || !checkout) return;
+
+  const carrinho = lerCarrinho();
+  if(!carrinho.length){
+    body.innerHTML = '<div class="cartEmpty">Seu carrinho está vazio.</div>';
+    totalEl.textContent = moeda(0);
+    checkout.disabled = true;
+    return;
+  }
+
+  let total = 0;
+  body.innerHTML = carrinho.map(function(item){
+    const qtd = Number(item.qtd || 1);
+    const subtotal = Number(item.preco || 0) * qtd;
+    total += subtotal;
+    const foto = item.fotoUrl
+      ? '<img src="'+escapar(item.fotoUrl)+'" alt="'+escapar(item.nome)+'">'
+      : 'Foto';
+    return '<div class="cartItem">'+
+      '<div class="cartItemPhoto">'+foto+'</div>'+
+      '<div>'+
+        '<div class="cartItemName">'+escapar(item.nome)+'</div>'+
+        '<div class="cartItemPrice">'+moeda(subtotal)+'</div>'+
+        '<div class="cartItemControls">'+
+          '<button class="cartQtyBtn" type="button" onclick="alterarQtdCarrinho(\''+escapar(item.id)+'\',-1)">−</button>'+
+          '<span class="cartQty">'+qtd+'</span>'+
+          '<button class="cartQtyBtn" type="button" onclick="alterarQtdCarrinho(\''+escapar(item.id)+'\',1)">+</button>'+
+          '<button class="cartRemove" type="button" onclick="removerDoCarrinho(\''+escapar(item.id)+'\')">REMOVER</button>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join("");
+
+  totalEl.textContent = moeda(total);
+  checkout.disabled = false;
+}
+function abrirCarrinho(){
+  renderCarrinho();
+  const el = document.getElementById("cartOverlay");
+  if(!el) return;
+  el.classList.add("open");
+  el.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+}
+function fecharCarrinho(){
+  const el = document.getElementById("cartOverlay");
+  if(!el) return;
+  el.classList.remove("open");
+  el.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
+function finalizarCarrinho(){
+  const carrinho = lerCarrinho();
+  if(!carrinho.length) return;
+
+  let total = 0;
+  const linhas = carrinho.map(function(item){
+    const qtd = Number(item.qtd || 1);
+    const subtotal = Number(item.preco || 0) * qtd;
+    total += subtotal;
+    return "• " + item.nome + " — " + qtd + "x " + moeda(item.preco) + " = " + moeda(subtotal);
+  });
+
+  const mensagem =
+    "Olá! Gostaria de fazer um pedido na Delírio Íntimo:\n\n" +
+    linhas.join("\n") +
+    "\n\n*Total: " + moeda(total) + "*" +
+    "\n\nGostaria de confirmar a disponibilidade e combinar a entrega.";
+
+  window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(mensagem), "_blank", "noopener");
+}
+function prepararCarrinho(){
+  atualizarContadorCarrinho();
+  renderCarrinho();
+  const overlay = document.getElementById("cartOverlay");
+  if(overlay){
+    overlay.addEventListener("click",function(e){
+      if(e.target === overlay) fecharCarrinho();
+    });
+  }
+}
+
 
 function moeda(valor){
   return Number(valor || 0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
@@ -117,9 +321,8 @@ function abrirProduto(id){
     fotoEl.textContent = "Foto do produto";
   }
   const actions = document.getElementById("productModalActions");
-  const href = disponivel ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(produto)) : '#';
   actions.innerHTML = disponivel
-    ? '<a class="btn primary" href="'+href+'" target="_blank" rel="noopener">FALAR NO WHATSAPP</a><button class="btn productModalSecondary" type="button" onclick="fecharProduto()">CONTINUAR VENDO</button>'
+    ? '<button class="btn primary" type="button" onclick="adicionarAoCarrinho(\''+escapar(produto.id)+'\')">ADICIONAR AO CARRINHO</button><button class="btn productModalSecondary" type="button" onclick="fecharProduto()">CONTINUAR VENDO</button>'
     : '<button class="btn productModalSecondary" type="button" onclick="fecharProduto()">VOLTAR AO CATÁLOGO</button>';
   modal.classList.add("open");
   modal.setAttribute("aria-hidden","false");
@@ -130,9 +333,14 @@ function fecharProduto(){
   if(!modal) return;
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden","true");
-  document.body.style.overflow="";
+  if(!document.getElementById("cartOverlay")?.classList.contains("open")) document.body.style.overflow="";
 }
-document.addEventListener("keydown",function(e){ if(e.key === "Escape") fecharProduto(); });
+document.addEventListener("keydown",function(e){
+  if(e.key !== "Escape") return;
+  const cart = document.getElementById("cartOverlay");
+  if(cart && cart.classList.contains("open")) fecharCarrinho();
+  else fecharProduto();
+});
 document.addEventListener("click",function(e){
   const modal = document.getElementById("productModal");
   if(modal && e.target === modal) fecharProduto();
@@ -199,6 +407,7 @@ async function carregarCatalogo(){
     document.getElementById("contador").textContent = "";
   }
 }
+prepararCarrinho();
 carregarCatalogo();
 </script>
 </body>

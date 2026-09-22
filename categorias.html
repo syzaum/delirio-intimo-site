@@ -1,30 +1,633 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090909"><title>Categorias — Delírio Íntimo</title><style>
-:root{--bg:#090909;--card:#151515;--pink:#ff3f98;--white:#fff;--muted:#aaa;--line:#292929}*{box-sizing:border-box;margin:0}body{background:var(--bg);color:#fff;font-family:Inter,Arial,sans-serif}a{text-decoration:none;color:inherit}.wrap{width:min(1120px,calc(100% - 28px));margin:auto}header{position:sticky;top:0;z-index:20;background:#090909e8;border-bottom:1px solid #222;backdrop-filter:blur(12px)}.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:12px}.logo{display:flex;align-items:center;height:48px}.logo img{height:44px;width:auto;object-fit:contain}nav{display:flex;gap:25px;font-size:14px;color:#ddd}.wa{border:1px solid var(--pink);color:var(--pink);padding:9px 15px;border-radius:30px;font-weight:700;font-size:13px}.hero{padding:60px 0 28px}.eyebrow{text-transform:uppercase;letter-spacing:2.5px;font-size:11px;font-weight:800;color:var(--pink);margin-bottom:13px}.hero h1{font-size:clamp(44px,6vw,72px);line-height:.95;letter-spacing:-3px}.hero p{color:var(--muted);margin-top:18px;line-height:1.6}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px;padding:20px 0 75px}.cat{min-height:270px;border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;align-items:end;background:#151515;position:relative;overflow:hidden;transition:.2s}.catImg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.62;transition:.25s}.catShade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,.05) 15%,rgba(9,9,9,.28) 42%,rgba(9,9,9,.94) 100%)}.cat:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 25%,#ff3f9830,transparent 42%)}.cat:hover{border-color:var(--pink);transform:translateY(-2px)}.cat:hover .catImg{transform:scale(1.04);opacity:.72}.cat div{position:relative;z-index:1}.cat span{display:block;color:var(--pink);font-size:11px;font-weight:800;margin-bottom:7px}.cat strong{font-size:22px}.cat small{display:block;color:#aaa;margin-top:7px;font-size:12px;line-height:1.4}footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size:12px}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.foot b{color:#fff}.foot b span{color:var(--pink)}.footerLinks a:hover{color:var(--pink)}@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){nav{display:none}.grid{grid-template-columns:repeat(2,1fr)}.cat{min-height:210px}}@media(max-width:480px){.grid{gap:9px}.cat{min-height:180px;padding:16px;border-radius:17px}.cat strong{font-size:18px}}
-</style></head><body><header><div class="wrap nav"><a class="logo" href="index.html"><img src="logo.png" alt="Delírio Íntimo"></a><nav><a href="index.html">Início</a><a href="produtos.html">Produtos</a><a href="categorias.html">Categorias</a><a href="sobre.html">Sobre</a></nav><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header><main><section class="hero"><div class="wrap"><div class="eyebrow">Explore a loja</div><h1>Encontre o que combina com você.</h1><p>Escolha uma categoria para ver os produtos disponíveis.</p></div></section><section class="wrap grid" id="listaCategorias"><a class="cat" href="produtos.html"><div><span>01</span><strong>Carregando...</strong></div></a></section>
-<script>
-const API_URL="https://script.google.com/macros/s/AKfycbxMqWjGjTAFWJ5HDCvmC8gbuYM89oIrY1q7UxhicsPAOPnIB5BKxJo0ROGZiwvFQY8ZRw/exec";
-const CATEGORIAS=[
- {nome:"Sex Shop",descricao:"Produtos para seus momentos de prazer."},
- {nome:"Cosméticos",descricao:"Cuidados e produtos para o seu corpo."},
- {nome:"Lingeries",descricao:"Peças para vestir do seu jeito."},
- {nome:"Conjuntos",descricao:"Combinações pensadas para você."},
- {nome:"Acessórios",descricao:"Detalhes que completam sua escolha."}
-];
-function esc(s){return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
-async function carregarCategorias(){
- const el=document.getElementById("listaCategorias");
- try{
-  const r=await fetch(API_URL+"?acao=vitrine",{cache:"no-store"});
-  const d=await r.json();
-  const produtos=d.produtos||[];
-  el.innerHTML=CATEGORIAS.map((c,i)=>{
-   const p=produtos.find(x=>String(x.categoriaComercial||x.categoria||"").trim().toLowerCase()===c.nome.toLowerCase()&&x.fotoUrl);
-   const img=p?'<img class="catImg" src="'+esc(p.fotoUrl)+'" alt="" loading="lazy"><div class="catShade"></div>':'';
-   return '<a class="cat" href="produtos.html?categoria='+encodeURIComponent(c.nome)+'">'+img+'<div><span>0'+(i+1)+'</span><strong>'+c.nome+'</strong><small>'+c.descricao+'</small></div></a>';
-  }).join("");
- }catch(e){
-  el.innerHTML=CATEGORIAS.map((c,i)=>'<a class="cat" href="produtos.html?categoria='+encodeURIComponent(c.nome)+'"><div><span>0'+(i+1)+'</span><strong>'+c.nome+'</strong><small>'+c.descricao+'</small></div></a>').join("");
- }
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090909">
+<title>Categorias — Delírio Íntimo</title>
+
+<style>
+:root{
+  --bg:#090909;
+  --card:#151515;
+  --pink:#ff3f98;
+  --white:#fff;
+  --muted:#aaa;
+  --line:#292929
 }
+
+*{
+  box-sizing:border-box;
+  margin:0
+}
+
+body{
+  background:var(--bg);
+  color:#fff;
+  font-family:Inter,Arial,sans-serif
+}
+
+a{
+  text-decoration:none;
+  color:inherit
+}
+
+.wrap{
+  width:min(1120px,calc(100% - 28px));
+  margin:auto
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:#090909e8;
+  border-bottom:1px solid #222;
+  backdrop-filter:blur(12px)
+}
+
+.nav{
+  height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  height:48px
+}
+
+.logo img{
+  height:44px;
+  width:auto;
+  object-fit:contain
+}
+
+nav{
+  display:flex;
+  gap:25px;
+  font-size:14px;
+  color:#ddd
+}
+
+.wa{
+  border:1px solid var(--pink);
+  color:var(--pink);
+  padding:9px 15px;
+  border-radius:30px;
+  font-weight:700;
+  font-size:13px
+}
+
+.hero{
+  padding:60px 0 28px
+}
+
+.eyebrow{
+  text-transform:uppercase;
+  letter-spacing:2.5px;
+  font-size:11px;
+  font-weight:800;
+  color:var(--pink);
+  margin-bottom:13px
+}
+
+.hero h1{
+  font-size:clamp(44px,6vw,72px);
+  line-height:.95;
+  letter-spacing:-3px
+}
+
+.hero p{
+  color:var(--muted);
+  margin-top:18px;
+  line-height:1.6
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:13px;
+  padding:20px 0 75px
+}
+
+.cat{
+  min-height:270px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:22px;
+  display:flex;
+  align-items:end;
+  background:#151515;
+  position:relative;
+  overflow:hidden;
+  transition:.2s
+}
+
+.catImg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.62;
+  transition:.25s
+}
+
+.catShade{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(9,9,9,.05) 15%,
+    rgba(9,9,9,.28) 42%,
+    rgba(9,9,9,.94) 100%
+  )
+}
+
+.cat:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(
+    circle at 75% 25%,
+    #ff3f9830,
+    transparent 42%
+  )
+}
+
+.cat:hover{
+  border-color:var(--pink);
+  transform:translateY(-2px)
+}
+
+.cat:hover .catImg{
+  transform:scale(1.04);
+  opacity:.72
+}
+
+.cat div{
+  position:relative;
+  z-index:1
+}
+
+.cat span{
+  display:block;
+  color:var(--pink);
+  font-size:11px;
+  font-weight:800;
+  margin-bottom:7px
+}
+
+.cat strong{
+  font-size:22px
+}
+
+.cat small{
+  display:block;
+  color:#aaa;
+  margin-top:7px;
+  font-size:12px;
+  line-height:1.4
+}
+
+footer{
+  border-top:1px solid var(--line);
+  padding:28px 0 38px;
+  color:#777;
+  font-size:12px
+}
+
+.foot{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap
+}
+
+.foot b{
+  color:#fff
+}
+
+.foot b span{
+  color:var(--pink)
+}
+
+.footerLinks a:hover{
+  color:var(--pink)
+}
+
+@media(max-width:1000px){
+  .grid{
+    grid-template-columns:repeat(3,1fr)
+  }
+}
+
+@media(max-width:800px){
+  nav{
+    display:none
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr)
+  }
+
+  .cat{
+    min-height:210px
+  }
+}
+
+@media(max-width:480px){
+  .grid{
+    gap:9px
+  }
+
+  .cat{
+    min-height:180px;
+    padding:16px;
+    border-radius:17px
+  }
+
+  .cat strong{
+    font-size:18px
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap nav">
+
+    <a class="logo" href="index.html">
+      <img src="logo.png" alt="Delírio Íntimo">
+    </a>
+
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="produtos.html">Produtos</a>
+      <a href="categorias.html">Categorias</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+
+    <a
+      class="wa"
+      href="https://wa.me/5513991808683"
+      target="_blank"
+      rel="noopener"
+    >
+      WhatsApp
+    </a>
+
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Explore a loja</div>
+
+    <h1>
+      Encontre o que combina com você.
+    </h1>
+
+    <p>
+      Escolha uma categoria para ver os produtos disponíveis.
+    </p>
+  </div>
+</section>
+
+<section class="wrap grid" id="listaCategorias">
+
+  <a class="cat" href="produtos.html">
+    <div>
+      <span>01</span>
+      <strong>Carregando...</strong>
+    </div>
+  </a>
+
+</section>
+
+<script>
+
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbxMqWjGjTAFWJ5HDCvmC8gbuYM89oIrY1q7UxhicsPAOPnIB5BKxJo0ROGZiwvFQY8ZRw/exec";
+
+
+const CATEGORIAS = [
+  {
+    nome:"Sex Shop",
+    descricao:"Produtos para seus momentos de prazer."
+  },
+  {
+    nome:"Cosméticos",
+    descricao:"Cuidados e produtos para o seu corpo."
+  },
+  {
+    nome:"Lingeries",
+    descricao:"Peças para vestir do seu jeito."
+  },
+  {
+    nome:"Conjuntos",
+    descricao:"Combinações pensadas para você."
+  },
+  {
+    nome:"Acessórios",
+    descricao:"Detalhes que completam sua escolha."
+  }
+];
+
+
+/* =====================================================
+   NORMALIZA TEXTO
+   Remove acentos, espaços extras e diferenças
+   entre maiúsculas/minúsculas.
+   ===================================================== */
+
+function normalizarTexto(valor){
+
+  return String(valor || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .trim()
+    .replace(/\s+/g," ")
+    .toLowerCase();
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+   ===================================================== */
+
+function esc(valor){
+
+  return String(valor || "")
+    .replace(/[&<>"]/g,function(c){
+
+      return {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;"
+
+      }[c];
+
+    });
+
+}
+
+
+/* =====================================================
+   ENCONTRA A FOTO DA CATEGORIA
+   ===================================================== */
+
+function encontrarProdutoDaCategoria(produtos,categoria){
+
+  const categoriaNormalizada =
+    normalizarTexto(categoria.nome);
+
+
+  /*
+   * Primeiro tenta pela Categoria Comercial.
+   */
+
+  let produto = produtos.find(function(p){
+
+    const categoriaProduto =
+      normalizarTexto(p.categoriaComercial);
+
+    return (
+      categoriaProduto === categoriaNormalizada &&
+      String(p.fotoUrl || "").trim() !== ""
+    );
+
+  });
+
+
+  if(produto){
+    return produto;
+  }
+
+
+  /*
+   * Fallback:
+   * se a API ainda estiver usando o campo antigo,
+   * tenta também categoria.
+   */
+
+  produto = produtos.find(function(p){
+
+    const categoriaProduto =
+      normalizarTexto(p.categoria);
+
+    return (
+      categoriaProduto === categoriaNormalizada &&
+      String(p.fotoUrl || "").trim() !== ""
+    );
+
+  });
+
+
+  return produto || null;
+
+}
+
+
+/* =====================================================
+   CARREGA CATEGORIAS
+   ===================================================== */
+
+async function carregarCategorias(){
+
+  const el =
+    document.getElementById("listaCategorias");
+
+
+  try{
+
+    const resposta =
+      await fetch(
+        API_URL + "?acao=vitrine",
+        {
+          cache:"no-store"
+        }
+      );
+
+
+    if(!resposta.ok){
+      throw new Error("Erro HTTP " + resposta.status);
+    }
+
+
+    const dados =
+      await resposta.json();
+
+
+    const produtos =
+      Array.isArray(dados.produtos)
+        ? dados.produtos
+        : [];
+
+
+    el.innerHTML =
+      CATEGORIAS.map(function(categoria,index){
+
+        const produto =
+          encontrarProdutoDaCategoria(
+            produtos,
+            categoria
+          );
+
+
+        let imagem = "";
+
+
+        if(
+          produto &&
+          String(produto.fotoUrl || "").trim() !== ""
+        ){
+
+          imagem =
+            '<img class="catImg" ' +
+            'src="' + esc(produto.fotoUrl) + '" ' +
+            'alt="" ' +
+            'loading="lazy">' +
+            '<div class="catShade"></div>';
+
+        }
+
+
+        return (
+
+          '<a class="cat" href="produtos.html?categoria=' +
+          encodeURIComponent(categoria.nome) +
+          '">' +
+
+            imagem +
+
+            '<div>' +
+
+              '<span>0' +
+              (index + 1) +
+              '</span>' +
+
+              '<strong>' +
+              esc(categoria.nome) +
+              '</strong>' +
+
+              '<small>' +
+              esc(categoria.descricao) +
+              '</small>' +
+
+            '</div>' +
+
+          '</a>'
+
+        );
+
+      }).join("");
+
+
+  }catch(erro){
+
+    console.error(
+      "Erro ao carregar categorias:",
+      erro
+    );
+
+
+    /*
+     * Mesmo se a API falhar,
+     * mantém os cards funcionando.
+     */
+
+    el.innerHTML =
+      CATEGORIAS.map(function(categoria,index){
+
+        return (
+
+          '<a class="cat" href="produtos.html?categoria=' +
+          encodeURIComponent(categoria.nome) +
+          '">' +
+
+            '<div>' +
+
+              '<span>0' +
+              (index + 1) +
+              '</span>' +
+
+              '<strong>' +
+              esc(categoria.nome) +
+              '</strong>' +
+
+              '<small>' +
+              esc(categoria.descricao) +
+              '</small>' +
+
+            '</div>' +
+
+          '</a>'
+
+        );
+
+      }).join("");
+
+  }
+
+}
+
+
 carregarCategorias();
-</script></main><footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div class="footerLinks"><a href="https://instagram.com/delirio.intimo_" target="_blank" rel="noopener">Instagram</a><span> · </span><a href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div><div>© 2026 Delírio Íntimo</div></div></footer></body></html>
+
+</script>
+
+</main>
+
+<footer>
+
+  <div class="wrap foot">
+
+    <div>
+      <b>
+        DELÍRIO <span>ÍNTIMO</span>
+      </b>
+    </div>
+
+    <div class="footerLinks">
+
+      <a
+        href="https://instagram.com/delirio.intimo_"
+        target="_blank"
+        rel="noopener"
+      >
+        Instagram
+      </a>
+
+      <span> · </span>
+
+      <a
+        href="https://wa.me/5513991808683"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp
+      </a>
+
+    </div>
+
+    <div>
+      © 2026 Delírio Íntimo
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>

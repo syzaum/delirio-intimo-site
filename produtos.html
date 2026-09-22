@@ -10,7 +10,7 @@
 @media(max-width:800px){nav{display:none}.heroGrid{grid-template-columns:1fr;min-height:0}.copy{padding:35px 4px 10px}.heroImg{min-height:430px}.products{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}section{padding:48px 0}}
 @media(max-width:480px){.wrap{width:calc(100% - 22px)}h1{font-size:49px}.heroImg{min-height:380px;border-radius:22px}.mark{font-size:90px}.products,.categories{gap:9px}.product{border-radius:15px}.info{padding:12px}.category{min-height:135px;padding:16px;border-radius:17px}.category strong{font-size:17px}.box,.contact{padding:25px}.contact h2{font-size:30px}}
 .stock{font-size:11px;margin-top:7px;color:#777}.stock.ok{color:#ff75b7}.stock.out{color:#777}.photo img{width:100%;height:100%;object-fit:cover;display:block}.loading,.empty{grid-column:1/-1;text-align:center;padding:35px 15px;color:#777;border:1px dashed #333;border-radius:18px}.error-box{grid-column:1/-1;text-align:center;padding:25px;color:#aaa;border:1px solid #3a1e2d;border-radius:18px;background:#150d12}.category{cursor:pointer}.category:hover{border-color:#ff3f98}.details{cursor:pointer;background:transparent;color:#fff}.details:hover{border-color:#ff3f98;color:#ff3f98}
-.catalog-head{padding:52px 0 24px}.catalog-head h1{font-size:clamp(42px,6vw,64px);letter-spacing:-3px}.catalog-head p{max-width:620px;margin-top:12px}.filters{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0 28px}.filter{border:1px solid #333;background:#111;color:#ddd;border-radius:30px;padding:9px 14px;font-size:12px;font-weight:800;cursor:pointer}.filter.active,.filter:hover{border-color:var(--pink);color:var(--pink)}.catalog-count{color:#777;font-size:12px;margin-bottom:15px}@media(max-width:800px){.catalog-head{padding-top:38px}.catalog-head h1{font-size:44px}}
+.catalog-head{padding:52px 0 24px}.catalog-head h1{font-size:clamp(42px,6vw,64px);letter-spacing:-3px}.catalog-head p{max-width:620px;margin-top:12px}.filters{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0 28px}.filter{border:1px solid #333;background:#111;color:#ddd;border-radius:30px;padding:9px 14px;font-size:12px;font-weight:800;cursor:pointer}.filter.active,.filter:hover{border-color:var(--pink);color:var(--pink)}.catalog-count{color:#777;font-size:12px;margin-bottom:15px}.searchBox{margin-top:22px}.searchBox input{width:100%;height:48px;border:1px solid #333;border-radius:14px;background:#111;color:#fff;padding:0 16px;font-size:14px;outline:none}.searchBox input:focus{border-color:var(--pink)}@media(max-width:800px){.catalog-head{padding-top:38px}.catalog-head h1{font-size:44px}}
 
 /* Modal de produto */
 .productModal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.78);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}
@@ -41,13 +41,15 @@
 .cartItem{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #242424}.cartItemPhoto{width:72px;height:72px;border-radius:12px;overflow:hidden;background:#181818;display:grid;place-items:center;color:#777;font-size:9px;text-align:center}.cartItemPhoto img{width:100%;height:100%;object-fit:cover}.cartItemName{font-size:14px;font-weight:800}.cartItemPrice{font-size:12px;color:#aaa;margin-top:5px}.qtyControl{display:inline-flex;align-items:center;border:1px solid #3a3a3a;border-radius:9px;overflow:hidden;margin-top:9px}.qtyControl button{width:30px;height:30px;border:0;background:#171717;color:#fff;cursor:pointer;font-size:16px}.qtyControl span{min-width:30px;text-align:center;font-size:12px}.cartItemTotal{font-size:13px;font-weight:900;white-space:nowrap}.cartRemove{display:block;border:0;background:none;color:#777;font-size:10px;margin-top:6px;cursor:pointer}.cartFoot{border-top:1px solid #292929;padding:18px 20px;background:#0c0c0c}.cartSummary{display:flex;justify-content:space-between;font-size:16px;font-weight:900;margin-bottom:14px}.cartActions{display:flex;gap:9px}.cartActions .btn{flex:1;cursor:pointer;border:0}.cartSecondary{border:1px solid #3a3a3a!important;background:transparent!important;color:#fff!important}
 .addCartRow{display:flex;align-items:center;gap:10px;margin-top:22px;flex-wrap:wrap}.quantityPicker{display:inline-flex;align-items:center;border:1px solid #3a3a3a;border-radius:10px;overflow:hidden;height:46px}.quantityPicker button{width:40px;height:100%;border:0;background:#171717;color:#fff;font-size:20px;cursor:pointer}.quantityPicker span{min-width:40px;text-align:center;font-weight:900}.addCartButton{flex:1;min-width:190px;height:46px;border:0;border-radius:10px;background:var(--pink);color:#090909;font-size:12px;font-weight:900;cursor:pointer}
 @media(max-width:480px){.cartFab{right:12px;bottom:12px}.cartPanel{width:100%}.cartItem{grid-template-columns:60px 1fr auto}.cartItemPhoto{width:60px;height:60px}.cartBody{padding:12px}.cartFoot{padding:15px 12px}}
+
+.headerCart{border:1px solid #3a3a3a;background:#111;color:#fff;border-radius:30px;padding:9px 13px;font-size:12px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:6px}.headerCart:hover{border-color:var(--pink);color:var(--pink)}.headerCart b{min-width:18px;height:18px;border-radius:99px;background:var(--pink);color:#090909;display:inline-flex;align-items:center;justify-content:center;font-size:10px}.footerLinks a:hover{color:var(--pink)}@media(max-width:800px){.headerCart span{display:none}.headerCart{padding:9px 11px}.nav{gap:8px}.wa{padding:9px 11px}}
 </style>
 </head>
 <body>
 <header><div class="wrap nav">
 <a class="logo" href="index.html"><img src="logo.png" alt="Delírio Íntimo"></a>
 <nav><a href="index.html">Início</a><a href="produtos.html">Produtos</a><a href="index.html#categorias">Categorias</a><a href="index.html#sobre">Sobre</a></nav>
-<a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a>
+<button class="headerCart" type="button" onclick="abrirCarrinho()">🛒 <span>CARRINHO</span> <b id="headerCartCount">0</b></button><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a>
 </div></header>
 
 <main>
@@ -55,7 +57,7 @@
 <div class="eyebrow">Delírio Íntimo</div>
 <h1>Todos os <em>produtos.</em></h1>
 <p>Explore nosso catálogo, escolha por categoria e consulte disponibilidade diretamente pelo WhatsApp.</p>
-<div class="filters" id="filtros"><button class="filter active" data-categoria="">Todos</button></div>
+<div class="searchBox"><input id="buscaProdutos" type="search" placeholder="Buscar produtos..." autocomplete="off"></div><div class="filters" id="filtros"><button class="filter active" data-categoria="">Todos</button></div>
 <div class="catalog-count" id="contador">Carregando produtos...</div>
 <div class="products" id="listaProdutos"><div class="loading">Carregando produtos...</div></div>
 </div></section>
@@ -82,7 +84,7 @@
   </div>
 </div>
 
-<footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div>Instagram · WhatsApp</div><div>© 2026 Delírio Íntimo</div></div></footer>
+<footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div class="footerLinks"><a href="https://instagram.com/delirio.intimo_" target="_blank" rel="noopener">Instagram</a><span> · </span><a href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div><div>© 2026 Delírio Íntimo</div></div></footer>
 <button class="cartFab" type="button" onclick="abrirCarrinho()">CARRINHO <span class="cartCount" id="cartCount">0</span></button>
 <div class="cartOverlay" id="cartOverlay" aria-hidden="true"><div class="cartPanel"><div class="cartHead"><h2>Seu carrinho</h2><button class="cartClose" onclick="fecharCarrinho()">×</button></div><div class="cartBody" id="cartBody"></div><div class="cartFoot"><div class="cartSummary"><span>Total</span><span id="cartTotal">R$ 0,00</span></div><div class="cartActions"><button class="btn cartSecondary" onclick="fecharCarrinho()">CONTINUAR COMPRANDO</button><button class="btn primary" onclick="finalizarCarrinhoWhatsApp()">FINALIZAR PELO WHATSAPP</button></div></div></div></div>
 
@@ -177,13 +179,23 @@ function renderProdutos(produtos,categoriaSelecionada){
     const status = disponivel ? '<div class="stock ok">Disponível</div>' : '<div class="stock out">Esgotado</div>';
     const label = disponivel ? 'VER DETALHES' : 'VER DETALHES · ESGOTADO';
 
-    return '<article class="product"><div class="photo">'+foto+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">Produtos íntimos</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<button class="details" type="button" onclick="abrirProduto(\''+escapar(p.id)+'\')">'+label+'</button></div></article>';
+    return '<article class="product"><div class="photo">'+foto+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">'+escapar(p.categoriaComercial || "Produtos íntimos")+'</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<button class="details" type="button" onclick="abrirProduto(\''+escapar(p.id)+'\')">'+label+'</button></div></article>';
   }).join("");
 }
 function montarFiltros(produtos){
   const filtros = document.getElementById("filtros");
-  // "Categoria" na aba Produtos é classificação de cadastro/origem, não categoria comercial.
-  filtros.innerHTML = '<button class="filter active" data-categoria="">Todos</button>';
+  const cats = ["Sex Shop","Cosméticos","Lingeries","Conjuntos"];
+  filtros.innerHTML = '<button class="filter active" data-categoria="">Todos</button>' + cats.map(function(c){return '<button class="filter" data-categoria="'+escapar(c)+'">'+escapar(c)+'</button>';}).join("");
+  filtros.querySelectorAll(".filter").forEach(function(botao){botao.addEventListener("click",function(){filtros.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active")});botao.classList.add("active");renderCatalogoFiltrado()})});
+}
+function renderCatalogoFiltrado(){
+  const categoria = document.querySelector(".filter.active")?.getAttribute("data-categoria") || "";
+  const busca = (document.getElementById("buscaProdutos")?.value || "").trim().toLowerCase();
+  const filtrados = (window.produtosVitrine || []).filter(function(p){
+    const nome=String(p.produto||"").toLowerCase(), cat=String(p.categoriaComercial||"").trim();
+    return (!categoria || cat.toLowerCase()===categoria.toLowerCase()) && (!busca || nome.includes(busca));
+  });
+  renderProdutos(filtrados); document.getElementById("contador").textContent=filtrados.length+(filtrados.length===1?" produto":" produtos");
 }
 async function carregarCatalogo(){
   const lista = document.getElementById("listaProdutos");
@@ -194,20 +206,11 @@ async function carregarCatalogo(){
 
     window.produtosVitrine = dados.produtos || [];
     montarFiltros(window.produtosVitrine);
-
     const params = new URLSearchParams(window.location.search);
     const categoriaInicial = params.get("categoria") || "";
-    let selecionado = "";
-
-    document.querySelectorAll(".filter").forEach(function(botao){
-      if(botao.getAttribute("data-categoria") === categoriaInicial){
-        document.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active")});
-        botao.classList.add("active");
-        selecionado = categoriaInicial;
-      }
-    });
-
-    renderProdutos(window.produtosVitrine,selecionado);
+    document.querySelectorAll(".filter").forEach(function(botao){if(botao.getAttribute("data-categoria").toLowerCase()===categoriaInicial.toLowerCase()){document.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active")});botao.classList.add("active")}});
+    document.getElementById("buscaProdutos").addEventListener("input",renderCatalogoFiltrado);
+    renderCatalogoFiltrado();
   }catch(erro){
     console.error(erro);
     lista.innerHTML = '<div class="error-box">Não foi possível carregar os produtos agora. Tente novamente em instantes.</div>';
@@ -223,7 +226,7 @@ const CART_KEY="delirio_intimo_carrinho";
 function cartRead(){try{const x=JSON.parse(localStorage.getItem(CART_KEY)||"[]");return Array.isArray(x)?x:[]}catch(e){return[]}}
 function cartWrite(x){localStorage.setItem(CART_KEY,JSON.stringify(x));cartRender()}
 function cartCount(){return cartRead().reduce((s,i)=>s+Number(i.quantidade||0),0)}
-function cartRender(){const c=document.getElementById("cartCount"),b=document.getElementById("cartBody"),t=document.getElementById("cartTotal");if(c)c.textContent=cartCount();if(!b||!t)return;const a=cartRead();if(!a.length){b.innerHTML='<div class="cartEmpty">Seu carrinho está vazio.</div>';t.textContent=moeda(0);return}let total=0;b.innerHTML=a.map(i=>{const sub=Number(i.precoVenda||0)*Number(i.quantidade||0);total+=sub;return '<div class="cartItem"><div class="cartItemPhoto">'+(i.fotoUrl?'<img src="'+escapar(i.fotoUrl)+'">':'Foto')+'</div><div><div class="cartItemName">'+escapar(i.produto)+'</div><div class="cartItemPrice">'+moeda(i.precoVenda)+' cada</div><div class="qtyControl"><button onclick="cartQty(\''+escapar(i.id)+'\',-1)">−</button><span>'+i.quantidade+'</span><button onclick="cartQty(\''+escapar(i.id)+'\',1)">+</button></div><button class="cartRemove" onclick="cartRemove(\''+escapar(i.id)+'\')">REMOVER</button></div><div class="cartItemTotal">'+moeda(sub)+'</div></div>'}).join("");t.textContent=moeda(total)}
+function cartRender(){const c=document.getElementById("cartCount"),h=document.getElementById("headerCartCount"),b=document.getElementById("cartBody"),t=document.getElementById("cartTotal");if(c)c.textContent=cartCount();if(h)h.textContent=cartCount();if(!b||!t)return;const a=cartRead();if(!a.length){b.innerHTML='<div class="cartEmpty">Seu carrinho está vazio.</div>';t.textContent=moeda(0);return}let total=0;b.innerHTML=a.map(i=>{const sub=Number(i.precoVenda||0)*Number(i.quantidade||0);total+=sub;return '<div class="cartItem"><div class="cartItemPhoto">'+(i.fotoUrl?'<img src="'+escapar(i.fotoUrl)+'">':'Foto')+'</div><div><div class="cartItemName">'+escapar(i.produto)+'</div><div class="cartItemPrice">'+moeda(i.precoVenda)+' cada</div><div class="qtyControl"><button onclick="cartQty(\''+escapar(i.id)+'\',-1)">−</button><span>'+i.quantidade+'</span><button onclick="cartQty(\''+escapar(i.id)+'\',1)">+</button></div><button class="cartRemove" onclick="cartRemove(\''+escapar(i.id)+'\')">REMOVER</button></div><div class="cartItemTotal">'+moeda(sub)+'</div></div>'}).join("");t.textContent=moeda(total)}
 function cartAdd(id,q){const p=(window.produtosVitrine||[]).find(x=>String(x.id)===String(id));if(!p||Number(p.estoque||0)<=0)return;const a=cartRead(),old=a.find(x=>String(x.id)===String(id)),n=(old?Number(old.quantidade):0)+Math.max(1,Number(q||1));if(n>Number(p.estoque)){alert("A quantidade disponível para este produto é "+p.estoque+".");return}const item={id:String(p.id),produto:p.produto,precoVenda:Number(p.precoVenda||0),estoque:Number(p.estoque||0),fotoUrl:p.fotoUrl||"",quantidade:n};if(old)Object.assign(old,item);else a.push(item);cartWrite(a);fecharProduto();abrirCarrinho()}
 function cartQty(id,d){const a=cartRead(),i=a.find(x=>String(x.id)===String(id));if(!i)return;const n=Number(i.quantidade)+d;if(n<=0)return cartRemove(id);if(n>Number(i.estoque))return alert("A quantidade disponível para este produto é "+i.estoque+".");i.quantidade=n;cartWrite(a)}
 function cartRemove(id){cartWrite(cartRead().filter(x=>String(x.id)!==String(id)))}

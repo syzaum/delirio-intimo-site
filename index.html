@@ -73,32 +73,45 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
 .loading,.empty{grid-column:1/-1;text-align:center;padding:35px 15px;color:#777;border:1px dashed #333;border-radius:18px}
 .error-box{grid-column:1/-1;text-align:center;padding:25px;color:#aaa;border:1px solid #3a1e2d;border-radius:18px;background:#150d12}
 
+@media(max-width:1200px) and (min-width:801px){
+  .heroLogo{width:clamp(135px,12vw,180px);height:clamp(135px,12vw,180px);margin-bottom:10px}
+  .heroCopy{width:min(430px,40vw)}
+  h1{font-size:clamp(42px,4.5vw,58px);letter-spacing:-2.8px}
+  .heroCopy p{font-size:14px;margin-top:13px}
+  .buttons{margin-top:17px}
+  .btn{padding:11px 17px}
+}
 @media(max-width:800px){
   nav{display:none}
-  .hero{padding:18px 0 32px}
-  .heroBanner{aspect-ratio:auto;border-radius:24px;overflow:visible;border:0;background:transparent}
-  .hero > .wrap{width:calc(100% - 28px);margin:auto}
-  .heroBanner img{position:relative;inset:auto;width:100%;height:auto;object-fit:contain;border-radius:24px;display:block;border:1px solid #30232b}
-  .heroShade,.label{display:none}
-  .heroCopy{position:relative;left:auto;top:auto;transform:none;width:100%;padding:25px 5px 0;align-items:center;text-align:center}
-  .heroLogo{width:112px;height:112px;margin-bottom:8px}
-  h1{font-size:clamp(43px,11vw,58px);letter-spacing:-3px}
-  .heroCopy p{font-size:15px;max-width:390px}
-  .buttons{justify-content:center}
+  .hero{padding:0 0 3px}
+  .hero > .wrap{width:100%;margin:0}
+  .heroBanner{aspect-ratio:1.35/1;border-radius:0;overflow:hidden;border:0;background:#090909}
+  .heroBanner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;border-radius:0}
+  .heroShade{display:block;background:
+    linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.20) 35%,rgba(0,0,0,.72) 100%),
+    linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.35) 58%,rgba(0,0,0,.18) 100%)}
+  .heroCopy{position:absolute;z-index:2;left:6%;top:50%;transform:translateY(-50%);width:88%;padding:0;align-items:flex-start;text-align:left}
+  .heroLogo{width:82px;height:82px;margin:0 0 8px}
+  .heroCopy .eyebrow{display:none}
+  h1{font-size:clamp(35px,10vw,46px);line-height:.95;letter-spacing:-2.4px}
+  .heroCopy p{font-size:13px;max-width:300px;margin-top:12px}
+  .buttons{justify-content:flex-start;margin-top:16px;gap:8px}
+  .btn{padding:10px 14px;font-size:10px}
+  .label{display:none}
   .products{grid-template-columns:repeat(2,1fr)}
   .categories{grid-template-columns:repeat(2,1fr)}
   .about{grid-template-columns:1fr}
   section{padding:48px 0}
 }
 @media(max-width:480px){
+  .heroBanner{aspect-ratio:1.18/1}
+  .heroCopy{left:6%;width:88%}
+  .heroLogo{width:68px;height:68px;margin-bottom:6px}
+  h1{font-size:36px;letter-spacing:-2px}
+  .heroCopy p{font-size:12px;max-width:270px;margin-top:9px}
+  .buttons{margin-top:12px}
+  .btn{padding:9px 12px;font-size:9px}
   .wrap{width:calc(100% - 22px)}
-  .hero{padding-top:12px}
-  .heroBanner img{border-radius:20px}
-  .heroCopy{padding-top:22px}
-  .heroLogo{width:92px;height:92px}
-  h1{font-size:45px}
-  .heroCopy p{font-size:14px}
-  .btn{padding:12px 16px;font-size:11px}
   .products,.categories{gap:9px}
   .product{border-radius:15px}
   .info{padding:12px}

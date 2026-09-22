@@ -11,6 +11,24 @@
 @media(max-width:480px){.wrap{width:calc(100% - 22px)}h1{font-size:49px}.heroImg{min-height:380px;border-radius:22px}.mark{font-size:90px}.products,.categories{gap:9px}.product{border-radius:15px}.info{padding:12px}.category{min-height:135px;padding:16px;border-radius:17px}.category strong{font-size:17px}.box,.contact{padding:25px}.contact h2{font-size:30px}}
 .stock{font-size:11px;margin-top:7px;color:#777}.stock.ok{color:#ff75b7}.stock.out{color:#777}.photo img{width:100%;height:100%;object-fit:cover;display:block}.loading,.empty{grid-column:1/-1;text-align:center;padding:35px 15px;color:#777;border:1px dashed #333;border-radius:18px}.error-box{grid-column:1/-1;text-align:center;padding:25px;color:#aaa;border:1px solid #3a1e2d;border-radius:18px;background:#150d12}.category{cursor:pointer}.category:hover{border-color:#ff3f98}.details{cursor:pointer;background:transparent;color:#fff}.details:hover{border-color:#ff3f98;color:#ff3f98}
 .catalog-head{padding:52px 0 24px}.catalog-head h1{font-size:clamp(42px,6vw,64px);letter-spacing:-3px}.catalog-head p{max-width:620px;margin-top:12px}.filters{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0 28px}.filter{border:1px solid #333;background:#111;color:#ddd;border-radius:30px;padding:9px 14px;font-size:12px;font-weight:800;cursor:pointer}.filter.active,.filter:hover{border-color:var(--pink);color:var(--pink)}.catalog-count{color:#777;font-size:12px;margin-bottom:15px}@media(max-width:800px){.catalog-head{padding-top:38px}.catalog-head h1{font-size:44px}}
+
+/* Modal de produto */
+.productModal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.78);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}
+.productModal.open{display:flex}
+.productModalCard{position:relative;width:min(900px,100%);max-height:min(760px,calc(100vh - 40px));overflow:auto;background:#121212;border:1px solid #33252d;border-radius:26px;box-shadow:0 24px 80px rgba(0,0,0,.55);display:grid;grid-template-columns:minmax(300px,1fr) minmax(300px,1fr)}
+.productModalPhoto{min-height:430px;background:radial-gradient(circle at 50% 35%,#ff3f9840,transparent 40%),linear-gradient(145deg,#21151c,#111);display:grid;place-items:center;overflow:hidden;color:#777;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.productModalPhoto img{width:100%;height:100%;object-fit:contain;display:block}
+.productModalInfo{padding:38px 34px;display:flex;flex-direction:column;justify-content:center}
+.productModalInfo .eyebrow{margin-bottom:12px}
+.productModalTitle{font-size:clamp(28px,4vw,44px);line-height:1.02;letter-spacing:-1.8px}
+.productModalPrice{font-size:27px;font-weight:900;margin-top:22px}
+.productModalStock{font-size:13px;margin-top:8px;color:#777}.productModalStock.ok{color:#ff75b7}
+.productModalText{font-size:14px;margin-top:20px}
+.productModalActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+.productModalClose{position:absolute;right:15px;top:15px;width:38px;height:38px;border:1px solid #444;border-radius:50%;background:#090909dd;color:#fff;font-size:22px;cursor:pointer;z-index:2}
+.productModalClose:hover{border-color:#ff3f98;color:#ff3f98}
+.productModalSecondary{border:1px solid #3a3a3a;background:transparent;color:#fff}
+@media(max-width:700px){.productModal{padding:10px}.productModalCard{grid-template-columns:1fr;max-height:calc(100vh - 20px);border-radius:21px}.productModalPhoto{min-height:280px;max-height:48vh}.productModalInfo{padding:25px 22px 28px}.productModalTitle{font-size:30px}.productModalPrice{font-size:24px}.productModalActions .btn{flex:1;min-width:145px}}
 </style>
 </head>
 <body>
@@ -36,6 +54,21 @@
 <a class="btn primary" href="https://wa.me/5513991808683" target="_blank" rel="noopener">FALAR NO WHATSAPP</a>
 </div></div></section>
 </main>
+
+<div class="productModal" id="productModal" aria-hidden="true">
+  <div class="productModalCard" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+    <button class="productModalClose" type="button" onclick="fecharProduto()" aria-label="Fechar">×</button>
+    <div class="productModalPhoto" id="productModalPhoto">Foto do produto</div>
+    <div class="productModalInfo">
+      <div class="eyebrow">Delírio Íntimo</div>
+      <h2 class="productModalTitle" id="productModalTitle">Produto</h2>
+      <div class="productModalPrice" id="productModalPrice"></div>
+      <div class="productModalStock" id="productModalStock"></div>
+      <p class="productModalText">Consulte disponibilidade, tamanhos, cores e detalhes diretamente com a gente pelo WhatsApp.</p>
+      <div class="productModalActions" id="productModalActions"></div>
+    </div>
+  </div>
+</div>
 
 <footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div>Instagram · WhatsApp</div><div>© 2026 Delírio Íntimo</div></div></footer>
 
@@ -65,6 +98,46 @@ function produtoVisivel(produto){
 function mensagemWhatsApp(produto){
   return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";
 }
+function abrirProduto(id){
+  const produtos = window.produtosVitrine || [];
+  const produto = produtos.find(function(p){ return String(p.id) === String(id); });
+  if(!produto) return;
+  const estoque = Number(produto.estoque || 0);
+  const disponivel = estoque > 0;
+  const modal = document.getElementById("productModal");
+  const fotoEl = document.getElementById("productModalPhoto");
+  document.getElementById("productModalTitle").textContent = produto.produto || "Produto";
+  document.getElementById("productModalPrice").textContent = moeda(produto.precoVenda);
+  const stockEl = document.getElementById("productModalStock");
+  stockEl.textContent = disponivel ? "Disponível" : "Esgotado";
+  stockEl.className = "productModalStock" + (disponivel ? " ok" : "");
+  if(produto.fotoUrl){
+    fotoEl.innerHTML = '<img src="'+escapar(produto.fotoUrl)+'" alt="'+escapar(produto.produto)+'" onerror="this.style.display=\'none\';this.parentNode.textContent=\'Foto do produto\';">';
+  }else{
+    fotoEl.textContent = "Foto do produto";
+  }
+  const actions = document.getElementById("productModalActions");
+  const href = disponivel ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(produto)) : '#';
+  actions.innerHTML = disponivel
+    ? '<a class="btn primary" href="'+href+'" target="_blank" rel="noopener">FALAR NO WHATSAPP</a><button class="btn productModalSecondary" type="button" onclick="fecharProduto()">CONTINUAR VENDO</button>'
+    : '<button class="btn productModalSecondary" type="button" onclick="fecharProduto()">VOLTAR AO CATÁLOGO</button>';
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+}
+function fecharProduto(){
+  const modal = document.getElementById("productModal");
+  if(!modal) return;
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
+document.addEventListener("keydown",function(e){ if(e.key === "Escape") fecharProduto(); });
+document.addEventListener("click",function(e){
+  const modal = document.getElementById("productModal");
+  if(modal && e.target === modal) fecharProduto();
+});
+
 function renderProdutos(produtos,categoriaSelecionada){
   const lista = document.getElementById("listaProdutos");
   const ativos = produtos.filter(produtoVisivel);
@@ -87,10 +160,9 @@ function renderProdutos(produtos,categoriaSelecionada){
       ? '<img src="'+escapar(p.fotoUrl)+'" alt="'+escapar(p.produto)+'" loading="lazy" onerror="this.style.display=\'none\';this.parentNode.textContent=\'Foto do produto\';">'
       : 'Foto do produto';
     const status = disponivel ? '<div class="stock ok">Disponível</div>' : '<div class="stock out">Esgotado</div>';
-    const href = disponivel ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(p)) : '#';
-    const label = disponivel ? 'CONSULTAR NO WHATSAPP' : 'ESGOTADO';
+    const label = disponivel ? 'VER DETALHES' : 'VER DETALHES · ESGOTADO';
 
-    return '<article class="product"><div class="photo">'+foto+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">Produtos íntimos</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<a class="details" href="'+href+'" '+(disponivel?'target="_blank" rel="noopener"':'aria-disabled="true"')+'>'+label+'</a></div></article>';
+    return '<article class="product"><div class="photo">'+foto+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">Produtos íntimos</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<button class="details" type="button" onclick="abrirProduto(\''+escapar(p.id)+'\')">'+label+'</button></div></article>';
   }).join("");
 }
 function montarFiltros(produtos){

@@ -184,7 +184,7 @@ function renderProdutos(produtos,categoriaSelecionada){
 }
 function montarFiltros(produtos){
   const filtros = document.getElementById("filtros");
-  const cats = ["Sex Shop","Cosméticos","Lingeries","Conjuntos"];
+  const cats = ["Sex Shop","Cosméticos","Lingeries","Conjuntos","Acessórios"];
   filtros.innerHTML = '<button class="filter active" data-categoria="">Todos</button>' + cats.map(function(c){return '<button class="filter" data-categoria="'+escapar(c)+'">'+escapar(c)+'</button>';}).join("");
   filtros.querySelectorAll(".filter").forEach(function(botao){botao.addEventListener("click",function(){filtros.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active")});botao.classList.add("active");renderCatalogoFiltrado()})});
 }

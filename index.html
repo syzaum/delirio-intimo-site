@@ -160,9 +160,11 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
 .addCartRow{display:flex;align-items:center;gap:10px;margin-top:22px;flex-wrap:wrap}.quantityPicker{display:inline-flex;align-items:center;border:1px solid #3a3a3a;border-radius:10px;overflow:hidden;height:46px}.quantityPicker button{width:40px;height:100%;border:0;background:#171717;color:#fff;font-size:20px;cursor:pointer}.quantityPicker span{min-width:40px;text-align:center;font-weight:900}.addCartButton{flex:1;min-width:190px;height:46px;border:0;border-radius:10px;background:var(--pink);color:#090909;font-size:12px;font-weight:900;cursor:pointer}
 @media(max-width:480px){.cartFab{right:12px;bottom:12px}.cartPanel{width:100%}.cartItem{grid-template-columns:60px 1fr auto}.cartItemPhoto{width:60px;height:60px}.cartBody{padding:12px}.cartFoot{padding:15px 12px}}
 
+
+.headerCart{border:1px solid #3a3a3a;background:#111;color:#fff;border-radius:30px;padding:9px 13px;font-size:12px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:6px}.headerCart:hover{border-color:var(--pink);color:var(--pink)}.headerCart b{min-width:18px;height:18px;border-radius:99px;background:var(--pink);color:#090909;display:inline-flex;align-items:center;justify-content:center;font-size:10px}.footerLinks a:hover{color:var(--pink)}@media(max-width:800px){.headerCart span{display:none}.headerCart{padding:9px 11px}.nav{gap:8px}.wa{padding:9px 11px}}
 </style></head>
 <body>
-<header><div class="wrap nav"><a class="logo" href="#"><img src="logo.png" alt="Delírio Íntimo"></a><nav><a href="#inicio">Início</a><a href="produtos.html">Produtos</a><a href="#categorias">Categorias</a><a href="#sobre">Sobre</a></nav><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header>
+<header><div class="wrap nav"><a class="logo" href="#"><img src="logo.png" alt="Delírio Íntimo"></a><nav><a href="#inicio">Início</a><a href="produtos.html">Produtos</a><a href="#categorias">Categorias</a><a href="#sobre">Sobre</a></nav><button class="headerCart" type="button" onclick="abrirCarrinho()">🛒 <span>CARRINHO</span> <b id="headerCartCount">0</b></button><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header>
 <main id="inicio">
 <section class="hero">
   <div class="heroBanner">
@@ -203,7 +205,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
   </div>
 </div>
 
-<footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div>Instagram · WhatsApp</div><div>© 2026 Delírio Íntimo</div></div></footer>
+<footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div class="footerLinks"><a href="https://instagram.com/delirio.intimo_" target="_blank" rel="noopener">Instagram</a><span> · </span><a href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div><div>© 2026 Delírio Íntimo</div></div></footer>
 <button class="cartFab" type="button" onclick="abrirCarrinho()">CARRINHO <span class="cartCount" id="cartCount">0</span></button>
 <div class="cartOverlay" id="cartOverlay" aria-hidden="true"><div class="cartPanel"><div class="cartHead"><h2>Seu carrinho</h2><button class="cartClose" onclick="fecharCarrinho()">×</button></div><div class="cartBody" id="cartBody"></div><div class="cartFoot"><div class="cartSummary"><span>Total</span><span id="cartTotal">R$ 0,00</span></div><div class="cartActions"><button class="btn cartSecondary" onclick="fecharCarrinho()">CONTINUAR COMPRANDO</button><button class="btn primary" onclick="finalizarCarrinhoWhatsApp()">FINALIZAR PELO WHATSAPP</button></div></div></div></div>
 
@@ -302,8 +304,10 @@ function renderCategorias(produtos){
   const container = document.getElementById("listaCategorias");
   // A coluna "Categoria" atual é de cadastro/origem (ex.: Importado),
   // então não usamos esses valores como categorias comerciais da vitrine.
-  container.innerHTML =
-    '<a class="category" href="produtos.html"><div><span>01</span><strong>Ver todos os produtos</strong></div></a>';
+  const cats = ["Sex Shop","Cosméticos","Lingeries","Conjuntos"];
+  container.innerHTML = cats.map(function(c,i){
+    return '<a class="category" href="produtos.html?categoria='+encodeURIComponent(c)+'"><div><span>0'+(i+1)+'</span><strong>'+escapar(c)+'</strong></div></a>';
+  }).join("");
 }
 async function carregarVitrine(){
   const lista = document.getElementById("listaDestaques");
@@ -330,7 +334,7 @@ const CART_KEY="delirio_intimo_carrinho";
 function cartRead(){try{const x=JSON.parse(localStorage.getItem(CART_KEY)||"[]");return Array.isArray(x)?x:[]}catch(e){return[]}}
 function cartWrite(x){localStorage.setItem(CART_KEY,JSON.stringify(x));cartRender()}
 function cartCount(){return cartRead().reduce((s,i)=>s+Number(i.quantidade||0),0)}
-function cartRender(){const c=document.getElementById("cartCount"),b=document.getElementById("cartBody"),t=document.getElementById("cartTotal");if(c)c.textContent=cartCount();if(!b||!t)return;const a=cartRead();if(!a.length){b.innerHTML='<div class="cartEmpty">Seu carrinho está vazio.</div>';t.textContent=moeda(0);return}let total=0;b.innerHTML=a.map(i=>{const sub=Number(i.precoVenda||0)*Number(i.quantidade||0);total+=sub;return '<div class="cartItem"><div class="cartItemPhoto">'+(i.fotoUrl?'<img src="'+escapar(i.fotoUrl)+'">':'Foto')+'</div><div><div class="cartItemName">'+escapar(i.produto)+'</div><div class="cartItemPrice">'+moeda(i.precoVenda)+' cada</div><div class="qtyControl"><button onclick="cartQty(\''+escapar(i.id)+'\',-1)">−</button><span>'+i.quantidade+'</span><button onclick="cartQty(\''+escapar(i.id)+'\',1)">+</button></div><button class="cartRemove" onclick="cartRemove(\''+escapar(i.id)+'\')">REMOVER</button></div><div class="cartItemTotal">'+moeda(sub)+'</div></div>'}).join("");t.textContent=moeda(total)}
+function cartRender(){const c=document.getElementById("cartCount"),h=document.getElementById("headerCartCount"),b=document.getElementById("cartBody"),t=document.getElementById("cartTotal");if(c)c.textContent=cartCount();if(h)h.textContent=cartCount();if(!b||!t)return;const a=cartRead();if(!a.length){b.innerHTML='<div class="cartEmpty">Seu carrinho está vazio.</div>';t.textContent=moeda(0);return}let total=0;b.innerHTML=a.map(i=>{const sub=Number(i.precoVenda||0)*Number(i.quantidade||0);total+=sub;return '<div class="cartItem"><div class="cartItemPhoto">'+(i.fotoUrl?'<img src="'+escapar(i.fotoUrl)+'">':'Foto')+'</div><div><div class="cartItemName">'+escapar(i.produto)+'</div><div class="cartItemPrice">'+moeda(i.precoVenda)+' cada</div><div class="qtyControl"><button onclick="cartQty(\''+escapar(i.id)+'\',-1)">−</button><span>'+i.quantidade+'</span><button onclick="cartQty(\''+escapar(i.id)+'\',1)">+</button></div><button class="cartRemove" onclick="cartRemove(\''+escapar(i.id)+'\')">REMOVER</button></div><div class="cartItemTotal">'+moeda(sub)+'</div></div>'}).join("");t.textContent=moeda(total)}
 function cartAdd(id,q){const p=(window.produtosVitrine||[]).find(x=>String(x.id)===String(id));if(!p||Number(p.estoque||0)<=0)return;const a=cartRead(),old=a.find(x=>String(x.id)===String(id)),n=(old?Number(old.quantidade):0)+Math.max(1,Number(q||1));if(n>Number(p.estoque)){alert("A quantidade disponível para este produto é "+p.estoque+".");return}const item={id:String(p.id),produto:p.produto,precoVenda:Number(p.precoVenda||0),estoque:Number(p.estoque||0),fotoUrl:p.fotoUrl||"",quantidade:n};if(old)Object.assign(old,item);else a.push(item);cartWrite(a);fecharProduto();abrirCarrinho()}
 function cartQty(id,d){const a=cartRead(),i=a.find(x=>String(x.id)===String(id));if(!i)return;const n=Number(i.quantidade)+d;if(n<=0)return cartRemove(id);if(n>Number(i.estoque))return alert("A quantidade disponível para este produto é "+i.estoque+".");i.quantidade=n;cartWrite(a)}
 function cartRemove(id){cartWrite(cartRead().filter(x=>String(x.id)!==String(id)))}

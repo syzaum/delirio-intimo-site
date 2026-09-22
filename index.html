@@ -81,6 +81,17 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
   .buttons{margin-top:17px}
   .btn{padding:11px 17px}
 }
+
+/* Ajuste para notebooks / telas desktop menores: mantém o hero 3.2:1 sem cortar o conteúdo */
+@media (min-width:801px) and (max-width:1500px){
+  .heroCopy{left:5.5%;width:min(410px,34vw)}
+  .heroLogo{width:clamp(110px,18vh,170px);height:clamp(110px,18vh,170px);margin-bottom:8px}
+  h1{font-size:clamp(42px,4vw,56px);letter-spacing:-2.6px}
+  .heroCopy p{font-size:14px;max-width:350px;margin-top:12px}
+  .buttons{gap:8px;margin-top:16px}
+  .btn{padding:11px 17px;font-size:11px}
+}
+
 @media(max-width:800px){
   nav{display:none}
   .hero{padding:0 0 3px}

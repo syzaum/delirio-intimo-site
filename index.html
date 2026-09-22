@@ -73,32 +73,56 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
 .loading,.empty{grid-column:1/-1;text-align:center;padding:35px 15px;color:#777;border:1px dashed #333;border-radius:18px}
 .error-box{grid-column:1/-1;text-align:center;padding:25px;color:#aaa;border:1px solid #3a1e2d;border-radius:18px;background:#150d12}
 
+@media(max-width:1200px) and (min-width:801px){
+  .heroLogo{width:clamp(135px,12vw,180px);height:clamp(135px,12vw,180px);margin-bottom:10px}
+  .heroCopy{width:min(430px,40vw)}
+  h1{font-size:clamp(42px,4.5vw,58px);letter-spacing:-2.8px}
+  .heroCopy p{font-size:14px;margin-top:13px}
+  .buttons{margin-top:17px}
+  .btn{padding:11px 17px}
+}
+
+/* Ajuste para notebooks / telas desktop menores: mantém o hero 3.2:1 sem cortar o conteúdo */
+@media (min-width:801px) and (max-width:1500px){
+  .heroCopy{left:5.5%;width:min(410px,34vw)}
+  .heroLogo{width:clamp(110px,18vh,170px);height:clamp(110px,18vh,170px);margin-bottom:8px}
+  h1{font-size:clamp(42px,4vw,56px);letter-spacing:-2.6px}
+  .heroCopy p{font-size:14px;max-width:350px;margin-top:12px}
+  .buttons{gap:8px;margin-top:16px}
+  .btn{padding:11px 17px;font-size:11px}
+}
+
 @media(max-width:800px){
   nav{display:none}
-  .hero{padding:18px 0 32px}
-  .heroBanner{aspect-ratio:auto;border-radius:24px;overflow:visible;border:0;background:transparent}
-  .hero > .wrap{width:calc(100% - 28px);margin:auto}
-  .heroBanner img{position:relative;inset:auto;width:100%;height:auto;object-fit:contain;border-radius:24px;display:block;border:1px solid #30232b}
-  .heroShade,.label{display:none}
-  .heroCopy{position:relative;left:auto;top:auto;transform:none;width:100%;padding:25px 5px 0;align-items:center;text-align:center}
-  .heroLogo{width:112px;height:112px;margin-bottom:8px}
-  h1{font-size:clamp(43px,11vw,58px);letter-spacing:-3px}
-  .heroCopy p{font-size:15px;max-width:390px}
-  .buttons{justify-content:center}
+  .hero{padding:0 0 3px}
+  .hero > .wrap{width:100%;margin:0}
+  .heroBanner{aspect-ratio:1.35/1;border-radius:0;overflow:hidden;border:0;background:#090909}
+  .heroBanner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;border-radius:0}
+  .heroShade{display:block;background:
+    linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.20) 35%,rgba(0,0,0,.72) 100%),
+    linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.35) 58%,rgba(0,0,0,.18) 100%)}
+  .heroCopy{position:absolute;z-index:2;left:6%;top:50%;transform:translateY(-50%);width:88%;padding:0;align-items:flex-start;text-align:left}
+  .heroLogo{width:82px;height:82px;margin:0 0 8px}
+  .heroCopy .eyebrow{display:none}
+  h1{font-size:clamp(35px,10vw,46px);line-height:.95;letter-spacing:-2.4px}
+  .heroCopy p{font-size:13px;max-width:300px;margin-top:12px}
+  .buttons{justify-content:flex-start;margin-top:16px;gap:8px}
+  .btn{padding:10px 14px;font-size:10px}
+  .label{display:none}
   .products{grid-template-columns:repeat(2,1fr)}
   .categories{grid-template-columns:repeat(2,1fr)}
   .about{grid-template-columns:1fr}
   section{padding:48px 0}
 }
 @media(max-width:480px){
+  .heroBanner{aspect-ratio:1.18/1}
+  .heroCopy{left:6%;width:88%}
+  .heroLogo{width:68px;height:68px;margin-bottom:6px}
+  h1{font-size:36px;letter-spacing:-2px}
+  .heroCopy p{font-size:12px;max-width:270px;margin-top:9px}
+  .buttons{margin-top:12px}
+  .btn{padding:9px 12px;font-size:9px}
   .wrap{width:calc(100% - 22px)}
-  .hero{padding-top:12px}
-  .heroBanner img{border-radius:20px}
-  .heroCopy{padding-top:22px}
-  .heroLogo{width:92px;height:92px}
-  h1{font-size:45px}
-  .heroCopy p{font-size:14px}
-  .btn{padding:12px 16px;font-size:11px}
   .products,.categories{gap:9px}
   .product{border-radius:15px}
   .info{padding:12px}
@@ -125,8 +149,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
 .productModalClose:hover{border-color:#ff3f98;color:#ff3f98}
 .productModalSecondary{border:1px solid #3a3a3a;background:transparent;color:#fff}
 @media(max-width:700px){.productModal{padding:10px}.productModalCard{grid-template-columns:1fr;max-height:calc(100vh - 20px);border-radius:21px}.productModalPhoto{min-height:280px;max-height:48vh}.productModalInfo{padding:25px 22px 28px}.productModalTitle{font-size:30px}.productModalPrice{font-size:24px}.productModalActions .btn{flex:1;min-width:145px}}
-
-/* CARRINHO */
 .cartFab{position:fixed;right:18px;bottom:18px;z-index:90;border:1px solid var(--pink);background:#111;color:#fff;border-radius:999px;padding:12px 16px;font-size:12px;font-weight:900;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .cartCount{display:inline-flex;min-width:20px;height:20px;align-items:center;justify-content:center;margin-left:7px;border-radius:999px;background:var(--pink);color:#090909;font-size:11px}
 .cartOverlay{position:fixed;inset:0;z-index:110;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);display:none;justify-content:flex-end}
@@ -137,6 +159,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
 .cartItem{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #242424}.cartItemPhoto{width:72px;height:72px;border-radius:12px;overflow:hidden;background:#181818;display:grid;place-items:center;color:#777;font-size:9px;text-align:center}.cartItemPhoto img{width:100%;height:100%;object-fit:cover}.cartItemName{font-size:14px;font-weight:800}.cartItemPrice{font-size:12px;color:#aaa;margin-top:5px}.qtyControl{display:inline-flex;align-items:center;border:1px solid #3a3a3a;border-radius:9px;overflow:hidden;margin-top:9px}.qtyControl button{width:30px;height:30px;border:0;background:#171717;color:#fff;cursor:pointer;font-size:16px}.qtyControl span{min-width:30px;text-align:center;font-size:12px}.cartItemTotal{font-size:13px;font-weight:900;white-space:nowrap}.cartRemove{display:block;border:0;background:none;color:#777;font-size:10px;margin-top:6px;cursor:pointer}.cartFoot{border-top:1px solid #292929;padding:18px 20px;background:#0c0c0c}.cartSummary{display:flex;justify-content:space-between;font-size:16px;font-weight:900;margin-bottom:14px}.cartActions{display:flex;gap:9px}.cartActions .btn{flex:1;cursor:pointer;border:0}.cartSecondary{border:1px solid #3a3a3a!important;background:transparent!important;color:#fff!important}
 .addCartRow{display:flex;align-items:center;gap:10px;margin-top:22px;flex-wrap:wrap}.quantityPicker{display:inline-flex;align-items:center;border:1px solid #3a3a3a;border-radius:10px;overflow:hidden;height:46px}.quantityPicker button{width:40px;height:100%;border:0;background:#171717;color:#fff;font-size:20px;cursor:pointer}.quantityPicker span{min-width:40px;text-align:center;font-weight:900}.addCartButton{flex:1;min-width:190px;height:46px;border:0;border-radius:10px;background:var(--pink);color:#090909;font-size:12px;font-weight:900;cursor:pointer}
 @media(max-width:480px){.cartFab{right:12px;bottom:12px}.cartPanel{width:100%}.cartItem{grid-template-columns:60px 1fr auto}.cartItemPhoto{width:60px;height:60px}.cartBody{padding:12px}.cartFoot{padding:15px 12px}}
+
 </style></head>
 <body>
 <header><div class="wrap nav"><a class="logo" href="#"><img src="logo.png" alt="Delírio Íntimo"></a><nav><a href="#inicio">Início</a><a href="produtos.html">Produtos</a><a href="#categorias">Categorias</a><a href="#sobre">Sobre</a></nav><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header>
@@ -183,7 +206,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
 <footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div>Instagram · WhatsApp</div><div>© 2026 Delírio Íntimo</div></div></footer>
 <button class="cartFab" type="button" onclick="abrirCarrinho()">CARRINHO <span class="cartCount" id="cartCount">0</span></button>
 <div class="cartOverlay" id="cartOverlay" aria-hidden="true"><div class="cartPanel"><div class="cartHead"><h2>Seu carrinho</h2><button class="cartClose" onclick="fecharCarrinho()">×</button></div><div class="cartBody" id="cartBody"></div><div class="cartFoot"><div class="cartSummary"><span>Total</span><span id="cartTotal">R$ 0,00</span></div><div class="cartActions"><button class="btn cartSecondary" onclick="fecharCarrinho()">CONTINUAR COMPRANDO</button><button class="btn primary" onclick="finalizarCarrinhoWhatsApp()">FINALIZAR PELO WHATSAPP</button></div></div></div></div>
-
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbxMqXwGjTAFWJ5HDCvmC8gbuYM89oIrY1q7UxhicsPAOPnIB5BKxJo0ROGZiwvFQY8ZRw/exec";
@@ -241,7 +263,7 @@ function abrirProduto(id){
   const actions = document.getElementById("productModalActions");
   const href = disponivel ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(produto)) : '#';
   actions.innerHTML = disponivel
-    ? '<a class="btn primary" href="'+href+'" target="_blank" rel="noopener">FALAR NO WHATSAPP</a><button class="btn productModalSecondary" type="button" onclick="fecharProduto()">CONTINUAR VENDO</button>'
+    ? '<div class="cartAddRow"><label for="cartQtyModal">Quantidade</label><select id="cartQtyModal" class="cartQtySelect">'+Array.from({length: Math.min(estoque,10)}, function(_,i){ return '<option value="'+(i+1)+'">'+(i+1)+'</option>'; }).join('')+'</select><button class="btn primary" type="button" onclick="cartAdd(\''+escapar(produto.id)+'\',Number(document.getElementById(\'cartQtyModal\').value))">ADICIONAR AO CARRINHO</button></div><a class="btn productModalSecondary" href="'+href+'" target="_blank" rel="noopener">FALAR NO WHATSAPP</a><button class="btn productModalSecondary" type="button" onclick="fecharProduto()">CONTINUAR VENDO</button>'
     : '<button class="btn productModalSecondary" type="button" onclick="fecharProduto()">VOLTAR AO CATÁLOGO</button>';
   modal.classList.add("open");
   modal.setAttribute("aria-hidden","false");
@@ -302,7 +324,6 @@ async function carregarVitrine(){
 }
 carregarVitrine();
 </script>
-
 <script>
 /* Carrinho isolado: não participa do carregamento da vitrine. */
 const CART_KEY="delirio_intimo_carrinho";

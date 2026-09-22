@@ -475,6 +475,7 @@ async function carregarVitrine(){
     const dados = await resposta.json();
     if(!dados.sucesso) throw new Error(dados.erro || "Não foi possível carregar os produtos.");
     const produtos = dados.produtos || [];
+    window.produtosVitrine = produtos;
     renderProdutos(produtos);
     renderCategorias(produtos);
   }catch(erro){
@@ -484,6 +485,5 @@ async function carregarVitrine(){
   }
 }
 carregarVitrine();
-atualizarCarrinho();
 </script>
 </body></html>

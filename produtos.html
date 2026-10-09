@@ -157,9 +157,9 @@ function ativo(produto){
   return valor === true || valor === 1 || texto === "TRUE" || texto === "1" || texto === "SIM";
 }
 function produtoVisivel(produto){
-  // A coluna "Categoria" da aba Produtos é uma classificação de cadastro/origem.
-  // "Importado" não significa que o produto deva ser ocultado da vitrine.
-  return true;
+  // Oculta da vitrine os produtos cuja coluna "ativo" esteja como FALSE.
+  // Não usa a categoria/classificação para decidir a visibilidade.
+  return ativo(produto);
 }
 function mensagemWhatsApp(produto){
   return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";

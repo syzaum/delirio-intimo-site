@@ -29,9 +29,9 @@ function esc(s){return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt
 async function carregarCategorias(){
  const el=document.getElementById("listaCategorias");
  try{
-  const r=await fetch(API_URL+"?acao=vitrine",{cache:"no-store"});
+  const r=await fetch(API_URL+"?acao=produtos",{cache:"no-store"});
   const d=await r.json();
-  const produtos=d.produtos||[];
+  const produtos=(d.produtos||[]).map(p=>{if(!p.categoriaComercial)p.categoriaComercial=p.categoria||"";if(!p.fotos)p.fotos=[];if(!p.fotoUrl&&p.fotos.length)p.fotoUrl=p.fotos[0].url||"";return p;});
   el.innerHTML=CATEGORIAS.map((c,i)=>{
    const p=produtos.find(x=>normalizarTexto(x.categoriaComercial)===normalizarTexto(c.nome)&&x.fotoUrl);
    const img=p?'<img class="catImg" src="'+esc(imagemCapaProduto(p))+'" alt="" loading="lazy"><div class="catShade"></div>':'';

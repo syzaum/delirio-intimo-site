@@ -43,6 +43,18 @@
 @media(max-width:480px){.cartFab{right:12px;bottom:12px}.cartPanel{width:100%}.cartItem{grid-template-columns:60px 1fr auto}.cartItemPhoto{width:60px;height:60px}.cartBody{padding:12px}.cartFoot{padding:15px 12px}}
 
 .headerCart{border:1px solid #3a3a3a;background:#111;color:#fff;border-radius:30px;padding:9px 13px;font-size:12px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:6px}.headerCart:hover{border-color:var(--pink);color:var(--pink)}.headerCart b{min-width:18px;height:18px;border-radius:99px;background:var(--pink);color:#090909;display:inline-flex;align-items:center;justify-content:center;font-size:10px}.footerLinks a:hover{color:var(--pink)}@media(max-width:800px){.headerCart span{display:none}.headerCart{padding:9px 11px}.nav{gap:8px}.wa{padding:9px 11px}}
+
+/* Galeria de fotos do produto */
+.productGallery{width:100%;display:flex;flex-direction:column;gap:12px;min-width:0}
+.productGalleryMain{width:100%;height:390px;display:grid;place-items:center;overflow:hidden;background:#fff;border-radius:18px}
+.productGalleryMain img{width:100%;height:100%;object-fit:contain;display:block}
+.productGalleryThumbs{display:flex;gap:8px;overflow-x:auto;padding:2px 1px 7px;max-width:100%}
+.productGalleryThumb{flex:0 0 64px;width:64px;height:76px;padding:3px;border:1px solid #51404a;background:#171217;border-radius:9px;cursor:pointer;overflow:hidden}
+.productGalleryThumb.active{border:2px solid var(--pink,#ff3f98)}
+.productGalleryThumb img{width:100%;height:100%;object-fit:contain;display:block}
+.productGalleryCount{font-size:11px;color:#aaa;text-align:center;letter-spacing:.4px}
+@media(max-width:800px){.productGalleryMain{height:300px}.productModalPhoto{min-height:0;padding:12px}.productModalCard{grid-template-columns:minmax(0,1fr)!important}.productGalleryThumb{flex-basis:54px;width:54px;height:64px}}
+
 </style>
 </head>
 <body>
@@ -101,6 +113,43 @@ function escapar(texto){
     return ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[c];
   });
 }
+
+function fotosDoProduto(produto){
+  const fotos = Array.isArray(produto && produto.fotos) ? produto.fotos.filter(function(f){return f && f.url;}) : [];
+  const capa = fotos.find(function(f){return f.capa === true || String(f.capa).toLowerCase() === "true";});
+  const ordenadas = fotos.slice().sort(function(a,b){
+    const ac = a === capa || a.capa === true || String(a.capa).toLowerCase() === "true";
+    const bc = b === capa || b.capa === true || String(b.capa).toLowerCase() === "true";
+    return ac === bc ? 0 : (ac ? -1 : 1);
+  });
+  if(!ordenadas.length && produto && produto.fotoUrl) return [{url:produto.fotoUrl,capa:true}];
+  return ordenadas;
+}
+function imagemCapaProduto(produto){
+  const fotos = fotosDoProduto(produto);
+  return (fotos[0] && fotos[0].url) || (produto && produto.fotoUrl) || "";
+}
+function selecionarFotoGaleria(indice){
+  const galeria = document.getElementById("productGallery");
+  if(!galeria) return;
+  const fotos = window.fotosGaleriaAtivas || [];
+  const foto = fotos[indice];
+  if(!foto) return;
+  const principal = document.getElementById("productGalleryMainImage");
+  if(principal){principal.src = foto.url; principal.alt = window.produtoGaleriaNome || "Foto do produto";}
+  galeria.querySelectorAll(".productGalleryThumb").forEach(function(b,i){b.classList.toggle("active",i===indice);});
+  const contador = document.getElementById("productGalleryCount");
+  if(contador) contador.textContent = (indice+1)+" de "+fotos.length+" fotos";
+}
+function montarGaleriaProduto(produto){
+  const fotoEl = document.getElementById("productModalPhoto");
+  const fotos = fotosDoProduto(produto);
+  window.fotosGaleriaAtivas = fotos;
+  window.produtoGaleriaNome = produto.produto || "Produto";
+  if(!fotos.length){fotoEl.textContent="Foto do produto";return;}
+  fotoEl.innerHTML = '<div class="productGallery" id="productGallery"><div class="productGalleryMain"><img id="productGalleryMainImage" src="'+escapar(fotos[0].url)+'" alt="'+escapar(produto.produto)+'" onerror="this.style.display=\'none\';"></div>'+(fotos.length>1?'<div class="productGalleryThumbs">'+fotos.map(function(f,i){return '<button type="button" class="productGalleryThumb '+(i===0?'active':'')+'" onclick="selecionarFotoGaleria('+i+')" aria-label="Ver foto '+(i+1)+'"><img src="'+escapar(f.url)+'" alt=""></button>';}).join('')+'</div><div class="productGalleryCount" id="productGalleryCount">1 de '+fotos.length+' fotos</div>':'')+'</div>';
+}
+
 function ativo(produto){
   const valor = produto ? produto.ativo : undefined;
   if(valor === undefined || valor === null || valor === "") return true;
@@ -128,11 +177,7 @@ function abrirProduto(id){
   const stockEl = document.getElementById("productModalStock");
   stockEl.textContent = disponivel ? "Disponível" : "Esgotado";
   stockEl.className = "productModalStock" + (disponivel ? " ok" : "");
-  if(produto.fotoUrl){
-    fotoEl.innerHTML = '<img src="'+escapar(produto.fotoUrl)+'" alt="'+escapar(produto.produto)+'" onerror="this.style.display=\'none\';this.parentNode.textContent=\'Foto do produto\';">';
-  }else{
-    fotoEl.textContent = "Foto do produto";
-  }
+  montarGaleriaProduto(produto);
   const actions = document.getElementById("productModalActions");
   const href = disponivel ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(produto)) : '#';
   actions.innerHTML = disponivel
@@ -174,7 +219,7 @@ function renderProdutos(produtos,categoriaSelecionada){
     const estoque = Number(p.estoque || 0);
     const disponivel = estoque > 0;
     const foto = p.fotoUrl
-      ? '<img src="'+escapar(p.fotoUrl)+'" alt="'+escapar(p.produto)+'" loading="lazy" onerror="this.style.display=\'none\';this.parentNode.textContent=\'Foto do produto\';">'
+      ? '<img src="'+escapar(fotoUrlCapa)+'" alt="'+escapar(p.produto)+'" loading="lazy" onerror="this.style.display=\'none\';this.parentNode.textContent=\'Foto do produto\';">'
       : 'Foto do produto';
     const status = disponivel ? '<div class="stock ok">Disponível</div>' : '<div class="stock out">Esgotado</div>';
     const label = disponivel ? 'VER DETALHES' : 'VER DETALHES · ESGOTADO';

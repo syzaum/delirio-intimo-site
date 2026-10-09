@@ -218,7 +218,8 @@ function renderProdutos(produtos,categoriaSelecionada){
   lista.innerHTML = filtrados.map(function(p){
     const estoque = Number(p.estoque || 0);
     const disponivel = estoque > 0;
-    const foto = p.fotoUrl
+    const fotoUrlCapa = imagemCapaProduto(p);
+    const foto = fotoUrlCapa
       ? '<img src="'+escapar(fotoUrlCapa)+'" alt="'+escapar(p.produto)+'" loading="lazy" onerror="this.style.display=\'none\';this.parentNode.textContent=\'Foto do produto\';">'
       : 'Foto do produto';
     const status = disponivel ? '<div class="stock ok">Disponível</div>' : '<div class="stock out">Esgotado</div>';
@@ -245,11 +246,11 @@ function renderCatalogoFiltrado(){
 async function carregarCatalogo(){
   const lista = document.getElementById("listaProdutos");
   try{
-    const resposta = await fetch(API_URL+"?acao=vitrine",{cache:"no-store"});
+    const resposta = await fetch(API_URL+"?acao=produtos",{cache:"no-store"});
     const dados = await resposta.json();
     if(!dados.sucesso) throw new Error(dados.erro || "Não foi possível carregar os produtos.");
 
-    window.produtosVitrine = dados.produtos || [];
+    window.produtosVitrine = (dados.produtos || []).map(function(p){ if(!p.categoriaComercial) p.categoriaComercial = p.categoria || ""; if(!p.fotos) p.fotos = []; if(!p.fotoUrl && p.fotos.length) p.fotoUrl = p.fotos[0].url || ""; return p; });
     montarFiltros(window.produtosVitrine);
     const params = new URLSearchParams(window.location.search);
     const categoriaInicial = params.get("categoria") || "";

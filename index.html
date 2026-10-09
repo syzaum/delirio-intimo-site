@@ -362,10 +362,10 @@ async function carregarVitrine(){
   const lista = document.getElementById("listaDestaques");
   const categorias = document.getElementById("listaCategorias");
   try{
-    const resposta = await fetch(API_URL+"?acao=vitrine", {cache:"no-store"});
+    const resposta = await fetch(API_URL+"?acao=produtos", {cache:"no-store"});
     const dados = await resposta.json();
     if(!dados.sucesso) throw new Error(dados.erro || "Não foi possível carregar os produtos.");
-    const produtos = dados.produtos || [];
+    const produtos = (dados.produtos || []).map(function(p){ if(!p.categoriaComercial) p.categoriaComercial = p.categoria || ""; if(!p.fotos) p.fotos = []; if(!p.fotoUrl && p.fotos.length) p.fotoUrl = p.fotos[0].url || ""; return p; });
     window.produtosVitrine = produtos;
     renderProdutos(produtos);
     renderCategorias(produtos);

@@ -305,7 +305,7 @@ function renderCategorias(produtos){
   const container = document.getElementById("listaCategorias");
   // A coluna "Categoria" atual é de cadastro/origem (ex.: Importado),
   // então não usamos esses valores como categorias comerciais da vitrine.
-  const cats = ["Sex Shop","Cosméticos","Lingeries","Conjuntos","Acessórios"];
+  const cats = ["Sex Shop","Cosméticos","Lingeries","Conjuntos","Acessórios","Biquínis","Linha Noite"];
   container.innerHTML = cats.map(function(c,i){
     const produto = produtos.find(function(p){ return String(p.categoriaComercial || "").trim().toLowerCase() === c.toLowerCase() && p.fotoUrl; });
     const bg = produto ? ' style="background-image:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.82)),url('+escapar(produto.fotoUrl)+')"' : '';

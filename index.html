@@ -256,27 +256,62 @@ footer{border-top:1px solid var(--line)!important;color:#947b7d!important;backgr
 @media(max-width:800px){.nav{min-height:68px!important}.logo img{height:44px!important}.heroCopy{color:#fff}.contact{padding:30px 22px}}
 @media(max-width:480px){.logo img{max-width:145px}.head h2{font-size:28px!important}.cartFab{bottom:12px;right:12px}}
 
+
+/* REFORMULAÇÃO CLEAN — Delírio Íntimo */
+:root{--bg:#fffdfc;--card:#ffffff;--pink:#8b303b;--white:#49262b;--muted:#8b7375;--line:#f0dedd;--wine:#7b2d37;--rose:#cf858a;--blush:#fbefed}
+html{background:#fffdfc!important}
+body{background:#fffdfc!important;color:#49262b!important;font-family:Inter,'Helvetica Neue',Arial,sans-serif!important}
+header{background:rgba(240,195,190,.96)!important;border-bottom:1px solid #f1dfdd!important;box-shadow:0 4px 20px rgba(112,44,53,.045)!important;backdrop-filter:blur(14px)}
+.nav{min-height:76px!important;height:auto!important;gap:16px!important}
+.logo{height:64px!important;min-width:145px}
+.logo img{height:58px!important;width:auto!important;max-width:190px!important;object-fit:contain!important}
+nav{color:#65484b!important;gap:clamp(12px,2vw,25px)!important;font-weight:600!important}
+nav a:hover,.footerLinks a:hover{color:#bd6d77!important}
+.wa{border:1px solid #7b2d37!important;color:#7b2d37!important;background:#fff!important;border-radius:30px!important;transition:.2s}
+.wa:hover{background:#7b2d37!important;color:#fff!important}
+.eyebrow,.pink,.logo span,h1 em{color:#9c3e49!important}
+h1,h2,.productModalTitle,.head h2{font-family:Georgia,'Times New Roman',serif!important;font-weight:500!important;color:#7b2d37!important;letter-spacing:-.5px}
+p{color:#8b7375!important}
+.btn{border-radius:30px!important;letter-spacing:.5px!important;transition:transform .2s,background .2s,border-color .2s}
+.btn:hover{transform:translateY(-1px)}
+.primary,.addCartButton{background:#7b2d37!important;color:#fff!important;border:1px solid #7b2d37!important}
+.primary:hover,.addCartButton:hover{background:#5f202a!important}
+.secondary{border:1px solid #d7b6b6!important;color:#7b2d37!important;background:#fff!important}
+section{scroll-margin-top:90px}
+.product{background:#fff!important;border:1px solid #f0dedd!important;border-radius:15px!important;box-shadow:0 7px 22px rgba(112,44,53,.045)!important;transition:transform .2s,box-shadow .2s,border-color .2s}
+.product:hover{transform:translateY(-3px);box-shadow:0 13px 28px rgba(112,44,53,.09)!important;border-color:#d9b0b1!important}
+.photo{background:linear-gradient(145deg,#fffaf9,#f8eae8)!important;color:#a58c8d!important}
+.name{color:#49262b!important}.cat{color:#987d80!important}.price,.productModalPrice{color:#7b2d37!important}
+.stock.ok,.productModalStock.ok{color:#64815c!important}.stock.out,.productModalStock{color:#927679}
+.details{border:1px solid #dcb9b8!important;color:#7b2d37!important;background:#fff!important;border-radius:30px!important}
+.details:hover{border-color:#7b2d37!important;background:#fbefed!important;color:#7b2d37!important}
+.category,.cat{background-color:#fbefed!important;border-color:#f0dedd!important;border-radius:15px!important;transition:transform .2s,border-color .2s,box-shadow .2s}
+.category:hover,.cat:hover{border-color:#cf858a!important;box-shadow:0 10px 22px rgba(112,44,53,.08)!important}
+.category span,.cat span{color:#a34b55!important}.category strong,.cat strong{color:#7b2d37!important;text-shadow:none!important}
+.box{background:#fff!important;border-color:#f0dedd!important;border-radius:18px!important;box-shadow:0 7px 22px rgba(112,44,53,.035)!important}
+.box h2{color:#7b2d37!important}
+.quote{background:linear-gradient(145deg,#fbefed,#f4dfdd)!important;border-color:#f0dedd!important;color:#49262b!important}
+.quote strong{color:#7b2d37!important;font-family:Georgia,'Times New Roman',serif;font-weight:500}
+.quote small{color:#a34b55!important}
+.contact{background:linear-gradient(145deg,#fffaf9,#fbefed)!important;border:1px solid #f0dedd!important;border-radius:22px!important}
+.contact h2{color:#7b2d37!important}
+footer{border-top:1px solid #f0dedd!important;color:#8b7375!important;background:#fffdfc!important}
+.foot b{color:#7b2d37!important}.foot b span{color:#a34b55!important}
+.cartDrawer,.cartPanel,.cartModal,.productModalCard{background:#fffdfc!important;color:#49262b!important;border-color:#f0dedd!important}
+.productGalleryMain{background:#fffaf9!important}.productGalleryThumb{border-color:#ead2d0!important;background:#fff!important}.productGalleryThumb.active{border-color:#9c3e49!important}
+.cleanHeroBanner{width:100%;aspect-ratio:3/1!important;border:0!important;border-radius:0!important;overflow:hidden;background:#fbefed!important;box-shadow:none!important}
+.cleanHeroBanner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.cleanHeroBanner .heroShade,.cleanHeroBanner .heroCopy,.cleanHeroBanner .label{display:none!important}
+@media(max-width:800px){.nav{min-height:68px!important}.logo{height:55px!important;min-width:0}.logo img{height:46px!important;max-width:145px!important}.cleanHeroBanner{aspect-ratio:1.8/1!important}.cleanHeroBanner>img{object-fit:cover;object-position:center}.head h2{font-size:28px!important}}
+@media(max-width:480px){.cleanHeroBanner{aspect-ratio:1.25/1!important}.cleanHeroBanner>img{object-fit:cover;object-position:58% center}.logo img{max-width:125px!important}.wrap{width:calc(100% - 22px)}}
 </style></head>
 <body>
-<header><div class="wrap nav"><a class="logo" href="#"><img src="logo.png" alt="Delírio Íntimo"></a><nav><a href="#inicio">Início</a><a href="produtos.html">Produtos</a><a href="categorias.html">Categorias</a><a href="sobre.html">Sobre</a></nav><button class="headerCart" type="button" onclick="abrirCarrinho()">🛒 <span>CARRINHO</span> <b id="headerCartCount">0</b></button><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header>
+<header><div class="wrap nav"><a class="logo" href="#"><img src="assets/logo-cabecalho.png" alt="Delírio Íntimo"></a><nav><a href="#inicio">Início</a><a href="produtos.html">Produtos</a><a href="categorias.html">Categorias</a><a href="sobre.html">Sobre</a></nav><button class="headerCart" type="button" onclick="abrirCarrinho()">🛒 <span>CARRINHO</span> <b id="headerCartCount">0</b></button><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header>
 <main id="inicio">
-<section class="hero">
-  <div class="heroBanner">
-      <img src="hero.png" alt="Delírio Íntimo — lingerie e produtos íntimos">
-      <div class="heroShade"></div>
-
-      <div class="heroCopy">
-        <img class="heroLogo" src="logo-transparente.png" alt="Delírio Íntimo">
-        <h1>Sua intimidade.<br><em>Do seu jeito.</em></h1>
-        <p>Descubra peças e produtos para deixar seus momentos ainda mais especiais.</p>
-        <div class="buttons">
-          <a class="btn primary" href="#produtos">VER PRODUTOS</a>
-          <a class="btn secondary" href="categorias.html">EXPLORAR CATEGORIAS</a>
-        </div>
-      </div>
-
-      <div class="label">Delírio Íntimo</div>
-    </div>
+<section class="hero" id="inicio" aria-label="Apresentação da Delírio Íntimo">
+  <div class="heroBanner cleanHeroBanner">
+    <img src="assets/banner-home.png" alt="Delírio Íntimo — Sua essência em cada detalhe">
+  </div>
 </section>
 <section id="produtos"><div class="wrap"><div class="head"><div><h2>Destaques</h2><p>Alguns dos queridinhos da Delírio Íntimo.</p></div><a class="pink" href="produtos.html" style="font-size:12px;font-weight:800">VER TODOS →</a></div><div class="products" id="listaDestaques">
 <div class="product"><div class="photo">Carregando produtos...</div><div class="info"><div class="name">Carregando...</div><div class="cat">Aguarde</div></div></div>

@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fbf1ef">
 <title>Delírio Íntimo</title>
 <style>
-:root{--bg:#fffaf9;--card:#fffaf9;--pink:#ff3f98;--white:#fff;--muted:#aaa;--line:#292929}
+:root{--bg:#090909;--card:#151515;--pink:#ff3f98;--white:#fff;--muted:#aaa;--line:#292929}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif}
@@ -136,7 +136,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size
 /* Modal de produto */
 .productModal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.78);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}
 .productModal.open{display:flex}
-.productModalCard{position:relative;width:min(900px,100%);max-height:min(760px,calc(100vh - 40px));overflow:auto;background:#ffffff;border:1px solid #33252d;border-radius:26px;box-shadow:0 24px 80px rgba(0,0,0,.55);display:grid;grid-template-columns:minmax(300px,1fr) minmax(300px,1fr)}
+.productModalCard{position:relative;width:min(900px,100%);max-height:min(760px,calc(100vh - 40px));overflow:auto;background:#121212;border:1px solid #33252d;border-radius:26px;box-shadow:0 24px 80px rgba(0,0,0,.55);display:grid;grid-template-columns:minmax(300px,1fr) minmax(300px,1fr)}
 .productModalPhoto{min-height:430px;background:radial-gradient(circle at 50% 35%,#ff3f9840,transparent 40%),linear-gradient(145deg,#21151c,#111);display:grid;place-items:center;overflow:hidden;color:#777;font-size:11px;text-transform:uppercase;letter-spacing:1px}
 .productModalPhoto img{width:100%;height:100%;object-fit:contain;display:block}
 .productModalInfo{padding:38px 34px;display:flex;flex-direction:column;justify-content:center}
@@ -304,6 +304,28 @@ footer{border-top:1px solid #f0dedd!important;color:#8b7375!important;background
 .cleanHeroBanner .heroShade,.cleanHeroBanner .heroCopy,.cleanHeroBanner .label{display:none!important}
 @media(max-width:800px){.nav{min-height:68px!important}.logo{height:55px!important;min-width:0}.logo img{height:46px!important;max-width:145px!important}.cleanHeroBanner{aspect-ratio:1.8/1!important}.cleanHeroBanner>img{object-fit:cover;object-position:center}.head h2{font-size:28px!important}}
 @media(max-width:480px){.cleanHeroBanner{aspect-ratio:1.25/1!important}.cleanHeroBanner>img{object-fit:cover;object-position:58% center}.logo img{max-width:125px!important}.wrap{width:calc(100% - 22px)}}
+
+/* Hero exclusiva para celular: enquadramento próprio e texto legível; desktop não muda */
+.mobileHeroCopy{display:none}
+@media(max-width:800px){
+  .cleanHeroBanner{position:relative;aspect-ratio:1.12/1!important;background:#fbefed!important;isolation:isolate}
+  .cleanHeroBanner>img{object-fit:cover!important;object-position:100% center!important}
+  .cleanHeroBanner::before{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,rgba(255,249,248,.98) 0%,rgba(255,246,244,.92) 35%,rgba(255,240,238,.45) 60%,rgba(255,240,238,0) 82%);pointer-events:none}
+  .cleanHeroBanner .mobileHeroCopy{display:flex;position:absolute;z-index:2;left:5.5%;top:50%;transform:translateY(-50%);width:61%;flex-direction:column;align-items:flex-start;text-align:left;color:#702c35}
+  .mobileHeroEyebrow{font-size:9px;letter-spacing:1.7px;font-weight:700;color:#a34b55;margin-bottom:10px}
+  .mobileHeroCopy h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(29px,8.2vw,39px);font-weight:500;line-height:1.02;letter-spacing:-1.1px;color:#702c35}
+  .mobileHeroCopy h1 em{font-weight:400;color:#b76e79}
+  .mobileHeroCopy p{font-size:12px;line-height:1.45;color:#74474b;margin-top:11px;max-width:215px}
+  .mobileHeroButton{display:inline-flex;align-items:center;gap:8px;margin-top:15px;padding:10px 13px;border-radius:30px;background:#8e3541;color:#fff;font-size:9px;font-weight:800;letter-spacing:.4px;white-space:nowrap;box-shadow:0 3px 10px rgba(112,44,53,.12)}
+  .mobileHeroButton span{font-size:18px;line-height:10px}
+}
+@media(max-width:480px){
+  .cleanHeroBanner{aspect-ratio:1.05/1!important}
+  .cleanHeroBanner .mobileHeroCopy{width:63%;left:5%}
+  .mobileHeroCopy h1{font-size:clamp(27px,7.8vw,35px)}
+  .mobileHeroCopy p{font-size:11px;max-width:185px;margin-top:9px}
+  .mobileHeroButton{margin-top:12px;padding:9px 11px;font-size:8px}
+}
 </style></head>
 <body>
 <header><div class="wrap nav"><a class="logo" href="#"><img src="assets/logo-cabecalho.png" alt="Delírio Íntimo"></a><nav><a href="#inicio">Início</a><a href="produtos.html">Produtos</a><a href="categorias.html">Categorias</a><a href="sobre.html">Sobre</a></nav><button class="headerCart" type="button" onclick="abrirCarrinho()">🛒 <span>CARRINHO</span> <b id="headerCartCount">0</b></button><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header>
@@ -311,6 +333,12 @@ footer{border-top:1px solid #f0dedd!important;color:#8b7375!important;background
 <section class="hero" id="inicio" aria-label="Apresentação da Delírio Íntimo">
   <div class="heroBanner cleanHeroBanner">
     <img src="assets/banner-home.png" alt="Delírio Íntimo — Sua essência em cada detalhe">
+    <div class="mobileHeroCopy">
+      <span class="mobileHeroEyebrow">DELÍRIO ÍNTIMO</span>
+      <h1>Sua essência<br><em>em cada detalhe</em></h1>
+      <p>Produtos pensados para o seu prazer, bem-estar e autoestima.</p>
+      <a class="mobileHeroButton" href="produtos.html">CONHECER PRODUTOS <span aria-hidden="true">›</span></a>
+    </div>
   </div>
 </section>
 <section id="produtos"><div class="wrap"><div class="head"><div><h2>Destaques</h2><p>Alguns dos queridinhos da Delírio Íntimo.</p></div><a class="pink" href="produtos.html" style="font-size:12px;font-weight:800">VER TODOS →</a></div><div class="products" id="listaDestaques">

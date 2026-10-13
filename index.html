@@ -429,9 +429,9 @@ function mensagemWhatsApp(produto){
   return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";
 }
 function produtoVisivel(produto){
-  // Oculta da vitrine os produtos cuja coluna "ativo" esteja como FALSE.
-  // Não usa a categoria/classificação para decidir a visibilidade.
-  return ativo(produto);
+  // CORREÇÃO EMERGENCIAL: não ocultar produtos até confirmar o mapeamento da coluna "ativo".
+  // O estoque continua controlando a disponibilidade; produto esgotado permanece visível como esgotado.
+  return true;
 }
 function abrirProduto(id){
   const produtos = window.produtosVitrine || [];

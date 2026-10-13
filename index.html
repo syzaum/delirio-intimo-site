@@ -304,6 +304,28 @@ footer{border-top:1px solid #f0dedd!important;color:#8b7375!important;background
 .cleanHeroBanner .heroShade,.cleanHeroBanner .heroCopy,.cleanHeroBanner .label{display:none!important}
 @media(max-width:800px){.nav{min-height:68px!important}.logo{height:55px!important;min-width:0}.logo img{height:46px!important;max-width:145px!important}.cleanHeroBanner{aspect-ratio:1.8/1!important}.cleanHeroBanner>img{object-fit:cover;object-position:center}.head h2{font-size:28px!important}}
 @media(max-width:480px){.cleanHeroBanner{aspect-ratio:1.25/1!important}.cleanHeroBanner>img{object-fit:cover;object-position:58% center}.logo img{max-width:125px!important}.wrap{width:calc(100% - 22px)}}
+
+/* Hero exclusiva para celular: enquadramento próprio e texto legível; desktop não muda */
+.mobileHeroCopy{display:none}
+@media(max-width:800px){
+  .cleanHeroBanner{position:relative;aspect-ratio:1.12/1!important;background:#fbefed!important;isolation:isolate}
+  .cleanHeroBanner>img{object-fit:cover!important;object-position:100% center!important}
+  .cleanHeroBanner::before{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,rgba(255,249,248,.98) 0%,rgba(255,246,244,.92) 35%,rgba(255,240,238,.45) 60%,rgba(255,240,238,0) 82%);pointer-events:none}
+  .cleanHeroBanner .mobileHeroCopy{display:flex;position:absolute;z-index:2;left:5.5%;top:50%;transform:translateY(-50%);width:61%;flex-direction:column;align-items:flex-start;text-align:left;color:#702c35}
+  .mobileHeroEyebrow{font-size:9px;letter-spacing:1.7px;font-weight:700;color:#a34b55;margin-bottom:10px}
+  .mobileHeroCopy h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(29px,8.2vw,39px);font-weight:500;line-height:1.02;letter-spacing:-1.1px;color:#702c35}
+  .mobileHeroCopy h1 em{font-weight:400;color:#b76e79}
+  .mobileHeroCopy p{font-size:12px;line-height:1.45;color:#74474b;margin-top:11px;max-width:215px}
+  .mobileHeroButton{display:inline-flex;align-items:center;gap:8px;margin-top:15px;padding:10px 13px;border-radius:30px;background:#8e3541;color:#fff;font-size:9px;font-weight:800;letter-spacing:.4px;white-space:nowrap;box-shadow:0 3px 10px rgba(112,44,53,.12)}
+  .mobileHeroButton span{font-size:18px;line-height:10px}
+}
+@media(max-width:480px){
+  .cleanHeroBanner{aspect-ratio:1.05/1!important}
+  .cleanHeroBanner .mobileHeroCopy{width:63%;left:5%}
+  .mobileHeroCopy h1{font-size:clamp(27px,7.8vw,35px)}
+  .mobileHeroCopy p{font-size:11px;max-width:185px;margin-top:9px}
+  .mobileHeroButton{margin-top:12px;padding:9px 11px;font-size:8px}
+}
 </style></head>
 <body>
 <header><div class="wrap nav"><a class="logo" href="#"><img src="assets/logo-cabecalho.png" alt="Delírio Íntimo"></a><nav><a href="#inicio">Início</a><a href="produtos.html">Produtos</a><a href="categorias.html">Categorias</a><a href="sobre.html">Sobre</a></nav><button class="headerCart" type="button" onclick="abrirCarrinho()">🛒 <span>CARRINHO</span> <b id="headerCartCount">0</b></button><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header>
@@ -311,6 +333,12 @@ footer{border-top:1px solid #f0dedd!important;color:#8b7375!important;background
 <section class="hero" id="inicio" aria-label="Apresentação da Delírio Íntimo">
   <div class="heroBanner cleanHeroBanner">
     <img src="assets/banner-home.png" alt="Delírio Íntimo — Sua essência em cada detalhe">
+    <div class="mobileHeroCopy">
+      <span class="mobileHeroEyebrow">DELÍRIO ÍNTIMO</span>
+      <h1>Sua essência<br><em>em cada detalhe</em></h1>
+      <p>Produtos pensados para o seu prazer, bem-estar e autoestima.</p>
+      <a class="mobileHeroButton" href="produtos.html">CONHECER PRODUTOS <span aria-hidden="true">›</span></a>
+    </div>
   </div>
 </section>
 <section id="produtos"><div class="wrap"><div class="head"><div><h2>Destaques</h2><p>Alguns dos queridinhos da Delírio Íntimo.</p></div><a class="pink" href="produtos.html" style="font-size:12px;font-weight:800">VER TODOS →</a></div><div class="products" id="listaDestaques">
@@ -333,29 +361,6 @@ footer{border-top:1px solid #f0dedd!important;color:#8b7375!important;background
     </div>
   </div>
 </div>
-
-
-<div class="interestOverlay" id="interestOverlay" aria-hidden="true">
- <form class="interestForm" id="interestForm" onsubmit="enviarInteresse(event)">
-  <button class="interestClose" type="button" onclick="fecharFormularioInteresse()" aria-label="Fechar">×</button>
-  <p class="interestEyebrow">DELÍRIO ÍNTIMO</p><h2>Quer ser avisada? 💗</h2>
-  <p class="interestIntro">A gente te avisa quando este produto voltar. Sem cadastro de conta e sem mensagens promocionais.</p>
-  <input type="hidden" id="interestProductId"><input type="hidden" id="interestProductName">
-  <label for="interestChannel">Como prefere receber o aviso?</label>
-  <select id="interestChannel" required onchange="atualizarCampoContatoInteresse()"><option value="whatsapp">WhatsApp</option><option value="email">E-mail</option></select>
-  <label for="interestContact" id="interestContactLabel">Seu WhatsApp com DDD</label>
-  <input id="interestContact" name="contato" type="tel" autocomplete="tel" placeholder="Ex.: (13) 99123-4567" required>
-  <label for="interestName">Nome (opcional)</label><input id="interestName" name="nome" type="text" autocomplete="given-name" maxlength="100" placeholder="Como podemos te chamar?">
-  <label class="interestConsent"><input id="interestConsent" type="checkbox" required><span>Autorizo a Delírio Íntimo a usar este contato somente para me avisar sobre a disponibilidade deste produto. Posso pedir a exclusão dos meus dados.</span></label>
-  <button class="btn primary interestSubmit" id="interestSubmit" type="submit">QUERO SER AVISADA</button>
-  <p class="interestPrivacy">Seu contato não será usado para propaganda nem compartilhado para outros fins.</p>
-  <div class="interestFeedback" id="interestFeedback" role="status"></div>
- </form>
-</div>
-<style>
-.interestBox{margin:14px 0;padding:16px;border:1px solid #efcfce;border-radius:16px;background:#fff7f6;color:#6f3038}.interestBox p{margin:0 0 9px}.interestTitle{font-family:Georgia,serif;font-size:21px;color:#702c35}.interestBox .btn{width:100%;white-space:normal}
-.interestOverlay{display:none;position:fixed;z-index:10050;inset:0;background:rgba(48,26,29,.52);padding:16px;align-items:center;justify-content:center;overflow:auto}.interestOverlay.open{display:flex}.interestForm{position:relative;width:min(100%,430px);max-height:calc(100vh - 32px);overflow:auto;background:#fffdfc;border:1px solid #eed4d2;border-radius:20px;padding:25px;color:#49262b;box-shadow:0 18px 60px rgba(70,25,33,.2)}.interestClose{position:absolute;right:14px;top:10px;border:0;background:transparent;color:#702c35;font-size:30px;cursor:pointer}.interestEyebrow{font-size:10px;letter-spacing:2px;color:#b76e79;font-weight:800;margin:0 0 8px}.interestForm h2{font-family:Georgia,serif;color:#702c35;font-size:28px;margin:0 28px 8px 0}.interestIntro{font-size:13px;line-height:1.5;color:#76565a;margin:0 0 18px}.interestForm>label:not(.interestConsent){display:block;font-size:12px;font-weight:700;margin:13px 0 6px}.interestForm>input,.interestForm>select{width:100%;min-height:44px;padding:11px 12px;border:1px solid #e5c8c7;border-radius:10px;background:#fff;color:#49262b;font:inherit}.interestConsent{display:flex;gap:9px;align-items:flex-start;margin:15px 0;font-size:11px;line-height:1.45;color:#76565a}.interestConsent input{margin-top:2px;flex:0 0 auto;accent-color:#873541}.interestSubmit{width:100%;justify-content:center}.interestPrivacy{font-size:10px;color:#987c7e;line-height:1.45;margin:12px 0 0}.interestFeedback{font-size:12px;margin-top:10px;color:#702c35}.interestFeedback.error{color:#b3261e}.interestFeedback.success{color:#2d704c}
-</style>
 
 <footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div class="footerLinks"><a href="https://instagram.com/delirio.intimo_" target="_blank" rel="noopener">Instagram</a><span> · </span><a href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div><div>© 2026 Delírio Íntimo</div></div></footer>
 <button class="cartFab" type="button" onclick="abrirCarrinho()">CARRINHO <span class="cartCount" id="cartCount">0</span></button>
@@ -429,9 +434,9 @@ function mensagemWhatsApp(produto){
   return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";
 }
 function produtoVisivel(produto){
-  // CORREÇÃO EMERGENCIAL: não ocultar produtos até confirmar o mapeamento da coluna "ativo".
-  // O estoque continua controlando a disponibilidade; produto esgotado permanece visível como esgotado.
-  return true;
+  // Oculta da vitrine os produtos cuja coluna "ativo" esteja como FALSE.
+  // Não usa a categoria/classificação para decidir a visibilidade.
+  return ativo(produto);
 }
 function abrirProduto(id){
   const produtos = window.produtosVitrine || [];
@@ -451,7 +456,7 @@ function abrirProduto(id){
   const href = disponivel ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(produto)) : '#';
   actions.innerHTML = disponivel
     ? '<div class="cartAddRow"><label for="cartQtyModal">Quantidade</label><select id="cartQtyModal" class="cartQtySelect">'+Array.from({length: Math.min(estoque,10)}, function(_,i){ return '<option value="'+(i+1)+'">'+(i+1)+'</option>'; }).join('')+'</select><button class="btn primary" type="button" onclick="cartAdd(\''+escapar(produto.id)+'\',Number(document.getElementById(\'cartQtyModal\').value))">ADICIONAR AO CARRINHO</button></div><a class="btn productModalSecondary" href="'+href+'" target="_blank" rel="noopener">FALAR NO WHATSAPP</a><button class="btn productModalSecondary" type="button" onclick="fecharProduto()">CONTINUAR VENDO</button>'
-    : '<div class="interestBox"><p class="interestTitle">Gostou? 💗</p><p>Quer que a gente avise quando voltar?</p><button class="btn primary" type="button" onclick="abrirFormularioInteresse(\''+escapar(produto.id)+'\')">AVISE-ME QUANDO VOLTAR</button></div><button class="btn productModalSecondary" type="button" onclick="fecharProduto()">VOLTAR AO CATÁLOGO</button>';
+    : '<button class="btn productModalSecondary" type="button" onclick="fecharProduto()">VOLTAR AO CATÁLOGO</button>';
   modal.classList.add("open");
   modal.setAttribute("aria-hidden","false");
   document.body.style.overflow="hidden";
@@ -530,40 +535,5 @@ function abrirCarrinho(){cartRender();document.getElementById("cartOverlay").cla
 function fecharCarrinho(){document.getElementById("cartOverlay").classList.remove("open");document.body.style.overflow=""}
 function finalizarCarrinhoWhatsApp(){const a=cartRead();if(!a.length)return alert("Seu carrinho está vazio.");let total=0;const linhas=a.map(i=>{const s=Number(i.precoVenda)*Number(i.quantidade);total+=s;return "• "+i.produto+" — "+i.quantidade+"x — "+moeda(s)});const msg="Olá! Quero fazer um pedido pelo site da Delírio Íntimo.\n\n"+linhas.join("\n")+"\n\n*Total: "+moeda(total)+"*\n\nGostaria de confirmar a disponibilidade e combinar a entrega.";window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank")}
 window.addEventListener("load",cartRender);
-</script>
-<script>
-
-let interesseProdutoAtual = null;
-function abrirFormularioInteresse(id){
- const p=(window.produtosVitrine||[]).find(x=>String(x.id)===String(id)); if(!p)return;
- interesseProdutoAtual=p;
- document.getElementById('interestProductId').value=String(p.id);
- document.getElementById('interestProductName').value=String(p.produto||'');
- document.getElementById('interestContact').value=''; document.getElementById('interestName').value=''; document.getElementById('interestConsent').checked=false;
- document.getElementById('interestFeedback').textContent=''; document.getElementById('interestFeedback').className='interestFeedback';
- document.getElementById('interestChannel').value='whatsapp'; atualizarCampoContatoInteresse();
- const ov=document.getElementById('interestOverlay');ov.classList.add('open');ov.setAttribute('aria-hidden','false');
-}
-function fecharFormularioInteresse(){const ov=document.getElementById('interestOverlay');ov.classList.remove('open');ov.setAttribute('aria-hidden','true');}
-function atualizarCampoContatoInteresse(){const c=document.getElementById('interestChannel').value, input=document.getElementById('interestContact'), label=document.getElementById('interestContactLabel');input.type=c==='email'?'email':'tel';input.autocomplete=c==='email'?'email':'tel';input.placeholder=c==='email'?'voce@exemplo.com':'Ex.: (13) 99123-4567';label.textContent=c==='email'?'Seu e-mail':'Seu WhatsApp com DDD';}
-async function enviarInteresse(ev){
- ev.preventDefault(); const p=interesseProdutoAtual;if(!p)return;
- const canal=document.getElementById('interestChannel').value, contato=document.getElementById('interestContact').value.trim(), consent=document.getElementById('interestConsent').checked;
- const feedback=document.getElementById('interestFeedback'), btn=document.getElementById('interestSubmit');
- if(!consent){feedback.textContent='Precisamos da sua autorização para enviar o aviso.';feedback.className='interestFeedback error';return;}
- if(canal==='whatsapp' && contato.replace(/\D/g,'').length<10){feedback.textContent='Informe um WhatsApp com DDD.';feedback.className='interestFeedback error';return;}
- const params=new URLSearchParams({acao:'registrarInteresse',produtoId:String(p.id),produto:String(p.produto||''),canal:canal,contato:contato,nome:document.getElementById('interestName').value.trim(),consentimento:'sim',varianteId:'',variante:''});
- btn.disabled=true;btn.textContent='ENVIANDO...';feedback.textContent='';
- try{
-   // POST simples: evita expor telefone/e-mail na URL do navegador.
-   await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:params.toString()});
-   feedback.textContent='Prontinho! Seu interesse foi registrado. 💗 Vamos usar esse contato somente para avisar sobre este produto.';feedback.className='interestFeedback success';
-   btn.textContent='CADASTRO ENVIADO';
-   setTimeout(()=>{fecharFormularioInteresse();btn.disabled=false;btn.textContent='QUERO SER AVISADA';},2200);
- }catch(err){feedback.textContent='Não conseguimos enviar agora. Tente novamente em instantes ou fale com a gente pelo WhatsApp.';feedback.className='interestFeedback error';btn.disabled=false;btn.textContent='TENTAR NOVAMENTE';}
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharFormularioInteresse();});
-document.getElementById('interestOverlay')?.addEventListener('click',e=>{if(e.target.id==='interestOverlay')fecharFormularioInteresse();});
-
 </script>
 </body></html>

@@ -301,8 +301,16 @@ function renderCatalogoFiltrado(){
   const filtrados = (window.produtosVitrine || []).filter(function(p){
     if(!produtoVisivel(p)) return false;
     const nome = normalizarCategoria(p.produto || "");
-    const categoriaProduto = normalizarCategoria(categoriaDoProduto(p));
-    const correspondeCategoria = !categoriaAlvo || categoriaProduto === categoriaAlvo;
+
+    // Testa os dois campos separadamente. Algumas versões da API ainda
+    // entregam a classificação comercial em "categoria" e outras em
+    // "categoriaComercial"; não dependa de apenas um deles.
+    const categoriasProduto = [p.categoriaComercial, p.categoria]
+      .map(function(valor){ return normalizarCategoria(categoriaCanonica(valor) || valor); })
+      .filter(Boolean);
+    const correspondeCategoria = !categoriaAlvo || categoriasProduto.some(function(cat){
+      return cat === categoriaAlvo || cat.startsWith(categoriaAlvo + " ") || cat.includes(";" + categoriaAlvo);
+    });
     const correspondeBusca = !busca || nome.includes(busca);
     return correspondeCategoria && correspondeBusca;
   });
@@ -317,6 +325,7 @@ async function carregarCatalogo(){
     if(!dados.sucesso) throw new Error(dados.erro || "Não foi possível carregar os produtos.");
 
     window.produtosVitrine = (dados.produtos || []).map(function(p){
+      if(!p.categoriaComercial) p.categoriaComercial = p.categoria || "";
       if(!p.fotos) p.fotos = [];
       if(!p.fotoUrl && p.fotos.length) p.fotoUrl = p.fotos[0].url || "";
       return p;

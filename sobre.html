@@ -1,119 +1,55 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090909"><title>Sobre — Delírio Íntimo</title><style>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f0c3be"><title>Sobre — Delírio Íntimo</title><style>
 
-:root{
-  --bg:#201c1c;
-  --bg-soft:#261f20;
-  --card:#292222;
-  --card-deep:#171414;
-  --pink:#ff9da7;
-  --pink-soft:#f3a5ad;
-  --white:#fff3f2;
-  --muted:#bd9293;
-  --line:#514143;
-  --green:#6fbd86;
-}
+:root{--bg:#fffdfc;--card:#ffffff;--pink:#8b303b;--white:#49262b;--muted:#8b7375;--line:#f0dedd;--wine:#7b2d37;--rose:#cf858a;--blush:#fbefed}
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;background:var(--bg)}
-body{
-  background:var(--bg);
-  color:var(--white);
-  font-family:Inter,Arial,sans-serif;
-  min-height:100vh;
-}
+html{scroll-behavior:smooth;background:#fffdfc!important}
+body{background:#fffdfc!important;color:#49262b!important;font-family:Inter,'Helvetica Neue',Arial,sans-serif!important;min-height:100vh}
 a{text-decoration:none;color:inherit}
-.wrap{width:min(1120px,calc(100% - 48px));margin:auto}
-header{
-  position:sticky;top:0;z-index:20;
-  background:rgba(32,28,28,.94);
-  border-bottom:1px solid rgba(255,157,167,.14);
-  backdrop-filter:blur(14px);
-}
-.nav{
-  min-height:76px;display:flex;align-items:center;
-  justify-content:space-between;gap:18px;
-}
-.logo{display:flex;align-items:center;height:52px;flex:0 0 auto}
-.logo img{height:48px;max-width:190px;width:auto;display:block;object-fit:contain}
-nav{display:flex;align-items:center;gap:clamp(12px,2vw,25px);font-size:13px;color:#ead0d0}
+.wrap{width:min(1120px,calc(100% - 28px));margin:auto}
+header{position:sticky;top:0;z-index:10;background:rgba(240,195,190,.96)!important;border-bottom:1px solid #f1dfdd!important;box-shadow:0 4px 20px rgba(112,44,53,.045)!important;backdrop-filter:blur(14px)}
+.nav{min-height:76px;height:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;height:64px;min-width:145px;flex:0 0 auto}
+.logo img{height:58px;width:auto;max-width:190px;display:block;object-fit:contain}
+nav{display:flex;align-items:center;gap:clamp(12px,2vw,25px);font-size:14px;color:#65484b;font-weight:600}
 nav a{transition:color .2s ease}
-nav a:hover,.footerLinks a:hover{color:var(--pink)}
-.wa{
-  border:1px solid var(--pink);color:var(--pink);
-  background:transparent;padding:10px 17px;border-radius:30px;
-  font-weight:800;font-size:12px;white-space:nowrap;
-  transition:background .2s,color .2s;
-}
-.wa:hover{background:var(--pink);color:#241b1c}
-.hero{padding:68px 0 28px}
-.eyebrow{
-  text-transform:uppercase;letter-spacing:2.5px;font-size:11px;
-  font-weight:800;color:var(--pink);margin-bottom:16px;
-}
-.hero h1{
-  font-family:Georgia,'Times New Roman',serif;
-  font-size:clamp(48px,7vw,82px);font-weight:500;
-  line-height:.98;letter-spacing:-2.8px;max-width:850px;
-  color:var(--pink);
-}
-.hero h1 em{color:var(--pink);font-style:italic}
-.hero p{
-  color:var(--muted);line-height:1.65;max-width:650px;
-  font-size:16px;margin-top:22px;
-}
-.aboutGrid{
-  display:grid;grid-template-columns:1.2fr .8fr;gap:16px;
-  padding:34px 0 78px;
-}
-.box{
-  background:linear-gradient(145deg,#2b2324,#251f1f);
-  border:1px solid var(--line);border-radius:22px;padding:36px;
-}
-.box h2{
-  font-family:Georgia,'Times New Roman',serif;
-  font-size:clamp(28px,3vw,36px);font-weight:500;
-  line-height:1.08;margin-bottom:17px;color:var(--pink);
-}
-.box p{color:var(--muted);line-height:1.75;font-size:15px}
-.quote{
-  background:linear-gradient(145deg,#302223,#211b1b);
-  display:flex;flex-direction:column;justify-content:center;
-  align-items:center;text-align:center;
-}
-.aboutLogo{
-  width:min(250px,70%);height:auto;object-fit:contain;
-  margin-bottom:24px;filter:drop-shadow(0 8px 24px rgba(255,157,167,.13));
-}
-.quote strong{
-  font-family:Georgia,'Times New Roman',serif;
-  font-size:clamp(24px,2.5vw,31px);font-weight:500;
-  line-height:1.18;color:var(--pink);
-}
-.quote small{color:var(--pink);font-size:10px;font-weight:800;letter-spacing:2px;margin-top:18px}
-footer{
-  border-top:1px solid var(--line);padding:28px 0 38px;
-  color:#a77f81;font-size:12px;
-}
+nav a:hover,.footerLinks a:hover{color:#bd6d77}
+.wa{border:1px solid #7b2d37;color:#7b2d37;background:#fff;padding:9px 15px;border-radius:30px;font-weight:700;font-size:13px;white-space:nowrap;transition:.2s}
+.wa:hover{background:#7b2d37;color:#fff}
+.hero{padding:52px 0 24px}
+.eyebrow{text-transform:uppercase;letter-spacing:2.5px;font-size:11px;font-weight:800;color:#9c3e49;margin-bottom:17px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(48px,7vw,82px);font-weight:500;line-height:.98;letter-spacing:-2.8px;max-width:850px;color:#7b2d37}
+.hero h1 em{color:#9c3e49;font-style:italic}
+.hero p{color:#8b7375;line-height:1.65;max-width:650px;font-size:16px;margin-top:22px}
+.aboutGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;padding:30px 0 78px}
+.box{background:#fff;border:1px solid #f0dedd;border-radius:18px;padding:36px;box-shadow:0 7px 22px rgba(112,44,53,.035)}
+.box h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(28px,3vw,36px);font-weight:500;line-height:1.08;margin-bottom:17px;color:#7b2d37}
+.box p{color:#8b7375;line-height:1.75;font-size:15px}
+.quote{background:linear-gradient(145deg,#fbefed,#f4dfdd);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.aboutLogo{width:min(250px,70%);height:auto;object-fit:contain;margin-bottom:24px;filter:drop-shadow(0 8px 24px rgba(255,157,167,.13))}
+.quote strong{font-family:Georgia,'Times New Roman',serif;font-size:clamp(24px,2.5vw,31px);font-weight:500;line-height:1.18;color:#7b2d37}
+.quote small{color:#a34b55;font-size:10px;font-weight:800;letter-spacing:2px;margin-top:18px}
+footer{border-top:1px solid #f0dedd;padding:28px 0 38px;color:#8b7375;font-size:12px;background:#fffdfc}
 .foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-.foot b{color:var(--white);letter-spacing:1.5px}
-.foot b span{color:var(--pink)}
+.foot b{color:#7b2d37;letter-spacing:1.5px}
+.foot b span{color:#a34b55}
 .footerLinks a{transition:color .2s ease}
 @media(max-width:800px){
-  nav{display:none}
-  .wrap{width:min(100% - 32px,1120px)}
-  .nav{min-height:70px}
-  .logo img{height:43px;max-width:165px}
-  .hero{padding:48px 0 20px}
-  .hero h1{font-size:clamp(43px,10vw,58px);letter-spacing:-1.8px}
-  .hero p{font-size:15px}
-  .aboutGrid{grid-template-columns:1fr;padding:24px 0 52px;gap:13px}
-  .box{padding:27px;border-radius:19px}
-  .quote{min-height:300px}
+ nav{display:none}
+ .wrap{width:calc(100% - 22px)}
+ .nav{min-height:68px}
+ .logo{height:55px;min-width:0}
+ .logo img{height:46px;max-width:145px}
+ .hero{padding:38px 0 18px}
+ .hero h1{font-size:clamp(43px,10vw,58px);letter-spacing:-1.8px}
+ .hero p{font-size:15px}
+ .aboutGrid{grid-template-columns:1fr;padding:24px 0 52px;gap:13px}
+ .box{padding:27px;border-radius:18px}
+ .quote{min-height:300px}
 }
-@media(max-width:420px){
-  .wrap{width:calc(100% - 28px)}
-  .wa{padding:9px 12px;font-size:11px}
-  .hero h1{font-size:42px}
-  .box h2{font-size:29px}
+@media(max-width:480px){
+ .wa{padding:9px 11px;font-size:12px}
+ .hero h1{font-size:42px}
+ .box h2{font-size:29px}
 }
 
 </style></head><body><header><div class="wrap nav"><a class="logo" href="index.html"><img src="logo.png" alt="Delírio Íntimo"></a><nav><a href="index.html">Início</a><a href="produtos.html">Produtos</a><a href="categorias.html">Categorias</a><a href="sobre.html">Sobre</a></nav><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div></header><main><section class="hero"><div class="wrap"><div class="eyebrow">Sobre nós</div><h1>Mais liberdade para escolher o que combina com <em>você.</em></h1><p>A Delírio Íntimo nasceu para tornar a busca por lingerie e produtos íntimos mais leve, prática e especial.</p></div></section><section class="aboutGrid wrap"><div class="box"><h2>Seu desejo, suas escolhas, seu momento.</h2><p>Aqui, a ideia é deixar tudo mais simples: encontrar produtos, conhecer as opções, escolher com calma e falar diretamente com a gente quando precisar.</p></div><div class="box quote"><img class="aboutLogo" src="logo-transparente.png" alt="Delírio Íntimo"><strong>“Sua intimidade. Do seu jeito.”</strong><small>DELÍRIO ÍNTIMO</small></div></section></main><footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div class="footerLinks"><a href="https://instagram.com/delirio.intimo_" target="_blank" rel="noopener">Instagram</a><span> · </span><a href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div><div>© 2026 Delírio Íntimo</div></div></footer></body></html>

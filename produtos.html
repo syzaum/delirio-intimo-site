@@ -368,8 +368,26 @@ function renderProdutos(produtos,categoriaSelecionada){
     const status = disponivel ? '<div class="stock ok">Disponível</div>' : '<div class="stock out">Indisponível · sem estoque</div>';
     const label = disponivel ? 'VER DETALHES' : 'VER DETALHES · ESGOTADO';
 
-    return '<article class="product"><div class="photo">'+foto+selo+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">'+escapar(p.categoriaComercial || "Produtos íntimos")+'</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<button class="details" type="button" onclick="abrirProduto(\''+escapar(p.id)+'\')">'+label+'</button></div></article>';
+    return '<article class="product"><div class="photo">'+foto+selo+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">'+escapar(categoriaDoProduto(p) || p.categoriaComercial || p.categoria || "Produtos íntimos")+'</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<button class="details" type="button" onclick="abrirProduto(\''+escapar(p.id)+'\')">'+label+'</button></div></article>';
   }).join("");
+}
+const CATEGORIAS_VITRINE = ["Sex Shop","Cosméticos","Lingeries","Conjuntos","Acessórios","Biquínis","Linha Noite"];
+function categoriaCanonica(valor){
+  const normalizada = normalizarCategoria(valor);
+  const aliases = {
+    "sexshop":"Sex Shop","sex shop":"Sex Shop",
+    "cosmetico":"Cosméticos","cosmeticos":"Cosméticos",
+    "lingerie":"Lingeries","lingeries":"Lingeries",
+    "conjunto":"Conjuntos","conjuntos":"Conjuntos",
+    "acessorio":"Acessórios","acessorios":"Acessórios",
+    "biquini":"Biquínis","biquinis":"Biquínis",
+    "linha noite":"Linha Noite","linhanoite":"Linha Noite"
+  };
+  return CATEGORIAS_VITRINE.find(function(nome){return normalizarCategoria(nome)===normalizada;}) || aliases[normalizada] || "";
+}
+function categoriaDoProduto(produto){
+  if(!produto) return "";
+  return categoriaCanonica(produto.categoriaComercial) || categoriaCanonica(produto.categoria);
 }
 function normalizarCategoria(valor){
   return String(valor || "").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().replace(/\s+/g," ").toLowerCase();
@@ -381,13 +399,23 @@ function montarFiltros(produtos){
   filtros.querySelectorAll(".filter").forEach(function(botao){botao.addEventListener("click",function(){filtros.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active")});botao.classList.add("active");renderCatalogoFiltrado()})});
 }
 function renderCatalogoFiltrado(){
-  const categoria = document.querySelector(".filter.active")?.getAttribute("data-categoria") || "";
-  const busca = (document.getElementById("buscaProdutos")?.value || "").trim().toLowerCase();
+  const categoriaSelecionada = document.querySelector(".filter.active")?.getAttribute("data-categoria") || "";
+  const categoriaAlvo = normalizarCategoria(categoriaSelecionada);
+  const busca = normalizarCategoria(document.getElementById("buscaProdutos")?.value || "");
+
   const filtrados = (window.produtosVitrine || []).filter(function(p){
-    const nome=String(p.produto||"").toLowerCase(), cat=String(p.categoriaComercial||"").trim();
-    return (!categoria || cat.toLowerCase()===categoria.toLowerCase()) && (!busca || nome.includes(busca));
+    if(!produtoVisivel(p)) return false;
+    const nome = normalizarCategoria(p.produto || "");
+    const categoriasProduto = [p.categoriaComercial, p.categoria]
+      .map(function(valor){ return normalizarCategoria(categoriaCanonica(valor) || valor); })
+      .filter(Boolean);
+    const correspondeCategoria = !categoriaAlvo || categoriasProduto.some(function(cat){
+      return cat === categoriaAlvo || cat.startsWith(categoriaAlvo + " ") || cat.includes(";" + categoriaAlvo);
+    });
+    return correspondeCategoria && (!busca || nome.includes(busca));
   });
-  renderProdutos(filtrados); document.getElementById("contador").textContent=filtrados.length+(filtrados.length===1?" produto":" produtos");
+
+  renderProdutos(filtrados);
 }
 async function carregarCatalogo(){
   const lista = document.getElementById("listaProdutos");
@@ -396,11 +424,11 @@ async function carregarCatalogo(){
     const dados = await resposta.json();
     if(!dados.sucesso) throw new Error(dados.erro || "Não foi possível carregar os produtos.");
 
-    window.produtosVitrine = (dados.produtos || []).map(function(p){ if(!p.categoriaComercial) p.categoriaComercial = ""; if(!p.fotos) p.fotos = []; if(!p.fotoUrl && p.fotos.length) p.fotoUrl = p.fotos[0].url || ""; return p; });
+    window.produtosVitrine = (dados.produtos || []).map(function(p){ if(!p.categoriaComercial) p.categoriaComercial = p.categoria || ""; if(!p.fotos) p.fotos = []; if(!p.fotoUrl && p.fotos.length) p.fotoUrl = p.fotos[0].url || ""; return p; });
     montarFiltros(window.produtosVitrine);
     const params = new URLSearchParams(window.location.search);
     const categoriaInicial = params.get("categoria") || "";
-    document.querySelectorAll(".filter").forEach(function(botao){if(botao.getAttribute("data-categoria").toLowerCase()===categoriaInicial.toLowerCase()){document.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active")});botao.classList.add("active")}});
+    document.querySelectorAll(".filter").forEach(function(botao){if(normalizarCategoria(botao.getAttribute("data-categoria"))===normalizarCategoria(categoriaInicial)){document.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active")});botao.classList.add("active")}});
     document.getElementById("buscaProdutos").addEventListener("input",renderCatalogoFiltrado);
     renderCatalogoFiltrado();
   }catch(erro){

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090909">
+<meta name="theme-color" content="#fbf1ef">
 <title>Produtos — Delírio Íntimo</title>
 <style>
 :root{--bg:#090909;--card:#151515;--pink:#ff3f98;--white:#fff;--muted:#aaa;--line:#292929}*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif}a{text-decoration:none;color:inherit}.wrap{width:min(1120px,calc(100% - 28px));margin:auto}header{position:sticky;top:0;z-index:10;background:#090909e8;border-bottom:1px solid #222;backdrop-filter:blur(12px)}.nav{height:68px;display:flex;align-items:center;justify-content:space-between}.logo{display:flex;align-items:center;height:48px}.logo img{height:44px;width:auto;display:block;object-fit:contain}.logo span,h1 em,.pink{color:var(--pink)}nav{display:flex;gap:25px;font-size:14px;color:#ddd}.wa{border:1px solid var(--pink);color:var(--pink);padding:9px 15px;border-radius:30px;font-weight:700;font-size:13px}.hero{padding:34px 0}.heroGrid{display:grid;grid-template-columns:1fr 1.05fr;gap:18px;min-height:610px}.copy{display:flex;justify-content:center;flex-direction:column;padding:25px 5px}.eyebrow{text-transform:uppercase;letter-spacing:2.5px;font-size:11px;font-weight:800;color:var(--pink);margin-bottom:17px}h1{font-size:clamp(48px,7vw,82px);line-height:.93;letter-spacing:-4px}p{color:var(--muted);line-height:1.55}.copy p{font-size:17px;max-width:440px;margin-top:22px}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:27px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 21px;border-radius:30px;font-weight:800;font-size:13px}.primary{background:var(--pink);color:#090909}.secondary{border:1px solid var(--line)}.heroImg{border:1px solid #30232b;border-radius:28px;min-height:610px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background-image:linear-gradient(90deg,rgba(9,9,9,.08),rgba(9,9,9,.02)),url('hero.png');background-size:cover;background-position:center;}.mark{font-size:120px;font-weight:900;letter-spacing:-10px}.heroOverlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,9,9,.15),rgba(9,9,9,.02) 55%,rgba(9,9,9,.12))}.label{position:absolute;bottom:22px;left:24px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#bbb}section{padding:65px 0}.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}.head h2{font-size:32px;letter-spacing:-1.5px}.head p{font-size:13px;margin-top:5px}.products{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.product{background:var(--card);border:1px solid var(--line);border-radius:19px;overflow:hidden}.photo{aspect-ratio:1;background:radial-gradient(circle at 50% 35%,#ff3f9840,transparent 40%),linear-gradient(145deg,#21151c,#111);display:grid;place-items:center;color:#777;font-size:11px;text-transform:uppercase;letter-spacing:1px}.info{padding:15px}.name{font-weight:800;font-size:15px}.cat{font-size:12px;color:#777;margin-top:4px}.price{font-size:17px;font-weight:900;margin-top:12px}.details{display:block;text-align:center;border:1px solid #3a3a3a;border-radius:10px;padding:10px;margin-top:11px;font-size:12px;font-weight:800}.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.category{min-height:170px;border:1px solid var(--line);border-radius:21px;padding:20px;display:flex;align-items:end;background:linear-gradient(145deg,#1b1b1b,#101010)}.category span{display:block;color:var(--pink);font-size:12px;font-weight:800;margin-bottom:5px}.category strong{font-size:20px}.about{display:grid;grid-template-columns:1fr 1fr;gap:15px}.box{background:var(--card);border:1px solid var(--line);border-radius:23px;padding:32px}.box h2{font-size:33px;line-height:1.05;margin-bottom:15px}.quote{background:linear-gradient(145deg,#26111e,#101010);display:flex;flex-direction:column;justify-content:center}.quote strong{font-size:25px;line-height:1.15}.quote small{color:var(--pink);margin-top:17px}.contact{background:linear-gradient(145deg,#24101c,#101010);border:1px solid #3a1e2d;border-radius:27px;padding:40px;text-align:center}.contact h2{font-size:37px}.contact p{max-width:500px;margin:9px auto 22px}footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size:12px}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.foot b{color:#fff}.foot b span{color:var(--pink)}
@@ -55,14 +55,8 @@
 .productGalleryCount{font-size:11px;color:#aaa;text-align:center;letter-spacing:.4px}
 @media(max-width:800px){.productGalleryMain{height:300px}.productModalPhoto{min-height:0;padding:12px}.productModalCard{grid-template-columns:minmax(0,1fr)!important}.productGalleryThumb{flex-basis:54px;width:54px;height:64px}}
 
-</style>
-<style>
-.interestBox{margin:14px 0;padding:16px;border:1px solid #efcfce;border-radius:16px;background:#fff7f6;color:#6f3038}.interestBox p{margin:0 0 9px}.interestTitle{font-family:Georgia,serif;font-size:21px;color:#702c35}.interestBox .btn{width:100%;white-space:normal}
-.interestOverlay{display:none;position:fixed;z-index:10050;inset:0;background:rgba(48,26,29,.52);padding:16px;align-items:center;justify-content:center;overflow:auto}.interestOverlay.open{display:flex}.interestForm{position:relative;width:min(100%,430px);max-height:calc(100vh - 32px);overflow:auto;background:#fffdfc;border:1px solid #eed4d2;border-radius:20px;padding:25px;color:#49262b;box-shadow:0 18px 60px rgba(70,25,33,.2)}.interestClose{position:absolute;right:14px;top:10px;border:0;background:transparent;color:#702c35;font-size:30px;cursor:pointer}.interestEyebrow{font-size:10px;letter-spacing:2px;color:#b76e79;font-weight:800;margin:0 0 8px}.interestForm h2{font-family:Georgia,serif;color:#702c35;font-size:28px;margin:0 28px 8px 0}.interestIntro{font-size:13px;line-height:1.5;color:#76565a;margin:0 0 18px}.interestForm>label:not(.interestConsent){display:block;font-size:12px;font-weight:700;margin:13px 0 6px}.interestForm>input,.interestForm>select{width:100%;min-height:44px;padding:11px 12px;border:1px solid #e5c8c7;border-radius:10px;background:#fff;color:#49262b;font:inherit}.interestConsent{display:flex;gap:9px;align-items:flex-start;margin:15px 0;font-size:11px;line-height:1.45;color:#76565a}.interestConsent input{margin-top:2px;flex:0 0 auto;accent-color:#873541}.interestSubmit{width:100%;justify-content:center}.interestPrivacy{font-size:10px;color:#987c7e;line-height:1.45;margin:12px 0 0}.interestFeedback{font-size:12px;margin-top:10px;color:#702c35}.interestFeedback.error{color:#b3261e}.interestFeedback.success{color:#2d704c}
-</style>
 
-<!-- Identidade visual restaurada a partir do HTML anterior; catálogo e recurso Avise-me preservados. -->
-<style>
+
 /* IDENTIDADE VISUAL DELÍRIO ÍNTIMO — blush, rosé e vinho */
 :root{--bg:#fbf1ef;--card:#fffaf9;--pink:#7b303b;--white:#49262b;--muted:#80696b;--line:#ead2d0;--wine:#702c35;--rose:#b76e79;--blush:#f3d8d6}
 html{background:var(--bg)}
@@ -190,11 +184,17 @@ footer{border-top:1px solid #f0dedd!important;color:#8b7375!important;background
 .cleanHeroBanner .heroShade,.cleanHeroBanner .heroCopy,.cleanHeroBanner .label{display:none!important}
 @media(max-width:800px){.nav{min-height:68px!important}.logo{height:55px!important;min-width:0}.logo img{height:46px!important;max-width:145px!important}.cleanHeroBanner{aspect-ratio:1.8/1!important}.cleanHeroBanner>img{object-fit:cover;object-position:center}.head h2{font-size:28px!important}}
 @media(max-width:480px){.cleanHeroBanner{aspect-ratio:1.25/1!important}.cleanHeroBanner>img{object-fit:cover;object-position:58% center}.logo img{max-width:125px!important}.wrap{width:calc(100% - 22px)}}
+
+/* Ajustes de disponibilidade do catálogo */
+.photo{position:relative;overflow:hidden}
+.photo .stock-badge{position:absolute;top:12px;left:12px;z-index:2;padding:8px 11px;border-radius:7px;background:#7a2630;color:#fff;font-size:11px;font-weight:900;letter-spacing:.6px;box-shadow:0 2px 10px #0005}
+.stock.ok{color:#247a39!important;font-weight:900!important;font-size:13px!important}
+.stock.out{color:#a34b55!important;font-weight:800!important}
 </style>
 </head>
 <body>
 <header><div class="wrap nav">
-<a class="logo" href="index.html"><img src="logo.png" alt="Delírio Íntimo"></a>
+<a class="logo" href="index.html"><img src="assets/logo-cabecalho.png?v=20261024" alt="Delírio Íntimo"></a>
 <nav><a href="index.html">Início</a><a href="produtos.html">Produtos</a><a href="index.html#categorias">Categorias</a><a href="index.html#sobre">Sobre</a></nav>
 <button class="headerCart" type="button" onclick="abrirCarrinho()">🛒 <span>CARRINHO</span> <b id="headerCartCount">0</b></button><a class="wa" href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a>
 </div></header>
@@ -230,32 +230,6 @@ footer{border-top:1px solid #f0dedd!important;color:#8b7375!important;background
     </div>
   </div>
 </div>
-
-<div class="interestOverlay" id="interestOverlay" aria-hidden="true">
- <form class="interestForm" id="interestForm" onsubmit="enviarInteresse(event)">
-  <button class="interestClose" type="button" onclick="fecharFormularioInteresse()" aria-label="Fechar">×</button>
-  <p class="interestEyebrow">DELÍRIO ÍNTIMO</p><h2>Quer ser avisada? 💗</h2>
-  <p class="interestIntro">A gente te avisa quando este produto voltar. Sem cadastro de conta e sem mensagens promocionais.</p>
-  <input type="hidden" id="interestProductId"><input type="hidden" id="interestProductName">
-  <label for="interestChannel">Como prefere receber o aviso?</label>
-  <select id="interestChannel" required onchange="atualizarCampoContatoInteresse()"><option value="whatsapp">WhatsApp</option><option value="email">E-mail</option></select>
-  <label for="interestContact" id="interestContactLabel">Seu WhatsApp com DDD</label>
-  <input id="interestContact" name="contato" type="tel" autocomplete="tel" placeholder="Ex.: (13) 99123-4567" required>
-  <label for="interestName">Nome (opcional)</label><input id="interestName" name="nome" type="text" autocomplete="given-name" maxlength="100" placeholder="Como podemos te chamar?">
-  <label class="interestConsent"><input id="interestConsent" type="checkbox" required><span>Autorizo a Delírio Íntimo a usar este contato somente para me avisar sobre a disponibilidade deste produto. Posso pedir a exclusão dos meus dados.</span></label>
-  <button class="btn primary interestSubmit" id="interestSubmit" type="submit">QUERO SER AVISADA</button>
-  <p class="interestPrivacy">Seu contato não será usado para propaganda nem compartilhado para outros fins.</p>
-  <div class="interestFeedback" id="interestFeedback" role="status"></div>
- </form>
-</div>
-<style>
-.interestBox{margin:14px 0;padding:16px;border:1px solid #efcfce;border-radius:16px;background:#fff7f6;color:#6f3038}.interestBox p{margin:0 0 9px}.interestTitle{font-family:Georgia,serif;font-size:21px;color:#702c35}.interestBox .btn{width:100%;white-space:normal}
-.interestOverlay{display:none;position:fixed;z-index:10050;inset:0;background:rgba(48,26,29,.52);padding:16px;align-items:center;justify-content:center;overflow:auto}.interestOverlay.open{display:flex}.interestForm{position:relative;width:min(100%,430px);max-height:calc(100vh - 32px);overflow:auto;background:#fffdfc;border:1px solid #eed4d2;border-radius:20px;padding:25px;color:#49262b;box-shadow:0 18px 60px rgba(70,25,33,.2)}.interestClose{position:absolute;right:14px;top:10px;border:0;background:transparent;color:#702c35;font-size:30px;cursor:pointer}.interestEyebrow{font-size:10px;letter-spacing:2px;color:#b76e79;font-weight:800;margin:0 0 8px}.interestForm h2{font-family:Georgia,serif;color:#702c35;font-size:28px;margin:0 28px 8px 0}.interestIntro{font-size:13px;line-height:1.5;color:#76565a;margin:0 0 18px}.interestForm>label:not(.interestConsent){display:block;font-size:12px;font-weight:700;margin:13px 0 6px}.interestForm>input,.interestForm>select{width:100%;min-height:44px;padding:11px 12px;border:1px solid #e5c8c7;border-radius:10px;background:#fff;color:#49262b;font:inherit}.interestConsent{display:flex;gap:9px;align-items:flex-start;margin:15px 0;font-size:11px;line-height:1.45;color:#76565a}.interestConsent input{margin-top:2px;flex:0 0 auto;accent-color:#873541}.interestSubmit{width:100%;justify-content:center}.interestPrivacy{font-size:10px;color:#987c7e;line-height:1.45;margin:12px 0 0}.interestFeedback{font-size:12px;margin-top:10px;color:#702c35}.interestFeedback.error{color:#b3261e}.interestFeedback.success{color:#2d704c}
-</style>
-
-<footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div class="footerLinks"><a href="https://instagram.com/delirio.intimo_" target="_blank" rel="noopener">Instagram</a><span> · </span><a href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div><div>© 2026 Delírio Íntimo</div></div></footer>
-<button class="cartFab" type="button" onclick="abrirCarrinho()">CARRINHO <span class="cartCount" id="cartCount">0</span></button>
-<div class="cartOverlay" id="cartOverlay" aria-hidden="true"><div class="cartPanel"><div class="cartHead"><h2>Seu carrinho</h2><button class="cartClose" onclick="fecharCarrinho()">×</button></div><div class="cartBody" id="cartBody"></div><div class="cartFoot"><div class="cartSummary"><span>Total</span><span id="cartTotal">R$ 0,00</span></div><div class="cartActions"><button class="btn cartSecondary" onclick="fecharCarrinho()">CONTINUAR COMPRANDO</button><button class="btn primary" onclick="finalizarCarrinhoWhatsApp()">FINALIZAR PELO WHATSAPP</button></div></div></div>
 
 <footer><div class="wrap foot"><div><b>DELÍRIO <span>ÍNTIMO</span></b></div><div class="footerLinks"><a href="https://instagram.com/delirio.intimo_" target="_blank" rel="noopener">Instagram</a><span> · </span><a href="https://wa.me/5513991808683" target="_blank" rel="noopener">WhatsApp</a></div><div>© 2026 Delírio Íntimo</div></div></footer>
 <button class="cartFab" type="button" onclick="abrirCarrinho()">CARRINHO <span class="cartCount" id="cartCount">0</span></button>
@@ -317,63 +291,10 @@ function ativo(produto){
   const texto = String(valor).trim().toUpperCase();
   return valor === true || valor === 1 || texto === "TRUE" || texto === "1" || texto === "SIM";
 }
-function normalizarCategoria(valor){
-  return String(valor ?? "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .trim()
-    .replace(/[\s_-]+/g, " ");
-}
-const CATEGORIAS_VITRINE = [
-  "Sex Shop",
-  "Cosméticos",
-  "Lingeries",
-  "Conjuntos",
-  "Acessórios",
-  "Biquínis",
-  "Linha Noite"
-];
-const CATEGORIAS_CANONICAS = new Map(
-  CATEGORIAS_VITRINE.map(function(nome){
-    return [normalizarCategoria(nome), nome];
-  })
-);
-function categoriaCanonica(valor){
-  const normalizada = normalizarCategoria(valor);
-  const aliases = {
-    "sexshop": "Sex Shop",
-    "sex shop": "Sex Shop",
-    "cosmetico": "Cosméticos",
-    "cosmeticos": "Cosméticos",
-    "lingerie": "Lingeries",
-    "lingeries": "Lingeries",
-    "conjunto": "Conjuntos",
-    "conjuntos": "Conjuntos",
-    "acessorio": "Acessórios",
-    "acessorios": "Acessórios",
-    "biquini": "Biquínis",
-    "biquinis": "Biquínis",
-    "linha noite": "Linha Noite",
-    "linhanoite": "Linha Noite"
-  };
-  return CATEGORIAS_CANONICAS.get(normalizada) || aliases[normalizada] || "";
-}
-function categoriaDoProduto(produto){
-  if(!produto) return "";
-  // A categoria comercial é a classificação da vitrine.
-  // Se estiver vazia ou vier com um valor interno como "Importado",
-  // tentamos usar o campo categoria caso ele contenha uma categoria válida.
-  const comercial = categoriaCanonica(produto.categoriaComercial);
-  if(comercial) return comercial;
-  return categoriaCanonica(produto.categoria);
-}
 function produtoVisivel(produto){
-  const valor = produto ? produto.ativo : undefined;
-  if(valor === undefined || valor === null || valor === "") return true;
-  const texto = String(valor).trim().toUpperCase();
-  return valor === true || valor === 1 ||
-         texto === "TRUE" || texto === "1" || texto === "SIM";
+  // Oculta da vitrine os produtos cuja coluna "ativo" esteja como FALSE.
+  // Não usa a categoria/classificação para decidir a visibilidade.
+  return ativo(produto);
 }
 function mensagemWhatsApp(produto){
   return "Olá! Vi o produto *" + produto.produto + "* no site da Delírio Íntimo e gostaria de saber mais.";
@@ -396,7 +317,7 @@ function abrirProduto(id){
   const href = disponivel ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensagemWhatsApp(produto)) : '#';
   actions.innerHTML = disponivel
     ? '<div class="cartAddRow"><label for="cartQtyModal">Quantidade</label><select id="cartQtyModal" class="cartQtySelect">'+Array.from({length: Math.min(estoque,10)}, function(_,i){ return '<option value="'+(i+1)+'">'+(i+1)+'</option>'; }).join('')+'</select><button class="btn primary" type="button" onclick="cartAdd(\''+escapar(produto.id)+'\',Number(document.getElementById(\'cartQtyModal\').value))">ADICIONAR AO CARRINHO</button></div><a class="btn productModalSecondary" href="'+href+'" target="_blank" rel="noopener">FALAR NO WHATSAPP</a><button class="btn productModalSecondary" type="button" onclick="fecharProduto()">CONTINUAR VENDO</button>'
-    : '<div class="interestBox"><p class="interestTitle">Gostou? 💗</p><p>Quer que a gente avise quando voltar?</p><button class="btn primary" type="button" onclick="abrirFormularioInteresse(\''+escapar(produto.id)+'\')">AVISE-ME QUANDO VOLTAR</button></div><button class="btn productModalSecondary" type="button" onclick="fecharProduto()">VOLTAR AO CATÁLOGO</button>';
+    : '<button class="btn productModalSecondary" type="button" onclick="fecharProduto()">VOLTAR AO CATÁLOGO</button>';
   modal.classList.add("open");
   modal.setAttribute("aria-hidden","false");
   document.body.style.overflow="hidden";
@@ -414,69 +335,59 @@ document.addEventListener("click",function(e){
   if(modal && e.target === modal) fecharProduto();
 });
 
-function renderProdutos(produtos){
+function renderProdutos(produtos,categoriaSelecionada){
   const lista = document.getElementById("listaProdutos");
-  const filtrados = (produtos || []).filter(produtoVisivel);
+  const ativos = produtos.filter(produtoVisivel);
+  const filtrados = categoriaSelecionada
+    ? ativos.filter(function(p){ return normalizarCategoria(p.categoriaComercial) === normalizarCategoria(categoriaSelecionada); })
+    : ativos;
+
+  // Disponíveis primeiro; esgotados depois, preservando a ordem entre cada grupo.
+  const ordenados = filtrados.map(function(p, i){ return {produto:p, ordem:i}; }).sort(function(a,b){
+    const aDisponivel = Number(a.produto.estoque || 0) > 0;
+    const bDisponivel = Number(b.produto.estoque || 0) > 0;
+    return Number(bDisponivel) - Number(aDisponivel) || a.ordem - b.ordem;
+  }).map(function(item){ return item.produto; });
 
   document.getElementById("contador").textContent =
-    filtrados.length + (filtrados.length === 1 ? " produto" : " produtos");
+    ordenados.length + (ordenados.length === 1 ? " produto" : " produtos");
 
-  if(!filtrados.length){
+  if(!ordenados.length){
     lista.innerHTML = '<div class="empty">Nenhum produto encontrado nessa categoria.</div>';
     return;
   }
 
-  lista.innerHTML = filtrados.map(function(p){
+  lista.innerHTML = ordenados.map(function(p){
     const estoque = Number(p.estoque || 0);
     const disponivel = estoque > 0;
     const fotoUrlCapa = imagemCapaProduto(p);
     const foto = fotoUrlCapa
       ? '<img src="'+escapar(fotoUrlCapa)+'" alt="'+escapar(p.produto)+'" loading="lazy" onerror="this.style.display=\'none\';this.parentNode.textContent=\'Foto do produto\';">'
       : 'Foto do produto';
-    const status = disponivel ? '<div class="stock ok">Disponível</div>' : '<div class="stock out">Esgotado</div>';
+    const selo = disponivel ? '' : '<span class="stock-badge">SEM ESTOQUE</span>';
+    const status = disponivel ? '<div class="stock ok">Disponível</div>' : '<div class="stock out">Indisponível · sem estoque</div>';
     const label = disponivel ? 'VER DETALHES' : 'VER DETALHES · ESGOTADO';
 
-    return '<article class="product"><div class="photo">'+foto+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">'+escapar(categoriaDoProduto(p) || "Produtos íntimos")+'</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<button class="details" type="button" onclick="abrirProduto(\''+escapar(p.id)+'\')">'+label+'</button></div></article>';
+    return '<article class="product"><div class="photo">'+foto+selo+'</div><div class="info"><div class="name">'+escapar(p.produto)+'</div><div class="cat">'+escapar(p.categoriaComercial || "Produtos íntimos")+'</div><div class="price">'+moeda(p.precoVenda)+'</div>'+status+'<button class="details" type="button" onclick="abrirProduto(\''+escapar(p.id)+'\')">'+label+'</button></div></article>';
   }).join("");
 }
-function montarFiltros(){
+function normalizarCategoria(valor){
+  return String(valor || "").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().replace(/\s+/g," ").toLowerCase();
+}
+function montarFiltros(produtos){
   const filtros = document.getElementById("filtros");
-  filtros.innerHTML = '<button class="filter active" data-categoria="">Todos</button>' +
-    CATEGORIAS_VITRINE.map(function(c){
-      return '<button class="filter" data-categoria="'+escapar(c)+'">'+escapar(c)+'</button>';
-    }).join("");
-
-  filtros.querySelectorAll(".filter").forEach(function(botao){
-    botao.addEventListener("click",function(){
-      filtros.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active");});
-      botao.classList.add("active");
-      renderCatalogoFiltrado();
-    });
-  });
+  const cats = ["Sex Shop","Cosméticos","Lingeries","Conjuntos","Acessórios","Biquínis","Linha Noite"];
+  filtros.innerHTML = '<button class="filter active" data-categoria="">Todos</button>' + cats.map(function(c){return '<button class="filter" data-categoria="'+escapar(c)+'">'+escapar(c)+'</button>';}).join("");
+  filtros.querySelectorAll(".filter").forEach(function(botao){botao.addEventListener("click",function(){filtros.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active")});botao.classList.add("active");renderCatalogoFiltrado()})});
 }
 function renderCatalogoFiltrado(){
-  const categoriaSelecionada = document.querySelector(".filter.active")?.getAttribute("data-categoria") || "";
-  const categoriaAlvo = normalizarCategoria(categoriaSelecionada);
-  const busca = normalizarCategoria(document.getElementById("buscaProdutos")?.value || "");
-
+  const categoria = document.querySelector(".filter.active")?.getAttribute("data-categoria") || "";
+  const busca = (document.getElementById("buscaProdutos")?.value || "").trim().toLowerCase();
   const filtrados = (window.produtosVitrine || []).filter(function(p){
-    if(!produtoVisivel(p)) return false;
-    const nome = normalizarCategoria(p.produto || "");
-
-    // Testa os dois campos separadamente. Algumas versões da API ainda
-    // entregam a classificação comercial em "categoria" e outras em
-    // "categoriaComercial"; não dependa de apenas um deles.
-    const categoriasProduto = [p.categoriaComercial, p.categoria]
-      .map(function(valor){ return normalizarCategoria(categoriaCanonica(valor) || valor); })
-      .filter(Boolean);
-    const correspondeCategoria = !categoriaAlvo || categoriasProduto.some(function(cat){
-      return cat === categoriaAlvo || cat.startsWith(categoriaAlvo + " ") || cat.includes(";" + categoriaAlvo);
-    });
-    const correspondeBusca = !busca || nome.includes(busca);
-    return correspondeCategoria && correspondeBusca;
+    const nome=String(p.produto||"").toLowerCase(), cat=String(p.categoriaComercial||"").trim();
+    return (!categoria || cat.toLowerCase()===categoria.toLowerCase()) && (!busca || nome.includes(busca));
   });
-
-  renderProdutos(filtrados);
+  renderProdutos(filtrados); document.getElementById("contador").textContent=filtrados.length+(filtrados.length===1?" produto":" produtos");
 }
 async function carregarCatalogo(){
   const lista = document.getElementById("listaProdutos");
@@ -485,23 +396,11 @@ async function carregarCatalogo(){
     const dados = await resposta.json();
     if(!dados.sucesso) throw new Error(dados.erro || "Não foi possível carregar os produtos.");
 
-    window.produtosVitrine = (dados.produtos || []).map(function(p){
-      if(!p.categoriaComercial) p.categoriaComercial = p.categoria || "";
-      if(!p.fotos) p.fotos = [];
-      if(!p.fotoUrl && p.fotos.length) p.fotoUrl = p.fotos[0].url || "";
-      return p;
-    });
-    montarFiltros();
+    window.produtosVitrine = (dados.produtos || []).map(function(p){ if(!p.categoriaComercial) p.categoriaComercial = ""; if(!p.fotos) p.fotos = []; if(!p.fotoUrl && p.fotos.length) p.fotoUrl = p.fotos[0].url || ""; return p; });
+    montarFiltros(window.produtosVitrine);
     const params = new URLSearchParams(window.location.search);
-    const categoriaInicial = normalizarCategoria(params.get("categoria") || "");
-    if(categoriaInicial){
-      document.querySelectorAll(".filter").forEach(function(botao){
-        if(normalizarCategoria(botao.getAttribute("data-categoria")) === categoriaInicial){
-          document.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active");});
-          botao.classList.add("active");
-        }
-      });
-    }
+    const categoriaInicial = params.get("categoria") || "";
+    document.querySelectorAll(".filter").forEach(function(botao){if(botao.getAttribute("data-categoria").toLowerCase()===categoriaInicial.toLowerCase()){document.querySelectorAll(".filter").forEach(function(b){b.classList.remove("active")});botao.classList.add("active")}});
     document.getElementById("buscaProdutos").addEventListener("input",renderCatalogoFiltrado);
     renderCatalogoFiltrado();
   }catch(erro){
@@ -527,39 +426,6 @@ function abrirCarrinho(){cartRender();document.getElementById("cartOverlay").cla
 function fecharCarrinho(){document.getElementById("cartOverlay").classList.remove("open");document.body.style.overflow=""}
 function finalizarCarrinhoWhatsApp(){const a=cartRead();if(!a.length)return alert("Seu carrinho está vazio.");let total=0;const linhas=a.map(i=>{const s=Number(i.precoVenda)*Number(i.quantidade);total+=s;return "• "+i.produto+" — "+i.quantidade+"x — "+moeda(s)});const msg="Olá! Quero fazer um pedido pelo site da Delírio Íntimo.\n\n"+linhas.join("\n")+"\n\n*Total: "+moeda(total)+"*\n\nGostaria de confirmar a disponibilidade e combinar a entrega.";window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank")}
 window.addEventListener("load",cartRender);
-</script>
-<script>
-let interesseProdutoAtual = null;
-function abrirFormularioInteresse(id){
- const p=(window.produtosVitrine||[]).find(x=>String(x.id)===String(id)); if(!p)return;
- interesseProdutoAtual=p;
- document.getElementById('interestProductId').value=String(p.id);
- document.getElementById('interestProductName').value=String(p.produto||'');
- document.getElementById('interestContact').value=''; document.getElementById('interestName').value=''; document.getElementById('interestConsent').checked=false;
- document.getElementById('interestFeedback').textContent=''; document.getElementById('interestFeedback').className='interestFeedback';
- document.getElementById('interestChannel').value='whatsapp'; atualizarCampoContatoInteresse();
- const ov=document.getElementById('interestOverlay');ov.classList.add('open');ov.setAttribute('aria-hidden','false');
-}
-function fecharFormularioInteresse(){const ov=document.getElementById('interestOverlay');ov.classList.remove('open');ov.setAttribute('aria-hidden','true');}
-function atualizarCampoContatoInteresse(){const c=document.getElementById('interestChannel').value, input=document.getElementById('interestContact'), label=document.getElementById('interestContactLabel');input.type=c==='email'?'email':'tel';input.autocomplete=c==='email'?'email':'tel';input.placeholder=c==='email'?'voce@exemplo.com':'Ex.: (13) 99123-4567';label.textContent=c==='email'?'Seu e-mail':'Seu WhatsApp com DDD';}
-async function enviarInteresse(ev){
- ev.preventDefault(); const p=interesseProdutoAtual;if(!p)return;
- const canal=document.getElementById('interestChannel').value, contato=document.getElementById('interestContact').value.trim(), consent=document.getElementById('interestConsent').checked;
- const feedback=document.getElementById('interestFeedback'), btn=document.getElementById('interestSubmit');
- if(!consent){feedback.textContent='Precisamos da sua autorização para enviar o aviso.';feedback.className='interestFeedback error';return;}
- if(canal==='whatsapp' && contato.replace(/\D/g,'').length<10){feedback.textContent='Informe um WhatsApp com DDD.';feedback.className='interestFeedback error';return;}
- const params=new URLSearchParams({acao:'registrarInteresse',produtoId:String(p.id),produto:String(p.produto||''),canal:canal,contato:contato,nome:document.getElementById('interestName').value.trim(),consentimento:'sim',varianteId:'',variante:''});
- btn.disabled=true;btn.textContent='ENVIANDO...';feedback.textContent='';
- try{
-   // POST simples: evita expor telefone/e-mail na URL do navegador.
-   await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:params.toString()});
-   feedback.textContent='Prontinho! Seu interesse foi registrado. 💗 Vamos usar esse contato somente para avisar sobre este produto.';feedback.className='interestFeedback success';
-   btn.textContent='CADASTRO ENVIADO';
-   setTimeout(()=>{fecharFormularioInteresse();btn.disabled=false;btn.textContent='QUERO SER AVISADA';},2200);
- }catch(err){feedback.textContent='Não conseguimos enviar agora. Tente novamente em instantes ou fale com a gente pelo WhatsApp.';feedback.className='interestFeedback error';btn.disabled=false;btn.textContent='TENTAR NOVAMENTE';}
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharFormularioInteresse();});
-document.getElementById('interestOverlay')?.addEventListener('click',e=>{if(e.target.id==='interestOverlay')fecharFormularioInteresse();});
 </script>
 </body>
 </html>
